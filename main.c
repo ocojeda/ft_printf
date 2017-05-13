@@ -12,11 +12,14 @@
 
 #include "ft_printf.h"
 
-int main(int argc, char **argv)
+int main(void)
 {
-    unsigned int x = 1200;
     char a = 'b';
-    ft_printf("%%#12.8X %s\n", 26, "Timothee pauvrete");
-   printf("\n%#12.8X %s\n", 26, "Timothee pauvrete"); 
+    unsigned short x = 0x0ff;
+    void *y = &x;
+    //wchar_t example[] = L"Latin text на кирилица and more latin";
+    ft_printf("\n%#5.1X %s\n", 0xfff, "not bad");
+    printf("\n%#5.1X %s\n", 0xfff, "not bad"); 
+    printf("\n%p %s\n", &x, "bye"); 
     return 0;
 }

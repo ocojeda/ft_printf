@@ -21,76 +21,6 @@ t_type *new_type(void)
     else 
         return (NULL);
 }
-
-int     precission_handler(char *str, int i, t_type *temp)
-{
-    int j;
-    int e;
-    char *str1;
-
-    if ((str[i] >= '0' && str[i] <= '9') || 
-            str[i] == '.')
-    {
-        j = i;
-        e = 0;
-        if (str[i] >= '0' && str[i] <= '9')
-        {
-            while (str[i] >= '0' && str[i] <= '9')
-            {
-                i++;
-                e++;
-            }
-            str1 = ft_strsub(str, j, e);
-            temp->pres_left = ft_atoi(str1);
-            free(str1);
-        }
-        else
-            temp->pres_left = 0;
-        if(str[i] == '.')
-        {
-            i++;
-            j = i;
-            e = 0;
-            if(str[i] >= '0' && str[i] <= '9')
-            {
-                while (str[i] >= '0' && str[i] <= '9')
-                {
-                    i++;
-                    e++;
-                }
-                str1 = ft_strsub(str, j, e);
-                temp->pres_right = ft_atoi(str1);
-                free(str1);            
-            }
-        }
-        else
-            temp->pres_right = 0;
-    }
-    /*
-     * if(temp->pres_left > 2147483614 || 
-     temp->pres_right )
-     in this case we have to stop the program with no segfault
-     */
-    return (i);
-}
-int     type_handler(char *str, va_list *args, int i, t_type *temp)
-{
-    return i;
-}
-int     option_handler(char *str, int i, t_type *temp)
-{
-    temp->hash_tag = 0;
-    temp->currency = 0;
-    while(str [i] == '#' || str[i] == '$')
-    {
-        if(str[i] == '#')
-            temp->hash_tag = HASH_TAG;
-        if(str[i] == '$')
-            temp->currency = CURRENCY;
-        i++;
-    }
-    return (precission_handler(str, i, temp));
-}
 t_type *parse_all(char *str, va_list args, char *format)
 {
     int     i;
@@ -130,7 +60,7 @@ t_type *parse_all(char *str, va_list args, char *format)
     if (str[i] == 'x' && !temp->type)
     {
         temp->type = HEXA;
-        temp->hexa = va_arg(args, unsigned int);
+        temp->hexa = va_arg(args, long long);
         i++;
     }
     if (str[i] == 'X' && !temp->type)

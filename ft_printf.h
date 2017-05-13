@@ -31,6 +31,13 @@
 */
 # define HASH_TAG 2 
 # define CURRENCY 1
+/*
+* OPTIONS DEFINE
+*/
+# define LONG_LONG 2 
+# define LONG 1
+# define UNSIGNED_CHAR 3
+# define UNSIGNED_SHORT_INT 4 
 
 typedef struct      s_type
 {
@@ -38,14 +45,16 @@ typedef struct      s_type
     unsigned int    pres_right;
     short           type;
     int             number;
-    unsigned int    hexa;
+    long long       hexa;
     double          fnumber;
     char            *str;
     int             c;
     short           hash_tag;
     short           currency;
+    short           cast;
     struct s_type   *next;
 }                   t_type;
+int         option_handler(char *str, int i, t_type *temp);
 void        ft_putfloat(t_type *temp);
 void        ft_puthexa(t_type *temp);
 t_type      *parse_all(char *str, va_list args, char *format);

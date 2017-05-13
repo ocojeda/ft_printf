@@ -11,18 +11,14 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-unsigned int    base_hexa(unsigned int thexa, int total)
+int    base_hexa(long long thexa, int total)
 {
-    if(thexa >= 0x000010)
-        total = 2;
-    if(thexa >= 0x000100)
-        total = 3;
-    if(thexa >= 0x001000)
-        total = 4;
-    if(thexa >= 0x010000)
-        total = 5;
-    if(thexa >= 0x100000)
-        total = 6;
+    long long a = 16;
+    while(thexa >= a)
+        {
+            a += a * 16;
+            total++;
+        }
     return total;
 }
 void    set_presschar(t_type *temp, int total)
@@ -31,8 +27,13 @@ void    set_presschar(t_type *temp, int total)
     int x;
 
     i = 0;
+    if(temp->pres_left < total && temp->pres_right < total &&
+        temp->hash_tag == 2)
+        ft_putstr("0x");
     if(temp->pres_left > total || temp->pres_right > total)
     {
+        if(temp->pres_right < total)
+            temp->pres_right = total;
         if(temp->pres_left > temp->pres_right)
              i = temp->pres_left - (temp->pres_right + temp->hash_tag);
         while(i > 0)
@@ -54,8 +55,8 @@ void    set_presschar(t_type *temp, int total)
 void    ft_itoa_hexa_capital(int total, t_type *temp, char *str)
 {
     int i;
-    int base;
-    int hexa;
+    long long base;
+    long long hexa;
 
     hexa = temp->hexa;
     base = 1;
@@ -85,8 +86,8 @@ void    ft_itoa_hexa_capital(int total, t_type *temp, char *str)
 void    ft_itoa_hexa(int total, t_type *temp, char *str)
 {
     int i;
-    int base;
-    int hexa;
+    long long base;
+    long long hexa;
 
     hexa = temp->hexa;
     base = 1;
@@ -109,17 +110,20 @@ void    ft_itoa_hexa(int total, t_type *temp, char *str)
             }
         else
             str[i] = '0';
-        i++;
+        i++;  
         base = base / 16;
     }
 }
 void    ft_puthexa(t_type *temp)
 {
-    int pres;
     int total;
     char *str;
-
+    //long long test = 0xffffffffffffffff;
+    //printf(" hello %llx", temp->hexa);
+    if(temp->hexa < 0)
+        temp->hexa = (16777210 - temp->hexa) + 0xff000000;
     total = base_hexa(temp->hexa, 1);
+    //ft_putnbr(total);
     str = semalloc(total + 1);
     str[total + 1] = '\0';
     set_presschar(temp, total);

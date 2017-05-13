@@ -15,19 +15,17 @@
 int    check_for_prints(char *str)
 {
     int i;
-    int e;
 
-    e = 0;
     i = 0;
     while (str[i])
     {
         if (str[i] == '%')
             if (str[i + 1] != '%')
-                e++;
+                return 1;
         i++;
     }
-    return (e);    
-}    
+    return (0);    
+}
 int    ft_printf(char *format, ...)
 {
     va_list     args;
