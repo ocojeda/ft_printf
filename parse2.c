@@ -85,12 +85,19 @@ int     option_handler(char *str, int i, t_type *temp)
 {
     temp->hash_tag = 0;
     temp->currency = 0;
-    while(str [i] == '#' || str[i] == '$')
+    temp->plus = 0;
+    temp->negative = 0;
+    while(str [i] == '#' || str[i] == '$' || str[i] == '+' 
+    || str[i] == '-')
     {
         if(str[i] == '#')
            temp->hash_tag = HASH_TAG;
         if(str[i] == '$')
             temp->currency = CURRENCY;
+        if(str[i] == '+')
+            temp->plus = POSITIVE;
+        if(str[i] == '-')
+            temp->negative = NEGATIVE;
         i++;
     }
     return (precission_handler(str, i, temp));

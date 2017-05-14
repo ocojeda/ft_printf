@@ -15,11 +15,11 @@
 int main(void)
 {
     char a = 'b';
-    unsigned short x = 0x0ff;
+    unsigned int x = 0x0ff;
     void *y = &x;
     //wchar_t example[] = L"Latin text на кирилица and more latin";
-    ft_printf("\n%#5.1X %s\n", 0xfff, "not bad");
-    printf("\n%#5.1X %s\n", 0xfff, "not bad"); 
+    ft_printf("\n%+5.1i %s\n",x,"not bad");
+    printf("\n%5.5x %s\n", x, "not bad"); 
     printf("\n%p %s\n", &x, "bye"); 
     return 0;
 }

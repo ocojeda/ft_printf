@@ -31,8 +31,10 @@
 */
 # define HASH_TAG 2 
 # define CURRENCY 1
+# define POSITIVE 1
+# define NEGATIVE 2
 /*
-* OPTIONS DEFINE
+* FLAGS DEFINE
 */
 # define LONG_LONG 2 
 # define LONG 1
@@ -50,10 +52,14 @@ typedef struct      s_type
     char            *str;
     int             c;
     short           hash_tag;
+    short           plus;
+    short           negative;
     short           currency;
     short           cast;
     struct s_type   *next;
 }                   t_type;
+
+void        printer(t_type *all);
 int         option_handler(char *str, int i, t_type *temp);
 void        ft_putfloat(t_type *temp);
 void        ft_puthexa(t_type *temp);

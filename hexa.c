@@ -118,12 +118,10 @@ void    ft_puthexa(t_type *temp)
 {
     int total;
     char *str;
-    //long long test = 0xffffffffffffffff;
-    //printf(" hello %llx", temp->hexa);
+
     if(temp->hexa < 0)
         temp->hexa = (16777210 - temp->hexa) + 0xff000000;
     total = base_hexa(temp->hexa, 1);
-    //ft_putnbr(total);
     str = semalloc(total + 1);
     str[total + 1] = '\0';
     set_presschar(temp, total);

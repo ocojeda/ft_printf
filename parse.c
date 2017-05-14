@@ -42,45 +42,41 @@ t_type *parse_all(char *str, va_list args, char *format)
                 temp->type = D_MOD;
                 i++;
             }
-            if((str[i] >= '0' || str[i] <= '9' || str[i] == '.') 
-                    && !temp->type) 
+            else
+            {
                 i = option_handler(str, i, temp);
-            if ((str[i] == 'd' || str[i] == 'i') && !temp->type)
-    {
-        temp->type = INTI;
-        temp->number = va_arg(args, int);
-        i++;
-    }
-    if (str[i] == 's' && !temp->type)
-    {
-        temp->type = STR;
-        temp->str = va_arg(args, char *);
-        i++;
-    }
-    if (str[i] == 'x' && !temp->type)
-    {
-        temp->type = HEXA;
-        temp->hexa = va_arg(args, long long);
-        i++;
-    }
-    if (str[i] == 'X' && !temp->type)
-    {
-        temp->type = HEXAM;
-        temp->hexa = va_arg(args, unsigned int);
-        i++;
-    }
-    if (str[i] == 'f' && !temp->type)
-    {
-        temp->type = FLOAT;
-        temp->fnumber = va_arg(args, double);
-        i++;
-    }
-    if (str[i] == 'c' && !temp->type)
-    {
-        temp->type = CHAR;
-        temp->c = va_arg(args, int);
-        i++;
-    }
+                if ((str[i] == 'd' || str[i] == 'i') && !temp->type)
+                {
+                    temp->type = INTI;
+                    temp->number = va_arg(args, int);
+                }
+                if (str[i] == 's' && !temp->type)
+                {
+                    temp->type = STR;
+                    temp->str = va_arg(args, char *);
+                }
+                if (str[i] == 'x' && !temp->type)
+                {
+                    temp->type = HEXA;
+                    temp->hexa = va_arg(args, long long);
+                }
+                if (str[i] == 'X' && !temp->type)
+                {
+                    temp->type = HEXAM;
+                    temp->hexa = va_arg(args, unsigned int);
+                }
+                if (str[i] == 'f' && !temp->type)
+                {
+                    temp->type = FLOAT;
+                    temp->fnumber = va_arg(args, double);
+                }
+                if (str[i] == 'c' && !temp->type)
+                {
+                    temp->type = CHAR;
+                    temp->c = va_arg(args, int);
+                }
+                i++;
+            }
             if(str[i])
             {
                 temp->next = new_type();

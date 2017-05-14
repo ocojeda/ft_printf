@@ -38,25 +38,7 @@ int    ft_printf(char *format, ...)
     if (check_for_prints(str))
     {
         all = parse_all(str, args, format);
-        temp = all;
-        while (temp)
-        {
-            if (temp->type == STR)
-                ft_putstr(temp->str);
-            if (temp->type == FLOAT)
-                ft_putfloat(temp);
-            if (temp->type == INTI)
-                ft_putnbr(temp->number);
-            if (temp->type == HEXA)
-                ft_puthexa(temp);
-            if (temp->type == HEXAM)
-                ft_puthexa(temp);
-            if (temp->type == D_MOD)
-                ft_putchar('%');
-            if (temp->type == CHAR)
-                ft_putchar(temp->c);
-            temp = temp->next;
-        }
+        printer(all);
     }
     else
         ft_putstr(str);
