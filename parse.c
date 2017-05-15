@@ -6,7 +6,7 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/10 10:09:32 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/05/15 16:04:08 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,11 @@ t_type *parse_all(char *str, va_list args, char *format)
                 {
                     temp->type = CHAR;
                     temp->c = va_arg(args, int);
+                }
+                if (str[i] == 'u' && !temp->type)
+                {
+                    temp->type = INTU;
+                    temp->nbr = va_arg(args, unsigned int);
                 }
                 i++;
             }

@@ -6,7 +6,7 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/10 09:54:41 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/05/15 10:04:39 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int    check_for_prints(char *str)
     }
     return (0);    
 }
+
 int    ft_printf(char *format, ...)
 {
     va_list     args;

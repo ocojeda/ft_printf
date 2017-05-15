@@ -6,7 +6,7 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/10 13:08:43 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/05/15 14:37:53 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@
 # define FLOAT 2
 # define HEXA 3
 # define HEXAM 4
-# define STR 9
-# define D_MOD 6
 # define CHAR 5
+# define D_MOD 6
+# define INTU 7
+# define STR 9
 /*
 * OPTIONS DEFINE
 */
@@ -45,6 +46,7 @@ typedef struct      s_type
 {
     unsigned int    pres_left;
     unsigned int    pres_right;
+    unsigned int    nbr;
     short           type;
     int             number;
     long long       hexa;
@@ -63,7 +65,9 @@ void        printer(t_type *all);
 int         option_handler(char *str, int i, t_type *temp);
 void        ft_putfloat(t_type *temp);
 void        ft_puthexa(t_type *temp);
+void        ft_putunbr(unsigned int nbr);
 t_type      *parse_all(char *str, va_list args, char *format);
 int         ft_printf(char *format, ...);
+void        print_unumber(t_type *temp);
 
 #endif

@@ -1,40 +1,52 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse2.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
+/*   Updated: 2017/05/15 09:53:31 by myernaux         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 # include "ft_printf.h"
 
 int     cast_handler(char *str, int i, t_type *temp)
 {
-    while(str[i] == 'h' || str[i] == 'l' || 
+    while (str[i] == 'h' || str[i] == 'l' || 
     str[i] == 'j' || str[i] == 'z')
     {
-        if(str[i] == 'l')
+        if (str[i] == 'l')
+        {
+            if (str[i + 1] == 'l')
             {
-                if(str[i + 1] == 'l')
-                {
-                    temp->cast == LONG_LONG;
-                    i++;
-                }
-                else
-                    temp->cast == LONG;
+                temp->cast = LONG_LONG;
+                i++;
             }
-        if(str[i] == 'h')
+            else
+                temp->cast = LONG;
+        }
+        if (str[i] == 'h')
+        {
+            if (str[i + 1] == 'h')
             {
-                if(str[i + 1] == 'h')
-                {
-                    temp->cast == UNSIGNED_CHAR;
-                    i++;
-                }
-                else
-                    temp->cast == UNSIGNED_SHORT_INT;
+                temp->cast = UNSIGNED_CHAR;
+                i++;
             }
+            else
+                temp->cast = UNSIGNED_SHORT_INT;
+        }
         i++;    
     }
-
-    return i;
+    return (i);
 }
+
 int     precission_handler(char *str, int i, t_type *temp)
 {
-    int j;
-    int e;
-    char *str1;
+    int     j;
+    int     e;
+    char    *str1;
 
     if ((str[i] >= '0' && str[i] <= '9') || 
             str[i] == '.')
@@ -54,12 +66,12 @@ int     precission_handler(char *str, int i, t_type *temp)
         }
         else
             temp->pres_left = 0;
-        if(str[i] == '.')
+        if (str[i] == '.')
         {
             i++;
             j = i;
             e = 0;
-            if(str[i] >= '0' && str[i] <= '9')
+            if (str[i] >= '0' && str[i] <= '9')
             {
                 while (str[i] >= '0' && str[i] <= '9')
                 {
@@ -81,22 +93,23 @@ int     precission_handler(char *str, int i, t_type *temp)
      */
     return (cast_handler(str, i, temp));
 }
+
 int     option_handler(char *str, int i, t_type *temp)
 {
     temp->hash_tag = 0;
     temp->currency = 0;
     temp->plus = 0;
     temp->negative = 0;
-    while(str [i] == '#' || str[i] == '$' || str[i] == '+' 
+    while (str [i] == '#' || str[i] == '$' || str[i] == '+' 
     || str[i] == '-')
     {
-        if(str[i] == '#')
+        if (str[i] == '#')
            temp->hash_tag = HASH_TAG;
-        if(str[i] == '$')
+        if (str[i] == '$')
             temp->currency = CURRENCY;
-        if(str[i] == '+')
+        if (str[i] == '+')
             temp->plus = POSITIVE;
-        if(str[i] == '-')
+        if (str[i] == '-')
             temp->negative = NEGATIVE;
         i++;
     }
