@@ -18,8 +18,11 @@ int main(void)
     unsigned int x = 0x0ff;
     void *y = &x;
     //wchar_t example[] = L"Latin text на кирилица and more latin";
-    ft_printf("\n%+5.1i %s\n",x,"not bad");
-    printf("\n%5.5x %s\n", x, "not bad"); 
+    ft_printf("\n%+5.10i %s\n",x,"not bad");
+    ft_putnbr((long)y);
+    printf("\n%+5.10i %s\n",x,"not bad"); 
+    
+    printf("\n%p %s\n", y, "bye");
     printf("\n%p %s\n", &x, "bye"); 
     return 0;
 }

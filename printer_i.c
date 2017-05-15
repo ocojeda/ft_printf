@@ -4,25 +4,19 @@ void    set_presschar_for_int(t_type *temp, int total)
 {
     int i;
     int x;
-    int pos_flag;
-    pos_flag = 0;
-
-    if(temp->type == INTI && temp->number > 0 || temp->plus)
-        pos_flag = 1;
-
     i = 0;
     if(temp->pres_left > total || temp->pres_right > total)
     {
         if(temp->pres_right < total)
             temp->pres_right = total;
         if(temp->pres_left > temp->pres_right)
-             i = temp->pres_left - temp->pres_right - pos_flag;
+             i = temp->pres_left - temp->pres_right - temp->plus;
         while(i > 0)
         {
             ft_putchar(' ');
             i--;
         }
-        if(pos_flag)
+        if(temp->plus)
             ft_putchar('+');
         if(temp->pres_right > total)
             i = temp->pres_right - total;
@@ -40,11 +34,13 @@ void    print_number(t_type *temp)
     total = 0;
 
     t = temp->number;
-    while(t > 1)
+    while(t != 0)
     {
         total++;
         t /= 10;
     }
+    if(temp->number < 0)
+        total++;
     set_presschar_for_int(temp, total);
     ft_putnbr(temp->number);
 }
