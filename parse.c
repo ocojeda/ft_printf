@@ -80,6 +80,11 @@ t_type *parse_all(char *str, va_list args, char *format)
                     temp->type = INTU;
                     temp->nbr = va_arg(args, unsigned int);
                 }
+                if (str[i] == 'p' && !temp->type)
+                {
+                    temp->type = POINTER_ADRESSE;
+                    temp->pointer = va_arg(args, void *);
+                }
                 i++;
             }
             if(str[i])

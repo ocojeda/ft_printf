@@ -26,6 +26,7 @@
 # define CHAR 5
 # define D_MOD 6
 # define INTU 7
+# define POINTER_ADRESSE 8
 # define STR 9
 /*
 * OPTIONS DEFINE
@@ -50,6 +51,7 @@ typedef struct      s_type
     short           type;
     int             number;
     long long       hexa;
+    void *          pointer;
     double          fnumber;
     char            *str;
     int             c;
@@ -69,5 +71,5 @@ void        ft_putunbr(unsigned int nbr);
 t_type      *parse_all(char *str, va_list args, char *format);
 int         ft_printf(char *format, ...);
 void        print_unumber(t_type *temp);
-
+void        adresse_printer(t_type *temp);
 #endif

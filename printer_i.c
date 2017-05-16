@@ -90,6 +90,8 @@ void    printer(t_type *all)
             ft_putchar(temp->c);
         if (temp->type == INTU)
             ft_putunbr(temp->nbr);
+        if (temp->type == POINTER_ADRESSE)
+            adresse_printer(temp);
         temp = temp->next;
     }
 }
