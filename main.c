@@ -24,8 +24,8 @@ int main(void)
     
     //printf("\n%p %s\n", y, "bye");
     //printf("\n%p %s\n", &x, "bye"); 
-    ft_printf("%u", 65530);
+    ft_printf("%12.8i", -256);
     ft_putchar('\n');
-    printf("%u", 65530);
+    printf("%12.8i\n", -256);
     return 0;
 }

@@ -33,7 +33,7 @@
 # define HASH_TAG 2 
 # define CURRENCY 1
 # define POSITIVE 1
-# define NEGATIVE 2
+# define NEGATIVE 1
 /*
 * FLAGS DEFINE
 */

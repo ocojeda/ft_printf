@@ -23,7 +23,8 @@ static void    set_presschar_for_int(t_type *temp, int total)
         if (temp->pres_right < total)
             temp->pres_right = total;
         if (temp->pres_left > temp->pres_right)
-             i = temp->pres_left - temp->pres_right - temp->plus;
+             i = temp->pres_left - temp->pres_right 
+             - temp->plus - temp->negative;
         while (i > 0)
         {
             ft_putchar(' ');
@@ -31,6 +32,8 @@ static void    set_presschar_for_int(t_type *temp, int total)
         }
         if (temp->plus)
             ft_putchar('+');
+        if(temp->negative)
+            ft_putchar('-');
         if (temp->pres_right > total)
             i = temp->pres_right - total;
         while (i > 0)
@@ -47,6 +50,11 @@ static void    print_number(t_type *temp)
     int total;
 
     total = 0;
+    if(temp->number < 0)
+    {
+        temp->number *= -1;
+        temp->negative = NEGATIVE;
+    }
     t = temp->number;
     while (t != 0)
     {
