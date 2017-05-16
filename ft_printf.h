@@ -6,7 +6,7 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/15 14:37:53 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/05/16 09:26:35 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 # define INTU 7
 # define POINTER_ADRESSE 8
 # define STR 9
+# define INTLU 10
+# define INTL 11
 /*
 * OPTIONS DEFINE
 */
@@ -48,6 +50,8 @@ typedef struct      s_type
     unsigned int    pres_left;
     unsigned int    pres_right;
     unsigned int    nbr;
+    long unsigned int lunbr;
+    long int        lnbr;
     short           type;
     int             number;
     long long       hexa;
@@ -68,8 +72,11 @@ int         option_handler(char *str, int i, t_type *temp);
 void        ft_putfloat(t_type *temp);
 void        ft_puthexa(t_type *temp);
 void        ft_putunbr(unsigned int nbr);
+void        ft_putlunbr(long unsigned int lunbr);
+void        ft_putlnbr(long int lnbr);
 t_type      *parse_all(char *str, va_list args, char *format);
 int         ft_printf(char *format, ...);
 void        print_unumber(t_type *temp);
 void        adresse_printer(t_type *temp);
+
 #endif

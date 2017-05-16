@@ -6,7 +6,7 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/15 16:04:37 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/05/16 09:22:11 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,10 @@ void    printer(t_type *all)
             ft_putchar(temp->c);
         if (temp->type == INTU)
             ft_putunbr(temp->nbr);
+        if (temp->type == INTLU)
+            ft_putlunbr(temp->lunbr);
+        if (temp->type == INTL)
+            ft_putlnbr(temp->lnbr);
         if (temp->type == POINTER_ADRESSE)
             adresse_printer(temp);
         temp = temp->next;

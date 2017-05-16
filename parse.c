@@ -6,7 +6,7 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/15 16:04:08 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/05/16 09:24:14 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,11 @@ t_type *parse_all(char *str, va_list args, char *format)
                     temp->type = INTI;
                     temp->number = va_arg(args, int);
                 }
+                if (str[i] == 'D' && !temp->type)
+                {
+                    temp->type = INTL;
+                    temp->lnbr = va_arg(args, long int);
+                }
                 if (str[i] == 's' && !temp->type)
                 {
                     temp->type = STR;
@@ -65,11 +70,11 @@ t_type *parse_all(char *str, va_list args, char *format)
                     temp->type = HEXAM;
                     temp->hexa = va_arg(args, unsigned int);
                 }
-                if (str[i] == 'f' && !temp->type)
+           /*     if (str[i] == 'f' && !temp->type)
                 {
                     temp->type = FLOAT;
                     temp->fnumber = va_arg(args, double);
-                }
+                }*/
                 if (str[i] == 'c' && !temp->type)
                 {
                     temp->type = CHAR;
@@ -79,6 +84,11 @@ t_type *parse_all(char *str, va_list args, char *format)
                 {
                     temp->type = INTU;
                     temp->nbr = va_arg(args, unsigned int);
+                }
+                if (str[i] == 'U' && !temp->type)
+                {
+                    temp->type = INTLU;
+                    temp->lunbr = va_arg(args, long unsigned int);
                 }
                 if (str[i] == 'p' && !temp->type)
                 {
