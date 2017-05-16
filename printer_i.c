@@ -6,13 +6,13 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/16 09:22:11 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/05/16 11:19:32 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void    set_presschar_for_int(t_type *temp, int total)
+void    set_presschar_for_int(t_type *temp, int total)
 {
     int i;
     int x;
@@ -89,11 +89,11 @@ void    printer(t_type *all)
         if (temp->type == CHAR)
             ft_putchar(temp->c);
         if (temp->type == INTU)
-            ft_putunbr(temp->nbr);
+            print_unumber(temp);
         if (temp->type == INTLU)
-            ft_putlunbr(temp->lunbr);
+            print_lunumber(temp);
         if (temp->type == INTL)
-            ft_putlnbr(temp->lnbr);
+            print_lnumber(temp);
         if (temp->type == POINTER_ADRESSE)
             adresse_printer(temp);
         temp = temp->next;

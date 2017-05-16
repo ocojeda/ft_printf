@@ -6,7 +6,7 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/15 15:25:14 by myernaux          #+#    #+#             */
-/*   Updated: 2017/05/16 09:32:27 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/05/16 11:21:46 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,20 @@ void	ft_putlnbr(long int lnbr)
 	{
 		ft_putchar(nbr + '0');
 	}
+}
+
+void    print_lnumber(t_type *temp)
+{
+    long long t;
+    int total;
+
+    total = 0;
+    t = temp->lnbr;
+    while (t != 0)
+    {
+        total++;
+        t /= 10;
+    }
+    set_presschar_for_int(temp, total);
+    ft_putlnbr(temp->lnbr);
 }
