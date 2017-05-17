@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/17 10:09:22 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/05/17 23:13:35 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "includes/ft_printf.h"
 
 int main(void)
 {
@@ -21,9 +21,8 @@ int main(void)
    // ft_printf("\n%+5.10i %s\n",x,"not bad");
     //ft_putnbr((long)y);
     //printf("\n%+5.10i %s\n",x,"not bad"); 
-   ft_printf("%o\n", 989);
-   printf("%o\n", 989);
-
+   //printf("%9999999999.999999999i\n", 989);
+ ft_printf("%s", "abc");
    // printf("\n%p %s\n", y, "bye");
     //ft_printf("\n%p %s\n", y, "bye");
     //printf("\n%p %s\n", &x, "bye"); 
