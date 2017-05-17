@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   adresse_printer.c                                  :+:      :+:    :+:   */
+/*   ft_putwstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/17 15:27:11 by myernaux          #+#    #+#             */
-/*   Updated: 2017/05/17 15:27:13 by myernaux         ###   ########.fr       */
+/*   Created: 2017/05/17 15:21:14 by myernaux          #+#    #+#             */
+/*   Updated: 2017/05/17 15:23:24 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
 
-
-# include "ft_printf.h"
-
-void    adresse_printer(t_type *temp)
+void    ft_putwstr(wchar_t *wstr)
 {
-    long long adresse;
-
-    adresse = (long long)&(temp->pointer);
-    
+    //to do : the function !
 }

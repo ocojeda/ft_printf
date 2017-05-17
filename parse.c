@@ -6,7 +6,7 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/17 09:45:17 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/05/17 15:26:18 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,11 @@ t_type *parse_all(char *str, va_list args, char *format)
                     temp->type = STR;
                     temp->str = va_arg(args, char *);
                 }
+                if (str[i] == 'S' && !temp->type)
+                {
+                    temp->type = WSTR;
+                    temp->wstr = va_arg(args, wchar_t *);
+                }
                 if (str[i] == 'x' && !temp->type)
                 {
                     temp->type = HEXA;
@@ -70,15 +75,15 @@ t_type *parse_all(char *str, va_list args, char *format)
                     temp->type = HEXAM;
                     temp->hexa = va_arg(args, unsigned int);
                 }
-           /*   if (str[i] == 'f' && !temp->type)
-                {
-                    temp->type = FLOAT;
-                    temp->fnumber = va_arg(args, double);
-                }*/
                 if (str[i] == 'c' && !temp->type)
                 {
                     temp->type = CHAR;
                     temp->c = va_arg(args, int);
+                }
+                if (str[i] == 'C' && !temp->type)
+                {
+                    temp->type = WCHAR;
+                    temp->wc = va_arg(args, wchar_t);
                 }
                 if (str[i] == 'u' && !temp->type)
                 {
@@ -107,7 +112,7 @@ t_type *parse_all(char *str, va_list args, char *format)
                 }
                 i++;
             }
-            if(str[i])
+            if (str[i])
             {
                 temp->next = new_type();
                 temp = temp->next;

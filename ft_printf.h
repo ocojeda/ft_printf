@@ -6,7 +6,7 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/17 09:46:48 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/05/17 15:26:37 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,19 @@
 *TYPE OF VARIABLE DEFINE
 */
 # define INTI 1
-# define FLOAT 2
-# define HEXA 3
-# define HEXAM 4
-# define CHAR 5
-# define D_MOD 6
-# define INTU 7
-# define POINTER_ADRESSE 8
-# define STR 9
-# define INTLU 10
-# define INTL 11
-# define OCTAL 12
-# define OCTALM 13
+# define HEXA 2
+# define HEXAM 3
+# define CHAR 4
+# define D_MOD 5
+# define INTU 6
+# define POINTER_ADRESSE 7
+# define STR 8
+# define INTLU 9
+# define INTL 10
+# define OCTAL 11
+# define OCTALM 12
+# define WCHAR 13
+# define WSTR 14
 /*
 * OPTIONS DEFINE
 */
@@ -62,6 +63,8 @@ typedef struct      s_type
     double          fnumber;
     char            *str;
     int             c;
+    wchar_t         *wstr;
+    wchar_t         wc;
     short           hash_tag;
     short           plus;
     short           negative;
@@ -72,12 +75,13 @@ typedef struct      s_type
 
 void        printer(t_type *all);
 int         option_handler(char *str, int i, t_type *temp);
-void        ft_putfloat(t_type *temp);
 void        ft_puthexa(t_type *temp);
 void        ft_putoctal(t_type *temp);
 void        ft_putunbr(unsigned int unbr);
 void        ft_putlunbr(long unsigned int lunbr);
 void        ft_putlnbr(long int lnbr);
+void        ft_putwchar(wchar_t wc);
+void        ft_putwstr(wchar_t *wstr);
 t_type      *parse_all(char *str, va_list args, char *format);
 int         ft_printf(char *format, ...);
 void        print_unumber(t_type *temp);

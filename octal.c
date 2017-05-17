@@ -6,7 +6,7 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 09:30:09 by myernaux          #+#    #+#             */
-/*   Updated: 2017/05/17 10:09:07 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/05/17 10:34:29 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,15 @@ void    ft_itoa_octal_capital(int total, t_type *temp, char *str)
 
 void    ft_itoa_octal(int total, t_type *temp, char *str)
 {
-    int i;
-    long long base;
-    long long octal;
+    int         i;
+    long long   base;
+    long long   octal;
 
     octal = temp->octal;
     base = 1;
-    i = 1;
-    while (i < total)
-    {
+    i = 0;
+    while (++i < total)
         base = base * 8;
-        i++;
-    }
     i = 0;
     while (i < total)
     {
@@ -82,8 +79,8 @@ void    ft_itoa_octal(int total, t_type *temp, char *str)
 
 void    ft_putoctal(t_type *temp)
 {
-    int total;
-    char *str;
+    int     total;
+    char    *str;
 
     total = base_octal(temp->octal, 1);
     str = semalloc(total + 1);

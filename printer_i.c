@@ -6,7 +6,7 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/17 09:46:23 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/05/17 15:19:45 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,6 @@ void    printer(t_type *all)
     {
         if (temp->type == STR)
             ft_putstr(temp->str);
-        if (temp->type == FLOAT)
-            ft_putfloat(temp);
         if (temp->type == INTI)
             print_number(temp);
         if (temp->type == HEXA)
@@ -100,6 +98,10 @@ void    printer(t_type *all)
             ft_putoctal(temp);
         if (temp->type == OCTALM)
             ft_putoctal(temp);
+        if (temp->type == WCHAR)
+            ft_putwchar(temp->wc);
+        if (temp->type == WSTR)
+            ft_putwstr(temp->wstr);
         temp = temp->next;
     }
 }

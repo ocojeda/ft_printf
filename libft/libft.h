@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
+/*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 16:05:35 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/23 20:48:49 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/05/17 15:05:07 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,6 @@ void				err_found(char *str);
 void				free_splited_str(char **str);
 int					len_of_tab(char **tab);
 double				ft_atof(const char *str);
+char				*ft_itoa_base(int value, int base);
 
 #endif
