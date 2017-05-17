@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/17 23:20:44 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/18 00:18:52 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,10 @@ static void    print_number(t_type *temp)
     ft_putnbr(temp->number);
 }
 
-long long    printer(t_type *all)
+int    printer(t_type *all)
 {
     t_type *temp;
-    long long everything;
+    int everything;
 
     everything = 0;
     temp = all;

@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/17 23:21:21 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/18 00:18:25 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int    ft_printf(char *format, ...)
     va_list     args;
     t_type      *all;
     char        *str;
-    long long   everything;
+    int   everything;
 
     everything = 0;
     va_start(args, format);

@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/17 23:18:10 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/18 00:23:49 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ typedef struct      s_type
     struct s_type   *next;
 }                   t_type;
 
-long long   printer(t_type *all);
+int   printer(t_type *all);
 int         option_handler(char *str, int i, t_type *temp);
 void        ft_puthexa(t_type *temp);
 void        ft_putoctal(t_type *temp);
