@@ -6,7 +6,7 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/16 11:23:04 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/05/17 08:54:56 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ void    print_unumber(t_type *temp)
     int total;
 
     total = 0;
+    if(temp->number < 0)
+    {
+        temp->number *= -1;
+        temp->negative = NEGATIVE;
+    }
     t = temp->unbr;
     while (t != 0)
     {
