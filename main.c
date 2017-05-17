@@ -6,7 +6,7 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/16 11:21:50 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/05/17 10:09:22 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 int main(void)
 {
     char a = 'b';
-    unsigned int x = 0x0ff;
+    long x = 0xffffffffffff;
     long y = (long)&x;
     //wchar_t example[] = L"Latin text на кирилица and more latin";
    // ft_printf("\n%+5.10i %s\n",x,"not bad");
     //ft_putnbr((long)y);
     //printf("\n%+5.10i %s\n",x,"not bad"); 
-   ft_printf("%u", 989);
-   printf("\n%u", 989);
+   ft_printf("%o\n", 989);
+   printf("%o\n", 989);
 
    // printf("\n%p %s\n", y, "bye");
     //ft_printf("\n%p %s\n", y, "bye");

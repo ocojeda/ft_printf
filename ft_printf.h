@@ -6,7 +6,7 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/16 11:21:38 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/05/17 09:46:48 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 # define STR 9
 # define INTLU 10
 # define INTL 11
+# define OCTAL 12
+# define OCTALM 13
 /*
 * OPTIONS DEFINE
 */
@@ -54,6 +56,7 @@ typedef struct      s_type
     long int        lnbr;
     short           type;
     int             number;
+    long long       octal;
     long long       hexa;
     void *          pointer;
     double          fnumber;
@@ -71,6 +74,7 @@ void        printer(t_type *all);
 int         option_handler(char *str, int i, t_type *temp);
 void        ft_putfloat(t_type *temp);
 void        ft_puthexa(t_type *temp);
+void        ft_putoctal(t_type *temp);
 void        ft_putunbr(unsigned int unbr);
 void        ft_putlunbr(long unsigned int lunbr);
 void        ft_putlnbr(long int lnbr);
@@ -81,5 +85,6 @@ void        print_lunumber(t_type *temp);
 void        print_lnumber(t_type *temp);
 void        adresse_printer(t_type *temp);
 void        set_presschar_for_int(t_type *temp, int total);
+void        set_presschar(t_type *temp, int total);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/16 11:19:32 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/05/17 09:46:23 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void    print_number(t_type *temp)
     int total;
 
     total = 0;
-    if(temp->number < 0)
+    if (temp->number < 0)
     {
         temp->number *= -1;
         temp->negative = NEGATIVE;
@@ -96,6 +96,10 @@ void    printer(t_type *all)
             print_lnumber(temp);
         if (temp->type == POINTER_ADRESSE)
             adresse_printer(temp);
+        if (temp->type == OCTAL)
+            ft_putoctal(temp);
+        if (temp->type == OCTALM)
+            ft_putoctal(temp);
         temp = temp->next;
     }
 }

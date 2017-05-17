@@ -6,7 +6,7 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/16 11:05:54 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/05/17 09:45:17 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ t_type *parse_all(char *str, va_list args, char *format)
                     temp->type = HEXAM;
                     temp->hexa = va_arg(args, unsigned int);
                 }
-           /*     if (str[i] == 'f' && !temp->type)
+           /*   if (str[i] == 'f' && !temp->type)
                 {
                     temp->type = FLOAT;
                     temp->fnumber = va_arg(args, double);
@@ -94,6 +94,16 @@ t_type *parse_all(char *str, va_list args, char *format)
                 {
                     temp->type = POINTER_ADRESSE;
                     temp->pointer = va_arg(args, void *);
+                }
+                if (str[i] == 'o' && !temp->type)
+                {
+                    temp->type = OCTAL;
+                    temp->octal = va_arg(args, long long);
+                }
+                if (str[i] == 'O' && !temp->type)
+                {
+                    temp->type = OCTALM;
+                    temp->octal = va_arg(args, unsigned int);
                 }
                 i++;
             }

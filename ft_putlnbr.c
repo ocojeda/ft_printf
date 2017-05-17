@@ -6,7 +6,7 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/15 15:25:14 by myernaux          #+#    #+#             */
-/*   Updated: 2017/05/17 08:55:09 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/05/17 09:14:10 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void    print_lnumber(t_type *temp)
     int total;
 
     total = 0;
-	if(temp->number < 0)
+	if (temp->number < 0)
     {
         temp->number *= -1;
         temp->negative = NEGATIVE;
