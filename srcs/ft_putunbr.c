@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/19 13:21:12 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/19 21:32:04 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ int    print_unumber(t_type *temp)
         t /= 10;
     }
     all = set_presschar_for_int(temp, total);
-    ft_putunbr(temp->unbr);
+    if(temp->unbr > 0)
+        ft_putunbr(temp->unbr);
+    if(temp->unbr == 0 && temp->pres_right)
+        all++;
     return (all);
 }

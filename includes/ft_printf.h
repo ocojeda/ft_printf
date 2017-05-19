@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/19 13:32:38 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/19 19:25:32 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef struct      s_type
     int             c;
     wchar_t         *wstr;
     wchar_t         wc;
+    int             spaces;
     short           hash_tag;
     short           plus;
     short           negative;

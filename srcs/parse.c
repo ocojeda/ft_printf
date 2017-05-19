@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/19 15:56:27 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/19 17:33:10 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ t_type *parse_all(char *str, va_list args, char *format)
                 {
                     temp->type = STR;
                     temp->str = va_arg(args, char *);
+                    if(temp->str == 0 || temp->str == NULL)
+                            temp->str = "(null)";
                 }
                 if (str[i] == 'S' && !temp->type)
                 {

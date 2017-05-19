@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/19 16:10:50 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/19 21:34:00 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,22 @@ int     set_presschar_for_int(t_type *temp, int total)
     int i;
     int a;
 
-    a = 0;
     i = 0;
-    if (temp->pres_left > total || temp->pres_right > total)
-    {
+    if((temp->pres_left < total + temp->spaces) && temp->spaces && 
+    temp->number > 0)
+        {
+            i = temp->spaces;
+            a = temp->spaces;
+            while(a)
+            {
+                ft_putchar(' ');
+                a--;
+            }
+        }
+    a = i;
+    i = 0;
         if (temp->pres_right < total)
-            temp->pres_right = total;
+            temp->pres_right = total - temp->negative;
         if (temp->pres_left > temp->pres_right)
              i = temp->pres_left - temp->pres_right 
              - temp->plus - temp->negative;
@@ -32,7 +42,7 @@ int     set_presschar_for_int(t_type *temp, int total)
             ft_putchar(' ');
             i--;
         }
-        if (temp->plus)
+        if (temp->plus && temp->number >= 0 && !temp->negative)
             {
                 ft_putchar('+');
                 a++;
@@ -42,17 +52,14 @@ int     set_presschar_for_int(t_type *temp, int total)
                 ft_putchar('-');
                 a++;
             }
-        if (temp->pres_right > total)
-            {
-                i = temp->pres_right - total;
-                a += i;
-            }
+        if (temp->pres_right > total - temp->negative)
+                i = temp->pres_right - total + temp->negative;
+        a += i - temp->negative;
         while (i > 0)
         {
            i--;
            ft_putchar('0');
         }
-    }
     return (a + total);
 }
 
@@ -62,23 +69,29 @@ int    print_number(t_type *temp)
     int total;
     int i;
 
+    i = 0;
     total = 0;
-    if (temp->number < 0)
-    {
-        temp->number *= -1;
-        temp->negative = NEGATIVE;
-    }
     t = temp->number;
     while (t != 0)
     {
         total++;
         t /= 10;
     }
-    if (temp->number < 0)
-        total++;
+    if(temp->number < 0)
+        {
+            total++;
+            temp->negative = NEGATIVE;
+            temp->number *= -1;
+        } 
     i = set_presschar_for_int(temp, total);
-    ft_putnbr(temp->number);
-    return i;
+    //ft_putchar('\n');
+    //ft_putnbr(total);
+    //ft_putchar('\n');
+    if(temp->number > 0)
+        ft_putnbr(temp->number);
+    if(temp->number == 0 && temp->pres_right)
+        i++;
+    return (i);
 }
 
 int    printer(t_type *all)
