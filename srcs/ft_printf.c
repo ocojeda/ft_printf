@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/18 00:18:25 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/19 11:39:56 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ int    ft_printf(char *format, ...)
         everything = printer(all);
     }
     else
+    {
         ft_putstr(str);
+        everything = ft_strlen(str);
+    }
     va_end(args);
     return (everything);
 }

@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/18 00:23:49 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/19 13:32:38 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ typedef struct      s_type
 
 int   printer(t_type *all);
 int         option_handler(char *str, int i, t_type *temp);
-void        ft_puthexa(t_type *temp);
-void        ft_putoctal(t_type *temp);
+int        ft_puthexa(t_type *temp);
+int        ft_putoctal(t_type *temp);
 void        ft_putunbr(unsigned int unbr);
 void        ft_putlunbr(long unsigned int lunbr);
 void        ft_putlnbr(long int lnbr);
@@ -84,11 +84,11 @@ void        ft_putwchar(wchar_t wc);
 void        ft_putwstr(wchar_t *wstr);
 t_type      *parse_all(char *str, va_list args, char *format);
 int         ft_printf(char *format, ...);
-void        print_unumber(t_type *temp);
-void        print_lunumber(t_type *temp);
-void        print_lnumber(t_type *temp);
-void        adresse_printer(t_type *temp);
-void        set_presschar_for_int(t_type *temp, int total);
-void        set_presschar(t_type *temp, int total);
+int        print_unumber(t_type *temp);
+int        print_lunumber(t_type *temp);
+int        print_lnumber(t_type *temp);
+int        adresse_printer(t_type *temp);
+int        set_presschar_for_int(t_type *temp, int total);
+int        set_presschar(t_type *temp, int total);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putlunbr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/15 15:25:14 by myernaux          #+#    #+#             */
-/*   Updated: 2017/05/17 09:14:14 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/05/19 13:23:53 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@ void    ft_putlunbr(long unsigned int lunbr)
     ft_putchar('0' + (lunbr % 10));
 }
 
-void    print_lunumber(t_type *temp)
+int    print_lunumber(t_type *temp)
 {
     long long t;
     int total;
+    int all;
 
     total = 0;
     if (temp->number < 0)
@@ -36,6 +37,7 @@ void    print_lunumber(t_type *temp)
         total++;
         t /= 10;
     }
-    set_presschar_for_int(temp, total);
+    all = set_presschar_for_int(temp, total);
     ft_putlunbr(temp->lunbr);
+    return (all);
 }

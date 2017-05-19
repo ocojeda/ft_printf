@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   octal.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 09:30:09 by myernaux          #+#    #+#             */
-/*   Updated: 2017/05/17 10:34:29 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/05/19 13:33:10 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,19 +77,21 @@ void    ft_itoa_octal(int total, t_type *temp, char *str)
     }
 }
 
-void    ft_putoctal(t_type *temp)
+int    ft_putoctal(t_type *temp)
 {
     int     total;
     char    *str;
+    int     all;
 
     total = base_octal(temp->octal, 1);
     str = semalloc(total + 1);
     str[total + 1] = '\0';
-    set_presschar(temp, total);
+    all = set_presschar(temp, total);
     if (temp->type == OCTAL)
         ft_itoa_octal(total, temp, str);
     if (temp->type == OCTALM)
         ft_itoa_octal_capital(total, temp, str);
     ft_putstr(str);
     free(str);
+    return all;
 }

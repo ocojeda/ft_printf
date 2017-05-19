@@ -3,21 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocojeda- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 00:05:50 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/18 00:10:11 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/19 14:25:58 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "includes/ft_printf.h"
 
 int main(void)
 {
-	char a = 'b';
-	long x = 0xffffffffffff;
-	long y = (long)&x;
-//	printf("\n%p %s\n", y, "bye");
-	ft_printf("\n%10d %s\n", 42, "bye");
-	return 0;
+    char a = 'b';
+    long x = 0xffffffffffff;
+    long y = (long)&x;
+    int total;
+//    printf("\n%p %s\n", y, "bye");
+    total = ft_printf("%%");
+    ft_printf("\nour total = %d\n", total);
+    total = printf("%5%");
+    printf("\nprintf total = %d\n", total);
+
+    return 0;
 }

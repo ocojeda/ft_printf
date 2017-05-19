@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putunbr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/17 09:14:18 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/05/19 13:21:12 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@ void    ft_putunbr(unsigned int unbr)
     ft_putchar('0' + (unbr % 10));
 }
 
-void    print_unumber(t_type *temp)
+int    print_unumber(t_type *temp)
 {
     long long t;
     int total;
+    int all;
 
     total = 0;
     if (temp->number < 0)
@@ -36,6 +37,7 @@ void    print_unumber(t_type *temp)
         total++;
         t /= 10;
     }
-    set_presschar_for_int(temp, total);
+    all = set_presschar_for_int(temp, total);
     ft_putunbr(temp->unbr);
+    return (all);
 }

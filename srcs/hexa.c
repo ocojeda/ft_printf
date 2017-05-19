@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/17 23:01:46 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/19 13:31:06 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,35 +25,46 @@ int    base_hexa(long long thexa, int total)
     return (total);
 }
 
-void    set_presschar(t_type *temp, int total)
+int    set_presschar(t_type *temp, int total)
 {
     int i;
+    int all;
     
+    all = 0;
     i = 0;
     if (temp->pres_left < total && temp->pres_right < total && 
     temp->hash_tag == 2)
-        ft_putstr("0x");
+        {
+            ft_putstr("0x");
+            all += 2;
+        }
     if (temp->pres_left > total || temp->pres_right > total)
     {
         if (temp->pres_right < total)
             temp->pres_right = total;
         if (temp->pres_left > temp->pres_right)
              i = temp->pres_left - (temp->pres_right + temp->hash_tag);
+        all += i;
         while (i > 0)
         {
             ft_putchar(' ');
             i--;
         }
         if (temp->hash_tag)
-            ft_putstr("0x");
+            {
+                ft_putstr("0x");
+                all += 2;
+            }
         if (temp->pres_right > total)
             i = temp->pres_right - total;
-            while (i > 0)
-            {
-               i--;
-               ft_putchar('0');
-            }
+        all += i;
+        while (i > 0)
+        {
+            i--;
+            ft_putchar('0');
+        }
     }
+    return (all + total);
 }
 
 void    ft_itoa_hexa_capital(int total, t_type *temp, char *str)
@@ -120,21 +131,23 @@ void    ft_itoa_hexa(int total, t_type *temp, char *str)
     }
 }
 
-void    ft_puthexa(t_type *temp)
+int    ft_puthexa(t_type *temp)
 {
     int total;
     char *str;
+    int all;
 
     if (temp->hexa < 0)
         temp->hexa = (16777210 - temp->hexa) + 0xff000000;
     total = base_hexa(temp->hexa, 1);
     str = semalloc(total + 1);
     str[total + 1] = '\0';
-    set_presschar(temp, total);
+    all = set_presschar(temp, total);
     if (temp->type == HEXA)
         ft_itoa_hexa(total, temp, str);
     if (temp->type == HEXAM)
         ft_itoa_hexa_capital(total, temp, str);
     ft_putstr(str);
     free(str);
+    return (all);
 }

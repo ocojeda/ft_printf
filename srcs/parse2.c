@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/15 09:53:31 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/05/19 14:20:52 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int     option_handler(char *str, int i, t_type *temp)
     temp->plus = 0;
     temp->negative = 0;
     while (str [i] == '#' || str[i] == '$' || str[i] == '+' 
-    || str[i] == '-')
+    || str[i] == '-' || str[i] == ' ')
     {
         if (str[i] == '#')
            temp->hash_tag = HASH_TAG;
