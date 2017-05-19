@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/19 14:20:04 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/19 15:56:27 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,27 @@ t_type *parse_all(char *str, va_list args, char *format)
     i = 0;
     all = new_type();
     temp = all;
+    temp->type = 0;
+    temp->octal = 0;
+    temp->hash_tag =0;
+    temp->plus = 0;
+    temp->negative = 0;
+    temp->pres_left = 0;
+    temp->pres_right = 0;
+    temp->hash_tag = 0;
     while (str[i])
     {
         if (str[i] == '%')
         {
             i++;
-           /* if (str[i] == '%')
+            if (str[i] == '%')
             {
                 temp->type = D_MOD;
                 i++;
             }
             else
-            {*/
+            {
                 i = option_handler(str, i, temp);
-                if (str[i] == '%' && !temp->type)
-                    temp->type = D_MOD;
                 if ((str[i] == 'd' || str[i] == 'i') && !temp->type)
                 {
                     temp->type = INTI;
@@ -114,10 +120,19 @@ t_type *parse_all(char *str, va_list args, char *format)
                     temp->octal = va_arg(args, unsigned int);
                 }
                 i++;
+            }
             if (str[i])
             {
                 temp->next = new_type();
                 temp = temp->next;
+                    temp->type = 0;
+    temp->octal = 0;
+    temp->hash_tag =0;
+    temp->plus = 0;
+    temp->negative = 0;
+    temp->pres_left = 0;
+    temp->pres_right = 0;
+    temp->hash_tag = 0;
             }
         }
         else if

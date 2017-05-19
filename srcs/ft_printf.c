@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/19 11:39:56 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/19 14:49:44 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int    ft_printf(char *format, ...)
 
     everything = 0;
     va_start(args, format);
-    str = format;
+    str = ft_strdup(format);
     if (check_for_prints(str))
     {
         all = parse_all(str, args, format);

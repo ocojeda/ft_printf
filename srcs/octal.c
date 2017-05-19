@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 09:30:09 by myernaux          #+#    #+#             */
-/*   Updated: 2017/05/19 13:33:10 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/19 16:09:59 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,19 +59,17 @@ void    ft_itoa_octal(int total, t_type *temp, char *str)
 
     octal = temp->octal;
     base = 1;
-    i = 0;
-    while (++i < total)
+    i = 1;
+    while (i < total)
+    {
         base = base * 8;
+        i++;
+    }
     i = 0;
     while (i < total)
     {
-        if (octal >= base)
-        {
-            str[i] = (octal / base) + '0';
-            octal %= base; 
-        }
-        else
-            str[i] = '0';
+        str[i] = (octal / base) + '0';
+        octal %= base; 
         i++;  
         base = base / 8;
     }
@@ -91,7 +89,12 @@ int    ft_putoctal(t_type *temp)
         ft_itoa_octal(total, temp, str);
     if (temp->type == OCTALM)
         ft_itoa_octal_capital(total, temp, str);
-    ft_putstr(str);
+    int i = 0;
+    while(i < total)
+    {
+        ft_putchar(str[i]);
+        i++;
+    }
     free(str);
     return all;
 }
