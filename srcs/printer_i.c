@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/21 09:41:36 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/21 10:26:30 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,20 @@ int    print_number(t_type *temp)
     {
         temp->number = temp->number * -1;
     }
-    if(temp->no_pres_left == 1 && temp->no_pres_right == 1)
+    if(temp->no_pres_left == 1 && temp->no_pres_right == 1 && temp->plus == 0)
         {
+            if(temp->spaces)
+                {
+                    i = temp->spaces;
+                    total += temp->spaces;
+                    if(temp->number < 0)
+                        {
+                            total--;
+                            i--;
+                        }
+                    while(i--)
+                        ft_putchar(' ');
+                }
             ft_putnbr(temp->number);
             if(temp->number < 0)
                 return total +1;

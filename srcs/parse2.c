@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/21 09:34:15 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/21 10:30:54 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int     cast_handler(char *str, int i, t_type *temp)
         }
         i++;    
     }
+    if(temp->plus && temp->spaces)
+        temp->spaces = 0;
     return (i);
 }
 
