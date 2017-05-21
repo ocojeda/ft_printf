@@ -134,9 +134,12 @@ int    print_number(t_type *temp)
 
     i = 0;
     total = 0;
-    if(temp->cast)
-      return(ft_putllnbr(temp));
     t = temp->number;
+    if(temp->cast == LONG_LONG || temp->cast == LONG 
+    || temp->cast == Z_CAST || temp->cast == J_CAST)
+      return(ft_putllnbr(temp));
+    if(temp->cast == HH_CAST && t >= 128)
+        temp->number -= 256;
     if(t < 0 && temp->plus)
         temp->plus = 0;
     while (t != 0)

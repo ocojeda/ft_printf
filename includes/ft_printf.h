@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/21 10:11:11 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/21 14:34:08 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/21 16:01:47 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,11 @@
 # define LONG 1
 # define UNSIGNED 5
 # define UNSIGNED_CHAR 3
-# define UNSIGNED_SHORT_INT 4 
+# define UNSIGNED_SHORT_INT 4
+# define H_CAST 6
+# define HH_CAST 7
+# define J_CAST 8
+# define Z_CAST 9
 
 typedef struct      s_type
 {

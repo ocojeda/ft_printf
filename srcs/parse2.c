@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/21 14:36:48 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/21 16:02:06 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,21 @@ int     cast_handler(char *str, int i, t_type *temp)
             else
                 temp->cast = LONG;
         }
-        if (str[i] == 'h')
+    if(str[i] == 'j')
+        temp->cast = J_CAST;
+    if(str[i] == 'h')
         {
-            if (str[i + 1] == 'h')
+            if(str[i + 1] == 'h')
             {
-                temp->cast = UNSIGNED_CHAR;
+                temp->cast = HH_CAST; 
                 i++;
             }
             else
-                temp->cast = UNSIGNED_SHORT_INT;
+                temp->cast = H_CAST;
         }
-        i++;    
+    if(str[i] == 'z')
+        temp->cast = Z_CAST;
+    i++;    
     }
     if(temp->plus && temp->spaces)
         temp->spaces = 0;
