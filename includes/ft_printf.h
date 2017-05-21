@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/19 19:25:32 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/21 09:53:40 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,10 @@
 
 typedef struct      s_type
 {
-    int    pres_left;
-    int    pres_right;
+    int             pres_left;
+    int             pres_right;
+    short           no_pres_left;
+    short           no_pres_right;
     unsigned int    unbr;
     long unsigned int lunbr;
     long int        lnbr;
@@ -81,8 +83,8 @@ int        ft_putoctal(t_type *temp);
 void        ft_putunbr(unsigned int unbr);
 void        ft_putlunbr(long unsigned int lunbr);
 void        ft_putlnbr(long int lnbr);
-void        ft_putwchar(wchar_t wc);
-void        ft_putwstr(wchar_t *wstr);
+int        ft_putwchar(wchar_t wc);
+int        ft_putwstr(wchar_t *wstr);
 t_type      *parse_all(char *str, va_list args, char *format);
 int         ft_printf(char *format, ...);
 int        print_unumber(t_type *temp);
