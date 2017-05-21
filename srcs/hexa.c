@@ -6,25 +6,12 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/21 11:40:21 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/21 14:05:18 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-/*
-int    base_hexa(long long thexa, int total)
-{
-    long long a;
-    
-    a = 16;
-    while (thexa >= a)
-    {
-        a += a * 16;
-        total++;
-    }
-    return (total);
-}
-*/
+
 int    set_presschar(t_type *temp, int total)
 {
     int i;
@@ -66,70 +53,6 @@ int    set_presschar(t_type *temp, int total)
     }
     return (all + total);
 }
-/*
-void    ft_itoa_hexa_capital(int total, t_type *temp, char *str)
-{
-    int         i;
-    long long   base;
-    long long   hexa;
-
-    hexa = temp->hexa;
-    base = 1;
-    i = 1;
-    while (i < total)
-    {
-        base = base * 16;
-        i++;
-    }
-    i = 0;
-    while (i < total)
-    {
-        if (hexa >= base)
-        {
-            if (hexa / base >= 10)
-                     str[i] = (hexa /base) + 55;
-            else  
-                str[i] = (hexa / base) + '0';
-            hexa %= base; 
-        }
-        else
-            str[i] = '0';
-        i++;
-        base = base / 16;
-    }
-}
-
-void    ft_itoa_hexa(int total, t_type *temp, char *str)
-{
-    int i;
-    long long base;
-    long long hexa;
-
-    hexa = temp->hexa;
-    base = 1;
-    i = 1;
-    while (i < total)
-    {
-        base = base * 16;
-        i++;
-    }
-    i = 0;
-    while (i < total)
-    {
-        if (hexa >= base)
-        {
-            if (hexa / base >= 10)
-                 str[i] = (hexa /base) + 87;
-            else  
-                str[i] = (hexa / base) + '0';
-            hexa %= base; 
-        }
-        else
-            str[i] = '0';
-        i++;  
-        base = base / 16;
-    }
-}*/
 static    int    switch_hexam(int x)
 {
     if (0 <= x && x <= 9)

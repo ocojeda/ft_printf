@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/21 11:18:02 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/21 12:22:50 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_type *parse_all(char *str, va_list args, char *format)
                 if ((str[i] == 'd' || str[i] == 'i') && !temp->type)
                 {
                     temp->type = INTI;
-                    temp->number = va_arg(args, int);
+                    temp->number = va_arg(args, long long);
                 }
                 if (str[i] == 'D' && !temp->type)
                 {
@@ -137,6 +137,7 @@ t_type *parse_all(char *str, va_list args, char *format)
     temp->hash_tag = 0;
     temp->no_pres_left = 0;
     temp->no_pres_right = 0;
+    temp->cast = 0;
             }
         }
         else if

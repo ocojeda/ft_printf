@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/21 10:11:11 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/21 11:17:32 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/21 13:56:05 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef struct      s_type
     long unsigned int lunbr;
     long int        lnbr;
     short           type;
-    int             number;
+    long long             number;
     unsigned long long       octal;
     unsigned long long       hexa;
     unsigned long          pointer;
@@ -88,6 +88,7 @@ int        ft_putwchar(wchar_t wc);
 int        ft_putwstr(wchar_t *wstr);
 t_type      *parse_all(char *str, va_list args, char *format);
 int         ft_printf(char *format, ...);
+int        print_number(t_type *temp);
 int        print_unumber(t_type *temp);
 int        print_lunumber(t_type *temp);
 int        print_lnumber(t_type *temp);
