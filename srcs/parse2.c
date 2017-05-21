@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/21 10:30:54 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/21 10:36:32 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,6 @@ int     precission_handler(char *str, int i, t_type *temp)
             temp->no_pres_left = 1;
             temp->no_pres_right = 1;
         }
-    /*
-     * if(temp->pres_left > 2147483614 || 
-     temp->pres_right )
-     in this case we have to stop the program with no segfault
-     */
     return (cast_handler(str, i, temp));
 }
 

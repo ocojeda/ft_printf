@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/21 10:11:11 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/21 10:11:14 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/21 10:42:18 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct      s_type
     int             number;
     long long       octal;
     long long       hexa;
-    void *          pointer;
+    unsigned long          pointer;
     double          fnumber;
     char            *str;
     int             c;
