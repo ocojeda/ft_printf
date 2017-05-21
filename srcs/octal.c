@@ -6,95 +6,98 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 09:30:09 by myernaux          #+#    #+#             */
-/*   Updated: 2017/05/19 16:09:59 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/21 16:30:26 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int    base_octal(long long toctal, int total)
+static    int    switch_octal(int x)
 {
-    long long a;
-    
-    a = 8;
-    while (toctal >= a)
-    {
-        a += a * 8;
-        total++;
-    }
-    return (total);
+    if (0 <= x && x <= 9)
+        return (48 + x);
+    return (0);
 }
 
-void    ft_itoa_octal_capital(int total, t_type *temp, char *str)
+static    int    switch_octalm(int x)
 {
-    int         i;
-    long long   base;
-    long long   octal;
+    if (0 <= x && x <= 9)
+        return (48 + x);
+    return (0);
+}
 
-    octal = temp->octal;
-    base = 1;
-    i = 0;
-    while (++i < total)
-        base = base * 8;
-    i = 0;
-    while (i < total)
+char        *ft_itoa_octal_capital(unsigned long long n)
+{
+    char                *str;
+    int                    size;
+    unsigned long long    x;
+
+    x = n;
+    size = 0;
+    while (x >= 8)
     {
-        if (octal >= base)
+        x /= 8;
+        size++;
+    }
+    str = (char *)malloc(sizeof(str) * (size + 1));
+    if (str)
+    {
+        str[size + 1] = '\0';
+        while (size >= 0)
         {
-            str[i] = (octal / base) + '0';
-            octal %= base; 
+            x = n % 8;
+            str[size] = switch_octalm(x);
+            n /= 8;
+            size--;
         }
-        else
-            str[i] = '0';
-        i++;
-        base = base / 8;
     }
+    return (str);
 }
 
-void    ft_itoa_octal(int total, t_type *temp, char *str)
+char        *ft_itoa_octal(unsigned long long n)
 {
-    int         i;
-    long long   base;
-    long long   octal;
+    char                *str;
+    int                    size;
+    unsigned long long    x;
 
-    octal = temp->octal;
-    base = 1;
-    i = 1;
-    while (i < total)
+    x = n;
+    size = 0;
+    while (x >= 8)
     {
-        base = base * 8;
-        i++;
+        x /= 8;
+        size++;
     }
-    i = 0;
-    while (i < total)
+    str = (char *)malloc(sizeof(str) * (size + 1));
+    if (str)
     {
-        str[i] = (octal / base) + '0';
-        octal %= base; 
-        i++;  
-        base = base / 8;
+        str[size + 1] = '\0';
+        while (size >= 0)
+        {
+            x = n % 8;
+            str[size] = switch_octal(x);
+            n /= 8;
+            size--;
+        }
     }
+    return (str);
 }
 
 int    ft_putoctal(t_type *temp)
 {
-    int     total;
-    char    *str;
-    int     all;
+    char            *str;
+    int i;
 
-    total = base_octal(temp->octal, 1);
-    str = semalloc(total + 1);
-    str[total + 1] = '\0';
-    all = set_presschar(temp, total);
-    if (temp->type == OCTAL)
-        ft_itoa_octal(total, temp, str);
-    if (temp->type == OCTALM)
-        ft_itoa_octal_capital(total, temp, str);
-    int i = 0;
-    while(i < total)
+    if (temp->type == OCTALM && temp->octal == LONG_MAX)
     {
-        ft_putchar(str[i]);
-        i++;
+        ft_putstr("9223372036854775807");
+        return (20);
     }
+    if (temp->type == OCTALM)
+        str = ft_itoa_octal_capital(temp->octal);
+    else
+        str = ft_itoa_octal(temp->octal);
+    i = set_presschar(temp, ft_strlen(str));
+    ft_putstr(str);
     free(str);
-    return all;
+    return (i);
 }
