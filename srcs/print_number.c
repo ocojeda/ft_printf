@@ -138,8 +138,20 @@ int    print_number(t_type *temp)
     if(temp->cast == LONG_LONG || temp->cast == LONG 
     || temp->cast == Z_CAST || temp->cast == J_CAST)
       return(ft_putllnbr(temp));
+    if(temp->cast == HH_CAST && t < -128)
+    {
+      while(t <= -128)
+          t += 256;
+      temp->number = t;
+    }
     if(temp->cast == HH_CAST && t >= 128)
-        temp->number -= 256;
+    {
+        while(t > 128)
+            {
+                temp->number -= 256;
+                t = temp->number;
+            }
+    }
     if(t < 0 && temp->plus)
         temp->plus = 0;
     while (t != 0)
