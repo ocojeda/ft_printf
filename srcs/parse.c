@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/19 17:33:10 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/21 08:55:12 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,8 @@ t_type *parse_all(char *str, va_list args, char *format)
     temp->pres_left = 0;
     temp->pres_right = 0;
     temp->hash_tag = 0;
+    temp->no_pres_left = 0;
+    temp->no_pres_right = 0;
             }
         }
         else if

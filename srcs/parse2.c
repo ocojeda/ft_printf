@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/19 19:26:39 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/21 09:34:15 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,13 @@ int     precission_handler(char *str, int i, t_type *temp)
             temp->pres_left = 0;
         if (str[i] == '.')
         {
+            if(ft_isdigit(str[i-1]) == 0)
+                    temp->no_pres_left = 2;
             i++;
             j = i;
             e = 0;
+            if(ft_isdigit(str[i]) == 0 || !str[i])
+                    temp->no_pres_right = 2;
             if (str[i] >= '0' && str[i] <= '9')
             {
                 while (str[i] >= '0' && str[i] <= '9')
@@ -86,6 +90,11 @@ int     precission_handler(char *str, int i, t_type *temp)
         else
             temp->pres_right = 0;
     }
+    else
+        {
+            temp->no_pres_left = 1;
+            temp->no_pres_right = 1;
+        }
     /*
      * if(temp->pres_left > 2147483614 || 
      temp->pres_right )
