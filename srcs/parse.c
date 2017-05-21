@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/21 10:42:11 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/21 11:18:02 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,12 @@ t_type *parse_all(char *str, va_list args, char *format)
                 if (str[i] == 'x' && !temp->type)
                 {
                     temp->type = HEXA;
-                    temp->hexa = va_arg(args, long long);
+                    temp->hexa = va_arg(args, unsigned long long);
                 }
                 if (str[i] == 'X' && !temp->type)
                 {
                     temp->type = HEXAM;
-                    temp->hexa = va_arg(args, unsigned int);
+                    temp->hexa = va_arg(args, unsigned long long);
                 }
                 if (str[i] == 'c' && !temp->type)
                 {

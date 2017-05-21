@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 00:05:50 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/21 10:49:23 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/21 11:45:50 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int main(void)
    //ft_putnbr(printf("->%i\n", 0LL));
    //total = printf("%ld%ld", 0L, 42L);
    //ft_printf("--->%d\n", total);
-   total = ft_printf("%p\n", &x);
+   total = ft_printf("%O", LONG_MAX);
    printf("--->total = %d\n", total);
-   total = printf("%d", 9);
+   total = printf("%lO", LONG_MAX);
    printf("--->total = %d\n", total);
    //total = ft_printf("% 3.0d", 9999);
    //printf("--->total = %d\n", total);

@@ -6,12 +6,12 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/19 13:31:06 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/21 11:40:21 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
+/*
 int    base_hexa(long long thexa, int total)
 {
     long long a;
@@ -24,7 +24,7 @@ int    base_hexa(long long thexa, int total)
     }
     return (total);
 }
-
+*/
 int    set_presschar(t_type *temp, int total)
 {
     int i;
@@ -66,7 +66,7 @@ int    set_presschar(t_type *temp, int total)
     }
     return (all + total);
 }
-
+/*
 void    ft_itoa_hexa_capital(int total, t_type *temp, char *str)
 {
     int         i;
@@ -129,25 +129,59 @@ void    ft_itoa_hexa(int total, t_type *temp, char *str)
         i++;  
         base = base / 16;
     }
+}*/
+static    int    switch_hexam(int x)
+{
+    if (0 <= x && x <= 9)
+        return (48 + x);
+    if (x >= 10 && x <= 15)
+    {
+        x = x - 10;
+        return (65 + x);
+    }
+    return (0);
 }
 
+char        *ft_hexa_itoa_capital(unsigned long long n)
+{
+    char                *str;
+    int                    size;
+    unsigned long long    x;
+
+    x = n;
+    size = 0;
+    while (x >= 16)
+    {
+        x /= 16;
+        size++;
+    }
+    str = (char *)malloc(sizeof(str) * (size + 1));
+    if (str)
+    {
+        str[size + 1] = '\0';
+        while (size >= 0)
+        {
+            x = n % 16;
+            str[size] = switch_hexam(x);
+            n /= 16;
+            size--;
+        }
+    }
+    return (str);
+}
 int    ft_puthexa(t_type *temp)
 {
-    int total;
-    char *str;
-    int all;
+    char            *str;
+    int i;
 
-    if (temp->hexa < 0)
-        temp->hexa = (16777210 - temp->hexa) + 0xff000000;
-    total = base_hexa(temp->hexa, 1);
-    str = semalloc(total + 1);
-    str[total + 1] = '\0';
-    all = set_presschar(temp, total);
-    if (temp->type == HEXA)
-        ft_itoa_hexa(total, temp, str);
-    if (temp->type == HEXAM)
-        ft_itoa_hexa_capital(total, temp, str);
+    if(temp->type == HEXAM)
+        str = ft_hexa_itoa_capital(temp->hexa);
+    else if(temp->type == POINTER_ADRESSE)
+        str = ft_hexa_itoa(temp->pointer);
+    else
+        str = ft_hexa_itoa(temp->hexa);
+    i = set_presschar(temp, ft_strlen(str));
     ft_putstr(str);
     free(str);
-    return (all);
+    return (i);
 }

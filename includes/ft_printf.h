@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/21 10:11:11 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/21 10:42:18 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/21 11:17:32 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ typedef struct      s_type
     long int        lnbr;
     short           type;
     int             number;
-    long long       octal;
-    long long       hexa;
+    unsigned long long       octal;
+    unsigned long long       hexa;
     unsigned long          pointer;
     double          fnumber;
     char            *str;
@@ -76,6 +76,7 @@ typedef struct      s_type
     struct s_type   *next;
 }                   t_type;
 
+char        *ft_hexa_itoa(unsigned long long n);
 int   printer(t_type *all);
 int         option_handler(char *str, int i, t_type *temp);
 int        ft_puthexa(t_type *temp);

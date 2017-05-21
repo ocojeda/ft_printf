@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 15:27:11 by myernaux          #+#    #+#             */
-/*   Updated: 2017/05/21 10:47:58 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/21 11:35:33 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,13 @@ int    adresse_printer(t_type *temp)
 {
     char            *str;
     unsigned long    nb;
+    int i;
 
     nb = temp->pointer;
     str = ft_hexa_itoa(nb);
     ft_putstr("0x");
     ft_putstr(str);
-    return (ft_strlen(str) + 2);
+    i = ft_strlen(str);
+    free(str);
+    return (i + 2);
 }
