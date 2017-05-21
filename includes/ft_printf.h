@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/21 10:11:11 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/21 13:56:05 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/21 14:34:08 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@
 */
 # define LONG_LONG 2 
 # define LONG 1
+# define UNSIGNED 5
 # define UNSIGNED_CHAR 3
 # define UNSIGNED_SHORT_INT 4 
 
