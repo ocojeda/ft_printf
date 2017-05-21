@@ -6,7 +6,11 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2017/05/21 08:20:49 by myernaux         ###   ########.fr       */
+=======
+/*   Updated: 2017/05/21 09:53:40 by ocojeda-         ###   ########.fr       */
+>>>>>>> 8041af775113a4fd7d1b38f85ff03c6db7569fb9
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +54,10 @@
 
 typedef struct      s_type
 {
-    int    pres_left;
-    int    pres_right;
+    int             pres_left;
+    int             pres_right;
+    short           no_pres_left;
+    short           no_pres_right;
     unsigned int    unbr;
     long unsigned int lunbr;
     long int        lnbr;

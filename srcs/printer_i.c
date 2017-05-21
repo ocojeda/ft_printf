@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/19 21:34:00 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/21 09:41:36 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,18 +77,36 @@ int    print_number(t_type *temp)
         total++;
         t /= 10;
     }
+    if(temp->number <= INT_MIN)
+    {
+        temp->number = temp->number * -1;
+    }
+    if(temp->no_pres_left == 1 && temp->no_pres_right == 1)
+        {
+            ft_putnbr(temp->number);
+            if(temp->number < 0)
+                return total +1;
+            else if (temp->number == 0)
+                return 1;
+            else
+                return (total);
+        }
+    if(temp->no_pres_left == 2 && (temp->no_pres_right == 2 || temp->no_pres_right == 0)
+     && temp->number == 0)
+        {
+            return 0;
+        }
     if(temp->number < 0)
         {
             total++;
             temp->negative = NEGATIVE;
             temp->number *= -1;
-        } 
+        }
     i = set_presschar_for_int(temp, total);
     //ft_putchar('\n');
     //ft_putnbr(total);
     //ft_putchar('\n');
-    if(temp->number > 0)
-        ft_putnbr(temp->number);
+    ft_putnbr(temp->number);
     if(temp->number == 0 && temp->pres_right)
         i++;
     return (i);
