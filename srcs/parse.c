@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/21 12:22:50 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/23 14:06:50 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,21 @@ t_type *parse_all(char *str, va_list args, char *format)
         if (str[i] == '%')
         {
             i++;
-            if (str[i] == '%')
+            //i = option_handler(str, i, temp);
+            /*if (str[i] == '%')
             {
                 temp->type = D_MOD;
                 i++;
-            }
-            else
-            {
+            }*/
+            //else
+            //{
+
                 i = option_handler(str, i, temp);
+                if (str[i] == '%')
+                {
+                    temp->type = D_MOD;
+                    i++;
+                }
                 if ((str[i] == 'd' || str[i] == 'i') && !temp->type)
                 {
                     temp->type = INTI;
@@ -122,7 +129,7 @@ t_type *parse_all(char *str, va_list args, char *format)
                     temp->octal = va_arg(args, unsigned int);
                 }
                 i++;
-            }
+           // }
             if (str[i])
             {
                 temp->next = new_type();

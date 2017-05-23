@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/21 14:09:02 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/23 14:15:25 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,7 @@ int    printer(t_type *all)
         if (temp->type == HEXAM)
             everything += ft_puthexa(temp);
         if (temp->type == D_MOD)
-            {
-                ft_putchar('%');
-                everything++;
-            }
+            everything = ft_double_modulo_handler(temp);
         everything = printer2(temp, everything);
         temp = temp->next;
     }
