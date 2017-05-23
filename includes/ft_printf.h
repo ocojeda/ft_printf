@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/21 10:11:11 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/23 14:15:30 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/23 17:15:34 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ typedef struct      s_type
     struct s_type   *next;
 }                   t_type;
 
-int     ft_double_modulo_handler(t_type *temp);
+//int     ft_double_modulo_handler(t_type *temp);
 char        *ft_hexa_itoa(unsigned long long n);
 int   printer(t_type *all);
 int         option_handler(char *str, int i, t_type *temp);
@@ -92,7 +92,7 @@ void        ft_putlunbr(long unsigned int lunbr);
 void        ft_putlnbr(long int lnbr);
 int        ft_putwchar(wchar_t wc);
 int        ft_putwstr(wchar_t *wstr);
-t_type      *parse_all(char *str, va_list args, char *format);
+t_type      *parse_all(char *str, va_list args);
 int         ft_printf(char *format, ...);
 int        print_number(t_type *temp);
 int        print_unumber(t_type *temp);

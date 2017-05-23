@@ -1,5 +1,5 @@
 #include "ft_printf.h"
-
+/*
 int     ft_double_modulo_handler(t_type *temp)
 {
     int i = 1;
@@ -13,4 +13,4 @@ int     ft_double_modulo_handler(t_type *temp)
         }
     ft_putchar('%'); 
     return i + 1;
-}
+}*/

@@ -6,61 +6,40 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/23 14:06:50 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/23 16:30:54 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_type *new_type(void)
+t_type *new_type(t_type *temp)
 {
-    t_type *temp;
-
-    if ((temp = (t_type *)malloc(sizeof(t_type))))
+    if ((temp->next = (t_type *)malloc(sizeof(t_type))))
+    {
+        temp = temp->next;
+        temp->type = 0;
+        temp->octal = 0;
+        temp->hash_tag =0;
+        temp->plus = 0;
+        temp->negative = 0;
+        temp->pres_left = 0;
+        temp->pres_right = 0;
+        temp->hash_tag = 0;
+        temp->no_pres_left = 0;
+        temp->no_pres_right = 0;
+        temp->cast = 0;
+        temp->octal = 0;
+        temp->next = NULL;
         return (temp);
+    }
     else 
         return (NULL);
 }
-t_type *parse_all(char *str, va_list args, char *format)
+void  parse_the_values2(va_list args, t_type *temp, char *str, int i)
 {
-    int     i;
-    int     e;
-    t_type  *all;
-    t_type  *temp;
-
-    char *str1 = format;
-    format = str1;
-    i = 0;
-    all = new_type();
-    temp = all;
-    temp->type = 0;
-    temp->octal = 0;
-    temp->hash_tag =0;
-    temp->plus = 0;
-    temp->negative = 0;
-    temp->pres_left = 0;
-    temp->pres_right = 0;
-    temp->hash_tag = 0;
-    while (str[i])
-    {
-        if (str[i] == '%')
-        {
-            i++;
-            //i = option_handler(str, i, temp);
-            /*if (str[i] == '%')
-            {
-                temp->type = D_MOD;
-                i++;
-            }*/
-            //else
-            //{
-
-                i = option_handler(str, i, temp);
-                if (str[i] == '%')
-                {
-                    temp->type = D_MOD;
-                    i++;
-                }
+    if (str[i] == '%')
+     temp->type = D_MOD;
+    
                 if ((str[i] == 'd' || str[i] == 'i') && !temp->type)
                 {
                     temp->type = INTI;
@@ -88,7 +67,10 @@ t_type *parse_all(char *str, va_list args, char *format)
                     temp->type = HEXA;
                     temp->hexa = va_arg(args, unsigned long long);
                 }
-                if (str[i] == 'X' && !temp->type)
+}
+void   parse_the_values3(va_list args, t_type *temp, char *str, int i)
+{
+            if (str[i] == 'X' && !temp->type)
                 {
                     temp->type = HEXAM;
                     temp->hexa = va_arg(args, unsigned long long);
@@ -113,44 +95,32 @@ t_type *parse_all(char *str, va_list args, char *format)
                     temp->type = INTLU;
                     temp->lunbr = va_arg(args, long unsigned int);
                 }
-                if (str[i] == 'p' && !temp->type)
-                {
-                    temp->type = POINTER_ADRESSE;
-                    temp->pointer = va_arg(args, unsigned long);
-                }
-                if (str[i] == 'o' && !temp->type)
-                {
-                    temp->type = OCTAL;
-                    temp->octal = va_arg(args, long long);
-                }
-                if (str[i] == 'O' && !temp->type)
-                {
-                    temp->type = OCTALM;
-                    temp->octal = va_arg(args, unsigned int);
-                }
-                i++;
-           // }
-            if (str[i])
-            {
-                temp->next = new_type();
-                temp = temp->next;
-                    temp->type = 0;
-    temp->octal = 0;
-    temp->hash_tag =0;
-    temp->plus = 0;
-    temp->negative = 0;
-    temp->pres_left = 0;
-    temp->pres_right = 0;
-    temp->hash_tag = 0;
-    temp->no_pres_left = 0;
-    temp->no_pres_right = 0;
-    temp->cast = 0;
-            }
-        }
-        else if
-            (str[i])
-            {
-                e = 0;
+}
+int   parse_the_values(va_list args, t_type *temp, char *str, int i)
+{
+    i = option_handler(str, i, temp);
+    parse_the_values2(args, temp, str, i);
+    parse_the_values3(args, temp, str, i);
+    if (str[i] == 'p' && !temp->type)
+    {
+        temp->type = POINTER_ADRESSE;
+        temp->pointer = va_arg(args, unsigned long);
+    }
+    if (str[i] == 'o' && !temp->type)
+    {
+        temp->type = OCTAL;
+        temp->octal = va_arg(args, long long);
+    }
+    if (str[i] == 'O' && !temp->type)
+    {
+        temp->type = OCTALM;
+        temp->octal = va_arg(args, unsigned int);
+    }
+    return i+1;
+}
+t_type  *make_new_string(char *str, int i, t_type *temp)
+{
+    int e = 0;
                 while (str[i] != '%' && str[i])
                 {
                     i++;
@@ -158,11 +128,37 @@ t_type *parse_all(char *str, va_list args, char *format)
                 }
                 temp->type = STR;
                 temp->str = ft_strsub(str, i - e, e);
-                temp->next = new_type();
-                temp = temp->next;
+                temp = new_type(temp);
+    return temp;
+}
+t_type *parse_all(char *str, va_list args)
+{
+    int     i;
+    int     e;
+    t_type  *all;
+    t_type  *temp;
+
+    i = 0;
+    all = (t_type *)malloc(sizeof(t_type));
+    temp = all;
+    while (str[i])
+    {
+        if (str[i] == '%')
+        {
+           i = parse_the_values(args, temp, str, ++i);
+               if (str[i])
+            temp= new_type(temp);
+        }
+        else if
+            (str[i])
+            {
+                e = 0;
+                while (str[i] != '%' && str[i++])
+                    e++;
+                temp->type = STR;
+                temp->str = ft_strsub(str, i - e, e);
+                temp = new_type(temp);
             }
     }
-    temp->next = NULL;
-    temp = all;
     return (all);
 }

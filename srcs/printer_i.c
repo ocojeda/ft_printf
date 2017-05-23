@@ -6,11 +6,26 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/23 14:15:25 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/23 17:13:35 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int     ft_double_modulo_handler(t_type *temp)
+{
+    int i = 1;
+    if(temp->pres_left)
+        temp->pres_left--;
+    i = temp->pres_left;
+    while(temp->pres_left)
+        {
+            ft_putchar(' ');
+            temp->pres_left--;
+        }
+    ft_putchar('%'); 
+    return i + 1;
+}
 
 int    printer2(t_type *temp, int everything)
 {
