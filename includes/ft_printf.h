@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/21 10:11:11 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/23 17:33:16 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/24 10:07:54 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ int         option_handler(char *str, int i, t_type *temp);
 int        ft_puthexa(t_type *temp);
 int        ft_putoctal(t_type *temp);
 void        ft_putunbr(unsigned int unbr);
-void        ft_putlunbr(long unsigned int lunbr);
 void        ft_putlnbr(long int lnbr);
 int        ft_putwchar(wchar_t wc);
 int        ft_putwstr(wchar_t *wstr);

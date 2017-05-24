@@ -6,17 +6,23 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/15 15:25:14 by myernaux          #+#    #+#             */
-/*   Updated: 2017/05/19 13:23:53 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/24 10:05:27 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void    ft_putlunbr(long unsigned int lunbr)
+int    ft_putlunbr(long unsigned int lunbr, int all)
 {
+    if (lunbr == ULONG_MAX)
+    {
+        ft_putstr("18446744073709551615");
+        return 20;
+    }
     if (lunbr / 10)
-        ft_putlunbr(lunbr / 10);
+        ft_putlunbr(lunbr / 10, all);
     ft_putchar('0' + (lunbr % 10));
+    return all;
 }
 
 int    print_lunumber(t_type *temp)
@@ -38,6 +44,6 @@ int    print_lunumber(t_type *temp)
         t /= 10;
     }
     all = set_presschar_for_int(temp, total);
-    ft_putlunbr(temp->lunbr);
+    all = ft_putlunbr(temp->lunbr, all);
     return (all);
 }

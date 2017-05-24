@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/24 09:29:53 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/24 09:52:54 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,13 @@ void   parse_the_values3(va_list args, t_type *temp, char *str, int i)
 	}
 	if (str[i] == 'u' && !temp->type)
 	{
-		temp->type = INTU;
-		temp->unbr = va_arg(args, unsigned int);
+		temp->type = INTI;
+		temp->number = va_arg(args, long long);
+		temp->cast = LONG_LONG;
+		if(temp->number < 0)
+			temp->number *= -1;
+		/*temp->type = INTU;
+		temp->unbr = va_arg(args, unsigned int);*/
 	}
 	if (str[i] == 'U' && !temp->type)
 	{
