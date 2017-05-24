@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/24 08:20:24 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/24 09:29:53 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,9 @@ void  parse_the_values2(va_list args, t_type *temp, char *str, int i)
 	}
 	if (str[i] == 'D' && !temp->type)
 	{
-		temp->type = INTL;
-		temp->lnbr = va_arg(args, long int);
+		temp->type = INTI;
+		temp->cast = LONG_LONG;
+		temp->number = va_arg(args, long long);
 	}
 	if (str[i] == 's' && !temp->type)
 	{
@@ -115,6 +116,8 @@ int   parse_the_values(va_list args, t_type *temp, char *str, int i)
 		temp->type = OCTALM;
 		temp->octal = va_arg(args, unsigned int);
 	}
+	if(!temp->type)
+		temp->type = -1;
 	return i+1;
 }
 t_type  *make_new_string(char *str, int i, t_type *temp)
