@@ -29,7 +29,8 @@ int    check_for_prints(char *str)
 int    ft_printf(char *format, ...)
 {
     va_list     args;
-    t_type      *all = NULL;
+    t_type      *all;
+    t_type      *temp;
     char        *str;
     int   everything;
     
@@ -41,6 +42,14 @@ int    ft_printf(char *format, ...)
     {
         all = parse_all(str, args);
         everything = printer(all);
+        temp = all;
+        /*while(all->next)
+        {
+            temp = all;
+            all = all->next;
+            free(temp);
+        }
+        all = NULL;*/
     }
     else
     {

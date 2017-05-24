@@ -95,7 +95,13 @@ void   parse_the_values3(va_list args, t_type *temp, char *str, int i)
     if (str[i] == 'c' && !temp->type)
     {
         temp->type = CHAR;
-        temp->c = va_arg(args, int);
+        if(temp->cast == LONG_LONG || temp->cast == LONG)
+        {
+             temp->type = WCHAR;
+             temp->wc = va_arg(args, wchar_t);
+        }
+        else
+            temp->c = va_arg(args, int);
     }
     if (str[i] == 'C' && !temp->type)
     {
@@ -104,7 +110,16 @@ void   parse_the_values3(va_list args, t_type *temp, char *str, int i)
     }
     if (str[i] == 'u' && !temp->type)
     {
-		if(temp->cast == LONG_LONG || temp->cast == LONG)
+        if(temp->cast == HH_CAST || temp->cast == H_CAST)
+        {
+            temp->type = INTI;
+            
+            temp->number = va_arg(args, long long);
+            while(temp->number > 255)
+                temp->number -= 256;
+            temp->cast = 0;
+        }
+		else if(temp->cast == LONG_LONG || temp->cast == LONG || temp->cast == J_CAST)
 		{
 			temp->type = INTLU;
         	temp->lunbr = va_arg(args, long unsigned int);		

@@ -24,11 +24,12 @@ int     set_presschar_for_int(t_type *temp, int total)
 {
     int i;
     int a;
+    short t;
 
+    t = temp->number;
     i = 0;
-    
     if((temp->pres_left < total + temp->spaces) && temp->spaces && 
-    temp->number > 0)
+    t > 0)
         {
             i = temp->spaces;
             a = temp->spaces;
@@ -51,23 +52,65 @@ int     set_presschar_for_int(t_type *temp, int total)
             ft_putchar(' ');
             i--;
         }
-        if (temp->plus && temp->number >= 0 && !temp->negative)
+        if (temp->plus && t >= 0)
             {
                 ft_putchar('+');
                 a++;
             }
-        if(temp->negative)
+        if(t < 0)
             {
                 ft_putchar('-');
-                a++;
+                temp->number *= -1;
             }
         if (temp->pres_right > total - temp->negative)
                 i = temp->pres_right - total + temp->negative;
-        a += i - temp->negative;
         while (i > 0)
         {
            i--;
            ft_putchar('0');
+           a++;
+        }
+    return (a + total);
+}
+int     set_presschar_for_int_inverse(t_type *temp, int total)
+{
+    int i;
+    int a;
+    short t;
+
+    t = temp->number;
+    i = 0;
+    if((temp->pres_left < total + temp->spaces) && temp->spaces && 
+    t > 0)
+        {
+            i = temp->spaces;
+            a = temp->spaces;
+            while(a)
+            {
+                ft_putchar(' ');
+                a--;
+            }
+        }
+    a = i;
+    i = 0;
+        if (temp->pres_right < total)
+            temp->pres_right = total - temp->negative;
+        if (temp->pres_left > temp->pres_right)
+             i = temp->pres_left - temp->pres_right 
+             - temp->plus - temp->negative;
+        a += i;
+        while (i > 0)
+        {
+            ft_putchar(' ');
+            i--;
+        }
+        if (temp->pres_right > total - temp->negative)
+                i = temp->pres_right - total + temp->negative;
+        while (i > 0)
+        {
+           i--;
+           ft_putchar('0');
+           a++;
         }
     return (a + total);
 }
@@ -132,6 +175,7 @@ int    print_number(t_type *temp)
     i = 0;
     total = 0;
     t = temp->number;
+    //ft_putnbr(temp->pres_right);
     if(temp->cast == LONG_LONG || temp->cast == LONG 
     || temp->cast == Z_CAST || temp->cast == J_CAST)
       return(ft_putllnbr(temp));
@@ -149,6 +193,7 @@ int    print_number(t_type *temp)
                 t = temp->number;
             }
     }
+    
     if(t < 0 && temp->plus)
         temp->plus = 0;
     while (t != 0)
@@ -157,6 +202,16 @@ int    print_number(t_type *temp)
         t /= 10;
     }
     t = temp->number;
+    if(t < 0 && temp->pres_left > temp->pres_right + total && !temp->negative)
+    {
+        temp->pres_left--;
+        i = set_presschar_for_int(temp, total);
+        if(t < 0)
+            ft_putnbr(-t);
+        else 
+            ft_putnbr(t);
+        return i+1;
+    }
     if(temp->no_pres_left == 2 && (temp->no_pres_right == 2 || temp->no_pres_right == 0)
      && t == 0)
             return 0;
@@ -182,15 +237,28 @@ int    print_number(t_type *temp)
             else
                 return (total);
         }
-    if(t < 0)
+    if(temp->pres_left > temp->pres_right + total && temp->negative)    
         {
-            total++;
-            temp->negative = NEGATIVE;
-            t *= -1;
+            ft_putnbr(t);
+            if(t < 0)
+            {
+                temp->number *= -1;
+                total++;
+            }
+            i = set_presschar_for_int_inverse(temp, total);
         }
-    i = set_presschar_for_int(temp, total);
-    ft_putnbr(t);
+    else 
+    {
+        t = temp->number;
+        i = set_presschar_for_int(temp, total);
+        ft_putnbr(temp->number);
+        if(t < 0)
+              i++;
+    }
     if(t == 0 && temp->pres_right)
-        i++;
+        {
+            i++;
+            //ft_putendl("hello");
+        }
     return (i);
 }
