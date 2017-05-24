@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/24 10:47:04 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/05/24 11:04:38 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,11 +92,19 @@ void   parse_the_values3(va_list args, t_type *temp, char *str, int i)
     }
     if (str[i] == 'u' && !temp->type)
     {
+		if(temp->cast == LONG_LONG || temp->cast == LONG)
+		{
+			temp->type = INTLU;
+        	temp->lunbr = va_arg(args, long unsigned int);		
+		}
+		else
+		{
         temp->type = INTI;
         temp->number = va_arg(args, long long);
         temp->cast = LONG_LONG;
         if(temp->number < 0)
             temp->number *= -1;
+		}
     }
     if (str[i] == 'U' && !temp->type)
     {

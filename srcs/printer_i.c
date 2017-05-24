@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printer_i.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/24 10:46:02 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/05/24 11:37:55 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int    printer2(t_type *temp, int everything)
     if (temp->type == WCHAR)
         everything += ft_putwchar(temp->wc);
     if (temp->type == WSTR)
-            everything += ft_putwstr(temp->wstr);
+        everything += ft_putwstr(temp->wstr);
     return (everything);
 }
 int    printer(t_type *all)

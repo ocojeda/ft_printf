@@ -6,12 +6,62 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/15 15:25:14 by myernaux          #+#    #+#             */
-/*   Updated: 2017/05/24 10:05:27 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/24 11:37:19 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+int     set_presschar_for_ul(t_type *temp, int total)
+{
+    int i;
+    int a;
 
+    i = 0;
+    
+    if((temp->pres_left < total + temp->spaces) && temp->spaces && 
+    temp->lunbr > 0)
+        {
+            i = temp->spaces;
+            a = temp->spaces;
+            while(a)
+            {
+                ft_putchar(' ');
+                a--;
+            }
+        }
+    a = i;
+    i = 0;
+        if (temp->pres_right < total)
+            temp->pres_right = total - temp->negative;
+        if (temp->pres_left > temp->pres_right)
+             i = temp->pres_left - temp->pres_right 
+             - temp->plus - temp->negative;
+        a += i;
+        while (i > 0)
+        {
+            ft_putchar(' ');
+            i--;
+        }
+        if (temp->plus && temp->number >= 0 && !temp->negative)
+            {
+                ft_putchar('+');
+                a++;
+            }
+        if(temp->negative)
+            {
+                ft_putchar('-');
+                a++;
+            }
+        if (temp->pres_right > total - temp->negative)
+                i = temp->pres_right - total + temp->negative;
+        a += i - temp->negative;
+        while (i > 0)
+        {
+           i--;
+           ft_putchar('0');
+        }
+    return (a + total);
+}
 int    ft_putlunbr(long unsigned int lunbr, int all)
 {
     if (lunbr == ULONG_MAX)
@@ -27,23 +77,21 @@ int    ft_putlunbr(long unsigned int lunbr, int all)
 
 int    print_lunumber(t_type *temp)
 {
-    long long t;
+    long unsigned int t;
     int total;
     int all;
 
-    total = 0;
-    if (temp->number < 0)
-    {
-        temp->number *= -1;
-        temp->negative = NEGATIVE;
-    }
+    if(temp->lunbr == 0)
+        total = 1;
+    else 
+        total = 0;
     t = temp->lunbr;
     while (t != 0)
     {
         total++;
         t /= 10;
     }
-    all = set_presschar_for_int(temp, total);
+    all = set_presschar_for_ul(temp, total);
     all = ft_putlunbr(temp->lunbr, all);
     return (all);
 }
