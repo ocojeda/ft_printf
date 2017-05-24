@@ -30,10 +30,11 @@ int    check_for_prints(char *str)
 int    ft_printf(char *format, ...)
 {
     va_list     args;
-    t_type      *all;
+    t_type      *all = NULL;
     char        *str;
     int   everything;
-
+    
+    all = NULL;
     everything = 0;
     va_start(args, format);
     str = ft_strdup(format);
@@ -47,6 +48,7 @@ int    ft_printf(char *format, ...)
         ft_putstr(str);
         everything = ft_strlen(str);
     }
+    free(str);
     va_end(args);
     return (everything);
 }

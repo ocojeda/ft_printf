@@ -56,14 +56,10 @@
 
 typedef struct      s_type
 {
-    int             pres_left;
-    int             pres_right;
-    short           no_pres_left;
-    short           no_pres_right;
+    short           type;
     unsigned int    unbr;
     long unsigned int lunbr;
     long int        lnbr;
-    short           type;
     long long             number;
     unsigned long long       octal;
     unsigned long long       hexa;
@@ -73,6 +69,10 @@ typedef struct      s_type
     int             c;
     wchar_t         *wstr;
     wchar_t         wc;
+    int             pres_left;
+    int             pres_right;
+    short           no_pres_left;
+    short           no_pres_right;
     int             spaces;
     short           hash_tag;
     short           plus;

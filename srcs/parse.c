@@ -18,17 +18,27 @@ t_type *new_type(t_type *temp)
     {
         temp = temp->next;
         temp->type = 0;
-        temp->octal = 0;
-        temp->hash_tag =0;
+        temp->unbr = 0;
+        temp->lunbr = 0;
+        temp->lnbr = 0;
+        temp->pointer = 0;
+        temp->fnumber = 0;
+        temp->str = NULL;
+        temp->c = 0;
+        temp->wstr = NULL;
+        temp->wc = 0;
+        temp->hexa = 0;
+
         temp->plus = 0;
         temp->negative = 0;
+        temp->hash_tag =0;
         temp->pres_left = 0;
         temp->pres_right = 0;
-        temp->hash_tag = 0;
         temp->no_pres_left = 0;
         temp->no_pres_right = 0;
+        temp->spaces = 0;
+        temp->currency = 0;
         temp->cast = 0;
-        temp->octal = 0;
         temp->next = NULL;
         return (temp);
     }
@@ -53,9 +63,9 @@ void  parse_the_values2(va_list args, t_type *temp, char *str, int i)
     if (str[i] == 's' && !temp->type)
     {
         temp->type = STR;
-        temp->str = va_arg(args, char *);
+        temp->str = ft_strdup(va_arg(args, char *));
         if(temp->str == 0 || temp->str == NULL)
-            temp->str = "(null)";
+            temp->str = ft_strdup("(null)");
     }
     if (str[i] == 'S' && !temp->type)
     {
@@ -64,7 +74,7 @@ void  parse_the_values2(va_list args, t_type *temp, char *str, int i)
         if (temp->wstr == 0 || temp->wstr == NULL)
             {
                 temp->type = STR;
-                temp->str = "(null)";
+                temp->str = ft_strdup("(null)");
             }
     }
     if (str[i] == 'x' && !temp->type)
@@ -182,5 +192,6 @@ t_type *parse_all(char *str, va_list args)
                 temp = new_type(temp);
             }
     }
+    //va_end(args);
     return (all);
 }
