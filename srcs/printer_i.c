@@ -40,7 +40,6 @@ int    printer2(t_type *temp, int everything)
 int    printer(t_type *all)
 {
     t_type *temp;
-    t_type *temp2;
     int everything;
 
     everything = 0;
@@ -69,9 +68,7 @@ int    printer(t_type *all)
         if (temp->type == D_MOD)
             everything += ft_double_modulo_handler(temp);
         everything = printer2(temp, everything);
-        temp2 = temp;
         temp = temp->next;
-        free(temp2);
     }
     return everything;
 }
