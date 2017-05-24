@@ -177,8 +177,6 @@ t_type *parse_all(char *str, va_list args)
         {
             i++;
             i = parse_the_values(args, temp, str, i);
-            if (str[i])
-                temp= new_type(temp);
         }
         else if
             (str[i])
@@ -191,9 +189,9 @@ t_type *parse_all(char *str, va_list args)
                 }
                 temp->type = STR;
                 temp->str = ft_strsub(str, i - e, e);
-                temp = new_type(temp);
             }
+        if (str[i])
+                temp= new_type(temp);
     }
-    //va_end(args);
     return (all);
 }

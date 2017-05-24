@@ -66,7 +66,7 @@ typedef struct      s_type
     unsigned long          pointer;
     double          fnumber;
     char            *str;
-    int             c;
+    unsigned int             c;
     wchar_t         *wstr;
     wchar_t         wc;
     int             pres_left;
