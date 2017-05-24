@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/23 17:28:50 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/24 08:20:24 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,8 @@ t_type *new_type(t_type *temp)
 }
 void  parse_the_values2(va_list args, t_type *temp, char *str, int i)
 {
-	if (str[i] == '%')
+	if (str[i] == '%' && !temp->type)
 		temp->type = D_MOD;
-
 	if ((str[i] == 'd' || str[i] == 'i') && !temp->type)
 	{
 		temp->type = INTI;
@@ -145,7 +144,8 @@ t_type *parse_all(char *str, va_list args)
 	{
 		if (str[i] == '%')
 		{
-			i = parse_the_values(args, temp, str, ++i);
+			i++;
+			i = parse_the_values(args, temp, str, i);
 			if (str[i])
 				temp= new_type(temp);
 		}
@@ -153,8 +153,11 @@ t_type *parse_all(char *str, va_list args)
 			(str[i])
 			{
 				e = 0;
-				while (str[i] != '%' && str[i++])
+				while (str[i] != '%' && str[i])
+				{
 					e++;
+					i++;
+				}
 				temp->type = STR;
 				temp->str = ft_strsub(str, i - e, e);
 				temp = new_type(temp);
