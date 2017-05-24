@@ -16,7 +16,8 @@ int    printer2(t_type *temp, int everything)
 {
     if (temp->type == CHAR)
        {
-           ft_putchar(temp->c);
+           if(temp->c != 0)
+               ft_putchar(temp->c);
            everything++;
        }
     if (temp->type == INTU)

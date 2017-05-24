@@ -63,8 +63,10 @@ void  parse_the_values2(va_list args, t_type *temp, char *str, int i)
     if (str[i] == 's' && !temp->type)
     {
         temp->type = STR;
-        temp->str = ft_strdup(va_arg(args, char *));
-        if(temp->str == 0 || temp->str == NULL)
+        char *str1 = va_arg(args, char *); 
+        if(str1)
+            temp->str = ft_strdup(str1);
+        else
             temp->str = ft_strdup("(null)");
     }
     if (str[i] == 'S' && !temp->type)
