@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/24 09:04:52 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/24 10:28:44 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int    printer2(t_type *temp, int everything)
     if (temp->type == OCTAL)
         everything += ft_putoctal(temp);
     if (temp->type == OCTALM)
-         everything += ft_putoctal(temp);
+         everything += ft_putoctalm(temp);
     if (temp->type == WCHAR)
             ft_putwchar(temp->wc);
     if (temp->type == WSTR)
