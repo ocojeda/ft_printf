@@ -152,9 +152,9 @@ int   parse_the_values(va_list args, t_type *temp, char *str, int i)
     if (str[i] == 'o' && !temp->type)
     {
         temp->type = OCTAL;
-        if(temp->cast == HH_CAST)
-            temp->number = va_arg(args, int);
-        else 
+        //if(temp->cast == HH_CAST)
+        //    temp->number = va_arg(args, int);
+        //else 
             temp->octal = va_arg(args, long long);
     }
     if (str[i] == 'O' && !temp->type)
