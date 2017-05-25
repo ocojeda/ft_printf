@@ -6,7 +6,7 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/25 13:17:00 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/05/25 13:42:09 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,9 +127,8 @@ void   parse_the_values3(va_list args, t_type *temp, char *str, int i)
             while(temp->number > 65535)
                 temp->number -= 65535;
             temp->cast = 0;
-        }
-
-        else if(temp->cast == LONG_LONG || temp->cast == LONG || temp->cast == J_CAST)
+        } 
+        else if(temp->cast == LONG_LONG || temp->cast == LONG || temp->cast == J_CAST || temp->cast == Z_CAST)
         {
             temp->type = INTLU;
             temp->lunbr = va_arg(args, long unsigned int);        
