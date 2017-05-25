@@ -152,7 +152,10 @@ int   parse_the_values(va_list args, t_type *temp, char *str, int i)
     if (str[i] == 'o' && !temp->type)
     {
         temp->type = OCTAL;
-        temp->octal = va_arg(args, long long);
+        if(temp->cast == HH_CAST)
+            temp->number = va_arg(args, int);
+        else 
+            temp->octal = va_arg(args, long long);
     }
     if (str[i] == 'O' && !temp->type)
     {
@@ -188,6 +191,8 @@ t_type *parse_all(char *str, va_list args)
     temp = all;
     while (str[i])
     {
+        /*ft_putnbr(i);
+        ft_putchar('\n');*/
         if (str[i] == '%')
         {
             i++;
@@ -206,7 +211,16 @@ t_type *parse_all(char *str, va_list args)
                 temp->str = ft_strsub(str, i - e, e);
             }
         if (str[i])
+        {
                 temp= new_type(temp);
+            //ft_putnbr(i);
+              //  ft_putchar('\n');
+        }
+        else
+        {
+            //temp->next = NULL;
+            return all;
+        }
     }
     return (all);
 }

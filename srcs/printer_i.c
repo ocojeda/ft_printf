@@ -79,8 +79,15 @@ int    printer(t_type *all)
         if (temp->type == D_MOD)
             everything += ft_double_modulo_handler(temp);
         everything = printer2(temp, everything);
-        //temp2 = temp;
-        temp = temp->next;
+        /*if(temp)
+            {
+                temp2 = temp;
+                temp = temp->next;
+                //if(temp->type != STR)
+                    free(temp2);        
+            }
+        else*/ 
+            temp = temp->next;
         //free(temp2);
     }
     return everything;

@@ -52,11 +52,21 @@ int    ft_putoctal(t_type *temp)
     char            *str;
     int i;
 
+    if(temp->cast == HH_CAST)
+    {
+        temp->octal = temp->number;
+        while(temp->octal > 256)
+            temp->octal -= 256;
+        //ft_putnbr(temp->octal);
+        //ft_putchar('\n');
+        temp->number = 0;
+    }
     if (temp->type == OCTALM && temp->number == LONG_MAX)
     {
         ft_putstr("9223372036854775807");
         return (20);
     }
+    i = 0;
     str = ft_itoa_octal(temp->octal);
     i = set_presschar(temp, ft_strlen(str));
     ft_putstr(str);
