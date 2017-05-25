@@ -93,7 +93,7 @@ void        ft_putunbr(unsigned int unbr);
 void        ft_putlnbr(long int lnbr);
 int        ft_putwchar(wchar_t wc);
 int        ft_putwstr(wchar_t *wstr);
-t_type      *parse_all(char *str, va_list args);
+int        parse_all(char *str, va_list args);
 int         ft_printf(char *format, ...);
 int        print_number(t_type *temp);
 int        print_unumber(t_type *temp);
