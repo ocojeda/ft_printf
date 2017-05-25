@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/24 11:04:38 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/25 13:17:00 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void   parse_the_values3(va_list args, t_type *temp, char *str, int i)
     }
     if (str[i] == 'u' && !temp->type)
     {
-        if(temp->cast == HH_CAST || temp->cast == H_CAST)
+        if(temp->cast == HH_CAST)
         {
             temp->type = INTI;
             
@@ -119,19 +119,29 @@ void   parse_the_values3(va_list args, t_type *temp, char *str, int i)
                 temp->number -= 256;
             temp->cast = 0;
         }
-		else if(temp->cast == LONG_LONG || temp->cast == LONG || temp->cast == J_CAST)
-		{
-			temp->type = INTLU;
-        	temp->lunbr = va_arg(args, long unsigned int);		
-		}
-		else
-		{
+        else if(temp->cast == H_CAST)
+        {
+            temp->type = INTI;
+            
+            temp->number = va_arg(args, long long);
+            while(temp->number > 65535)
+                temp->number -= 65535;
+            temp->cast = 0;
+        }
+
+        else if(temp->cast == LONG_LONG || temp->cast == LONG || temp->cast == J_CAST)
+        {
+            temp->type = INTLU;
+            temp->lunbr = va_arg(args, long unsigned int);        
+        }
+        else
+        {
         temp->type = INTI;
         temp->number = va_arg(args, long long);
         temp->cast = LONG_LONG;
         if(temp->number < 0)
             temp->number *= -1;
-		}
+        }
     }
     if (str[i] == 'U' && !temp->type)
     {
