@@ -203,7 +203,7 @@ int     parse_all(char *str, va_list args)
         total += printer(all);
         reset_type(all);
 	}
-    //free(all);
+    free(all);
     //all = NULL;
 	return (total);
 }
