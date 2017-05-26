@@ -6,7 +6,7 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/25 13:08:31 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/05/26 10:50:20 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ int    set_presschar(t_type *temp, int total)
     if (temp->pres_left < total && temp->pres_right < total && 
             temp->hash_tag == 2)
     {
-        ft_putstr("0x");
+        if (temp->type == HEXAM)
+            ft_putstr("0X");
+        else
+            ft_putstr("0x");
         all += 2;
     }
     if (temp->pres_left > total || temp->pres_right > total)
@@ -39,7 +42,10 @@ int    set_presschar(t_type *temp, int total)
         }
         if (temp->hash_tag)
         {
-            ft_putstr("0x");
+            if (temp->type == HEXAM)
+                ft_putstr("0X");
+            else
+                ft_putstr("0x");
             all += 2;
         }
         if (temp->pres_right > total)

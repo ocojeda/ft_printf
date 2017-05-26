@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   parse2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/23 17:00:10 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/26 11:20:20 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "ft_printf.h"
+
 int     cast_handler2(char *str, int i, t_type *temp)
 {
     if (str[i] == 'l')
@@ -27,6 +28,7 @@ int     cast_handler2(char *str, int i, t_type *temp)
         temp->cast = J_CAST;
     return i;
 }
+
 int     cast_handler(char *str, int i, t_type *temp)
 {
     while (str[i] == 'h' || str[i] == 'l' || 
@@ -51,6 +53,7 @@ int     cast_handler(char *str, int i, t_type *temp)
         temp->spaces = 0;
     return (i);
 }
+
 int     precission_handler2(char *str, int i, t_type *temp)
 {
     int e;
@@ -80,6 +83,7 @@ int     precission_handler2(char *str, int i, t_type *temp)
         }
     return i;
 }
+
 int     precission_handler1(char *str, int i, t_type *temp)
 {
     int e;
@@ -98,6 +102,7 @@ int     precission_handler1(char *str, int i, t_type *temp)
     free(str1);
     return i;
 }
+
 int     precission_handler(char *str, int i, t_type *temp)
 {
     if ((str[i] >= '0' && str[i] <= '9') || 
