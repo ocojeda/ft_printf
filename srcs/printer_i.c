@@ -65,9 +65,10 @@ int	printer(t_type *all)
 	{
 		if (temp->type == STR)
 			{
-				ft_putstr(temp->str);
-				free(temp->str);
-				everything += ft_strlen(temp->str);
+				//ft_putstr(temp->str);
+				//free(temp->str);
+				everything += ft_strlen(temp->str1);
+				ft_putstr(temp->str1);
 			}
 		if (temp->type == INTI)
 			everything += print_number(temp);

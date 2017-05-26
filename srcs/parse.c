@@ -25,7 +25,8 @@ void	reset_type(t_type *temp)
 	temp->wstr = NULL;
 	temp->wc = 0;
 	temp->hexa = 0;
-	
+	ft_bzero(temp->str1, 1000);
+
     temp->plus = 0;
 	temp->negative = 0;
 	temp->hash_tag =0;
@@ -38,39 +39,6 @@ void	reset_type(t_type *temp)
 	temp->cast = 0;
 }
 
-t_type *new_type(t_type *temp)
-{
-	if ((temp->next = (t_type *)malloc(sizeof(t_type))))
-	{
-		temp = temp->next;
-		temp->type = 0;
-		temp->unbr = 0;
-		temp->lunbr = 0;
-		temp->lnbr = 0;
-		temp->pointer = 0;
-		temp->fnumber = 0;
-		temp->str = NULL;
-		temp->c = 0;
-		temp->wstr = NULL;
-		temp->wc = 0;
-		temp->hexa = 0;
-
-		temp->plus = 0;
-		temp->negative = 0;
-		temp->hash_tag =0;
-		temp->pres_left = 0;
-		temp->pres_right = 0;
-		temp->no_pres_left = 0;
-		temp->no_pres_right = 0;
-		temp->spaces = 0;
-		temp->currency = 0;
-		temp->cast = 0;
-		temp->next = NULL;
-		return (temp);
-	}
-	else 
-		return (NULL);
-}
 void  parse_the_values2(va_list args, t_type *temp, char *str, int i)
 {
 	if (str[i] == '%' && !temp->type)
@@ -90,10 +58,8 @@ void  parse_the_values2(va_list args, t_type *temp, char *str, int i)
 	{
 		temp->type = STR;
 		char *str1 = va_arg(args, char *); 
-		if(str1)
-			temp->str = ft_strdup(str1);
-		else
-			temp->str = ft_strdup("(null)");
+        if(!ft_strcpy(temp->str1, str1))
+            ft_strcpy(temp->str1, "(null)");
 	}
 	if (str[i] == 'S' && !temp->type)
 	{
@@ -102,7 +68,7 @@ void  parse_the_values2(va_list args, t_type *temp, char *str, int i)
 		if (temp->wstr == 0 || temp->wstr == NULL)
 			{
 				temp->type = STR;
-				temp->str = ft_strdup("(null)");
+				ft_strcpy(temp->str1, "(null)");
 			}
 	}
 	if (str[i] == 'x' && !temp->type)
@@ -201,19 +167,6 @@ int   parse_the_values(va_list args, t_type *temp, char *str, int i)
 		temp->type = -1;
 	return i+1;
 }
-t_type  *make_new_string(char *str, int i, t_type *temp)
-{
-	int e = 0;
-	while (str[i] != '%' && str[i])
-	{
-		i++;
-		e++;
-	}
-	temp->type = STR;
-	temp->str = ft_strsub(str, i - e, e);
-	temp = new_type(temp);
-	return temp;
-}
 int     parse_all(char *str, va_list args)
 {
 	int	 i;
@@ -244,6 +197,8 @@ int     parse_all(char *str, va_list args)
 				}
 				all->type = STR;
 				all->str = ft_strsub(str, i - e, e);
+                ft_strncpy(all->str1, all->str, e);
+                free(all->str);
 			}
         total += printer(all);
         reset_type(all);

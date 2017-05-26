@@ -65,6 +65,7 @@ typedef struct      s_type
     unsigned long long       hexa;
     unsigned long          pointer;
     double          fnumber;
+    char            str1[1000];
     char            *str;
     unsigned int             c;
     wchar_t         *wstr;
