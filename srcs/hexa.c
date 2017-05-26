@@ -103,15 +103,12 @@ int	ft_puthexa(t_type *temp)
 	char			*str;
 	int i;
 
-	if (temp->cast == H_CAST)
-	{
-		if(temp->hexa > 65535)
-		{
-			while (temp->hexa > 65535)
-				temp->hexa -= 65535;
-			temp->hexa--;
-		}
-	}
+    if (temp->hexa > 65535)
+    {
+        while (temp->hexa > 65535)
+            temp->hexa -= 65535;
+        temp->hexa--;
+    }
 	if (temp->cast == HH_CAST)
 	{
 		while (temp->hexa > 256)
