@@ -44,32 +44,30 @@ int	printer2(t_type *temp, int everything)
 	if (temp->type == WCHAR)
 		everything += ft_putwchar(temp->wc);
 	if (temp->type == WSTR)
-		everything += ft_putwstr(temp->wstr);
+		everything = ft_putwstr(temp, temp->wstr, everything);
 	return (everything);
 }
+
 int	printer(t_type *all)
 {
 	t_type *temp;
 	int everything;
+	int i;
 
+	i = 0;
 	everything = 0;
 	temp = all;
-	while(temp)
-	{
-		if(temp->type == -1)
-			return -1;
-		temp = temp->next;
-	}
+//	while(temp)
+//	{
+//		if(temp->type == -1)
+//			return -1;
+//		temp = temp->next;
+//	}
 	temp = all;
 	if (temp)
 	{
 		if (temp->type == STR)
-			{
-				//ft_putstr(temp->str);
-				//free(temp->str);
-				everything += ft_strlen(temp->str1);
-				ft_putstr(temp->str1);
-			}
+			everything = print_string(temp, everything);
 		if (temp->type == INTI)
 			everything += print_number(temp);
 		if (temp->type == HEXA)

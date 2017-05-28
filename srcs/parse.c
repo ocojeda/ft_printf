@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/07 16:25:14 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/26 11:20:48 by myernaux         ###   ########.fr       */
-/*                                                                            */
+/*																			*/
+/*														:::	  ::::::::   */
+/*   parse.c											:+:	  :+:	:+:   */
+/*													+:+ +:+		 +:+	 */
+/*   By: myernaux <myernaux@student.42.fr>		  +#+  +:+	   +#+		*/
+/*												+#+#+#+#+#+   +#+		   */
+/*   Created: 2017/01/07 16:25:14 by ocojeda-		  #+#	#+#			 */
+/*   Updated: 2017/05/26 11:20:48 by myernaux		 ###   ########.fr	   */
+/*																			*/
 /* ************************************************************************** */
 
 #include "ft_printf.h"
@@ -27,7 +27,7 @@ void	reset_type(t_type *temp)
 	temp->hexa = 0;
 	ft_bzero(temp->str1, 1000);
 
-    temp->plus = 0;
+	temp->plus = 0;
 	temp->negative = 0;
 	temp->hash_tag =0;
 	temp->pres_left = 0;
@@ -58,8 +58,8 @@ void  parse_the_values2(va_list args, t_type *temp, char *str, int i)
 	{
 		temp->type = STR;
 		char *str1 = va_arg(args, char *); 
-        if(!ft_strcpy(temp->str1, str1))
-            ft_strcpy(temp->str1, "(null)");
+		if(!ft_strcpy(temp->str1, str1))
+			ft_strcpy(temp->str1, "(null)");
 	}
 	if (str[i] == 'S' && !temp->type)
 	{
@@ -153,10 +153,7 @@ int   parse_the_values(va_list args, t_type *temp, char *str, int i)
 	if (str[i] == 'o' && !temp->type)
 	{
 		temp->type = OCTAL;
-		//if(temp->cast == HH_CAST)
-		//	temp->number = va_arg(args, int);
-		//else 
-			temp->octal = va_arg(args, long long);
+		temp->octal = va_arg(args, long long);
 	}
 	if (str[i] == 'O' && !temp->type)
 	{
@@ -167,21 +164,21 @@ int   parse_the_values(va_list args, t_type *temp, char *str, int i)
 		temp->type = -1;
 	return i+1;
 }
-int     parse_all(char *str, va_list args)
+int	 parse_all(char *str, va_list args)
 {
 	int	 i;
 	int	 e;
-    int total;
+	int total;
 	t_type  *all;
 
-    total = 0;
+	total = 0;
 	i = 0;
 	if(!(all = (t_type *)malloc(sizeof(t_type))))
-        return -1;
-
+		return -1;
+	all->everything = 0;
 	while (str[i])
 	{
-        if (str[i] == '%')
+		if (str[i] == '%')
 		{
 			i++;
 			i = parse_the_values(args, all, str, i);
@@ -196,14 +193,16 @@ int     parse_all(char *str, va_list args)
 					i++;
 				}
 				all->type = STR;
-				all->str = ft_strsub(str, i - e, e);
-                ft_strncpy(all->str1, all->str, e);
-                free(all->str);
+				if(!(all->str = ft_strsub(str, i - e, e)))
+					return -1;
+				ft_strncpy(all->str1, all->str, e);
+				free(all->str);
 			}
-        total += printer(all);
-        reset_type(all);
+		all->everything += printer(all);
+		reset_type(all);
 	}
-    //free(all);
-    //all = NULL;
+	total = all->everything;
+	free(all);
+	all = NULL;
 	return (total);
 }

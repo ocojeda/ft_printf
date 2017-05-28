@@ -6,7 +6,7 @@
 #    By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/15 15:25:14 by myernaux          #+#    #+#              #
-#    Updated: 2017/05/24 10:24:17 by ocojeda-         ###   ########.fr        #
+#    Updated: 2017/05/26 18:28:17 by ocojeda-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ LIBFT = $(addprefix $(LIBFT_PATH)/,$(LIBFTA))
 SRC_NAME = ft_printf.c ft_putunbr.c hexa.c parse.c \
 		   parse2.c printer_i.c adresse_printer.c ft_putlunbr.c \
 			ft_putlnbr.c octal.c ft_putwchar.c ft_putwstr.c \
-			print_number.c double_modulo.c octalm.c
+			print_number.c double_modulo.c octalm.c printer_for_string.c
 SRCS = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 OBJS = $(addprefix $(OBJ_PATH)/,$(SRC_NAME:.c=.o))
 

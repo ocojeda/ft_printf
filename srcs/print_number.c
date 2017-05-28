@@ -175,7 +175,6 @@ int    print_number(t_type *temp)
     i = 0;
     total = 0;
     t = temp->number;
-    //ft_putnbr(temp->pres_right);
     if(temp->cast == LONG_LONG || temp->cast == LONG 
     || temp->cast == Z_CAST || temp->cast == J_CAST)
       return(ft_putllnbr(temp));
