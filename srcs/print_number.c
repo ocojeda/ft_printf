@@ -175,6 +175,10 @@ int    print_number(t_type *temp)
     i = 0;
     total = 0;
     t = temp->number;
+   // if(temp->nopoint && temp->pres_right && t < 0 && !temp->pres_left)
+   // {
+   //     temp->pres_right--;
+   // }
     if(temp->cast == LONG_LONG || temp->cast == LONG 
     || temp->cast == Z_CAST || temp->cast == J_CAST)
       return(ft_putllnbr(temp));

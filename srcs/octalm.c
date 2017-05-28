@@ -51,6 +51,8 @@ int    ft_putoctalm(t_type *temp)
     char            *str;
     int i;
 
+    if(temp->nopoint && temp->number == 0 && temp->type == OCTALM)
+        return 0;
     str = NULL;
     if (temp->type == OCTALM)
         str = ft_itoa_octal_capital(temp->number);

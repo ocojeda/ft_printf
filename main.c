@@ -36,10 +36,16 @@ int main(void)
    //ft_printf("--->%d\n", total);
   // ft_putnbr(INT_MAX+1);
   
-   total = ft_printf("{%s}", NULL);
+   //total = ft_printf("%ls, %ls", L"ÊM-^ZM-^VÁM-^BM-^I", L"ŸM-^Dÿ≠ŸM-^E ÿÆŸM-^Fÿ≤ŸM-ÿ±");
+   //ft_printf("--->total = %d\n", total);
+   
+   //total = printf("%ls, %ls", L"ÊM-^ZM-^VÁM-^BM-^I", L"ŸM-^Dÿ≠ŸM-^E ÿÆŸM-^Fÿ≤ŸM-ÿ±");
+   //printf("--->total = %d\n", total);
+
+   total = ft_printf("{%5p}", 0);
    ft_printf("--->total = %d\n", total);
    
-   total = printf("{%s}", "");
+   total = printf("{%5p}", 0);
    printf("--->total = %d\n", total);
    
    /*

@@ -81,12 +81,13 @@ typedef struct	  s_type
 	short		   negative;
 	short		   currency;
 	short		   cast;
+	short			nopoint;
 	struct s_type   *next;
 
 	int			 everything;
 }				   t_type;
 
-
+int	 print_chars(t_type *temp);
 int	 ft_double_modulo_handler(t_type *temp);
 int	ft_putoctalm(t_type *temp);
 char		*ft_hexa_itoa(unsigned long long n);

@@ -52,9 +52,11 @@ int    ft_putoctal(t_type *temp)
     char            *str;
     int i;
 
+    if(temp->nopoint && temp->octal == 0 && temp->type == OCTAL)
+        return 0;
+
     if(temp->cast == HH_CAST)
     {
-        //temp->octal = temp->number;
         while(temp->octal > 256)
             temp->octal -= 256;
     }

@@ -57,9 +57,11 @@ void  parse_the_values2(va_list args, t_type *temp, char *str, int i)
 	if (str[i] == 's' && !temp->type)
 	{
 		temp->type = STR;
-		char *str1 = va_arg(args, char *); 
-		if(!ft_strcpy(temp->str1, str1))
+		char *str1 = va_arg(args, char *);
+		if(str1 == NULL)
 			ft_strcpy(temp->str1, "(null)");
+		else
+			ft_strcpy(temp->str1, str1);
 	}
 	if (str[i] == 'S' && !temp->type)
 	{
@@ -132,6 +134,7 @@ void   parse_the_values3(va_list args, t_type *temp, char *str, int i)
 		temp->cast = LONG_LONG;
 		if(temp->number < 0)
 			temp->number *= -1;
+		temp->spaces = 0;
 		}
 	}
 	if (str[i] == 'U' && !temp->type)
@@ -161,7 +164,10 @@ int   parse_the_values(va_list args, t_type *temp, char *str, int i)
 		temp->number = va_arg(args, unsigned long long);
 	}
 	if(!temp->type)
-		temp->type = -1;
+		{
+			temp->type = CHAR;
+			temp->c = str[i];
+		}
 	return i+1;
 }
 int	 parse_all(char *str, va_list args)

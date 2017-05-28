@@ -83,9 +83,12 @@ int	 ft_putwstr(t_type *temp, wchar_t *wstr, int everything)
 	wchar_t *str_temp;
 
 
-	total = ft_wstrlen(wstr);
+	
+    total = ft_wstrlen(wstr);
 	i = 0;
-	if(temp->pres_right && temp->pres_right < total)
+	if(temp->pres_left == 0 && temp->pres_right == 0)
+        return(ft_wputstr(wstr));
+    if(temp->pres_right && temp->pres_right < total)
 	{
 		str_temp = ft_wstrsub(wstr, 0, temp->pres_right);
 		total = ft_wstrlen(str_temp);

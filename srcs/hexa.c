@@ -103,6 +103,10 @@ int	ft_puthexa(t_type *temp)
 	char			*str;
 	int i;
 
+	if(temp->type == HEXA && temp->hexa == 0 && temp->nopoint)
+		return (0);
+	if(temp->type == HEXAM && temp->hexa == 0 && temp->nopoint)
+		return (0);
 	if (temp->cast == H_CAST)
 	{
 		if(temp->hexa > 65535)

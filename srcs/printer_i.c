@@ -14,7 +14,22 @@
 
 int	printer2(t_type *temp, int everything)
 {
-	if (temp->type == CHAR)
+	/*if (temp->type == CHAR && temp->negative)
+	   {
+		   if(temp->c != 0)
+			   ft_putchar(temp->c);
+			if(temp->pres_left)
+			{
+				temp->pres_left--;
+				while(temp->pres_left--)
+					{
+						everything++;
+						ft_putchar(' ');
+					}
+			}
+		   everything++;
+	   }
+	else if(temp->type == CHAR)
 	   {
 		   if(temp->pres_left)
 			{
@@ -28,7 +43,9 @@ int	printer2(t_type *temp, int everything)
 		   if(temp->c != 0)
 			   ft_putchar(temp->c);
 		   everything++;
-	   }
+	   }*/
+	if(temp->type == CHAR)
+		everything += print_chars(temp);
 	if (temp->type == INTU)
 			everything += print_unumber(temp);
 	if (temp->type == INTLU)
@@ -57,19 +74,15 @@ int	printer(t_type *all)
 	i = 0;
 	everything = 0;
 	temp = all;
-//	while(temp)
-//	{
-//		if(temp->type == -1)
-//			return -1;
-//		temp = temp->next;
-//	}
 	temp = all;
 	if (temp)
 	{
 		if (temp->type == STR)
 			everything = print_string(temp, everything);
 		if (temp->type == INTI)
+		{
 			everything += print_number(temp);
+		}
 		if (temp->type == HEXA)
 			everything += ft_puthexa(temp);
 		if (temp->type == HEXAM)

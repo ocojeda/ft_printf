@@ -62,6 +62,7 @@ int     precission_handler2(char *str, int i, t_type *temp)
     
     if (str[i] == '.')
         {
+            temp->nopoint = 1;  //iciiiiiiiiiiiii
             if(ft_isdigit(str[i-1]) == 0)
                     temp->no_pres_left = 2;
             i++;
@@ -92,14 +93,31 @@ int     precission_handler1(char *str, int i, t_type *temp)
 
     j = i;
     e = 0;
-    while (str[i] >= '0' && str[i] <= '9')
+    if(str[i] == '0' && str[i + 1] >= '0' && str[i + 1] <= '9')
     {
-        i++;
-        e++;
+        temp->pres_left = 0;
+        while(str[i] >= '0' && str[i] <= '9')
+        {
+            i++;
+            e++;    
+        }
+        str1 = ft_strsub(str, j, e);
+        temp->pres_right = ft_atoi(str1);
+        free(str1);
+        temp->nopoint = 1;
     }
-    str1 = ft_strsub(str, j, e);
-    temp->pres_left = ft_atoi(str1);
-    free(str1);
+    else
+    {
+        while (str[i] >= '0' && str[i] <= '9')
+        {
+            i++;
+            e++;
+        }
+        str1 = ft_strsub(str, j, e);
+        temp->pres_left = ft_atoi(str1);
+        free(str1);
+        temp->nopoint = 0;
+    }
     return i;
 }
 
@@ -111,7 +129,7 @@ int     precission_handler(char *str, int i, t_type *temp)
         i = precission_handler1(str, i ,temp);
         if (str[i] == '.')
             i = precission_handler2(str, i, temp);
-        else
+        else if (!temp->pres_right)
             temp->pres_right = 0;
     }
     else
