@@ -15,7 +15,7 @@
 int main(void)
 {
   int total;
-  char *c = NULL;
+  char *i;
    /* char *a = NULL;
     long *x = NULL;
     long y = (long)&x;
@@ -35,19 +35,17 @@ int main(void)
    //total = printf("%ld%ld", 0L, 42L);
    //ft_printf("--->%d\n", total);
   // ft_putnbr(INT_MAX+1);
-  
-   //total = ft_printf("%ls, %ls", L"ÊM-^ZM-^VÁM-^BM-^I", L"ŸM-^Dÿ≠ŸM-^E ÿÆŸM-^Fÿ≤ŸM-ÿ±");
-   //ft_printf("--->total = %d\n", total);
-   
-   //total = printf("%ls, %ls", L"ÊM-^ZM-^VÁM-^BM-^I", L"ŸM-^Dÿ≠ŸM-^E ÿÆŸM-^Fÿ≤ŸM-ÿ±");
-   //printf("--->total = %d\n", total);
-
-   total = ft_printf("{%5p}", 0);
+  short x = 100;
+   total = ft_printf("%hd%hd", (short int)0, (short int)42);
    ft_printf("--->total = %d\n", total);
-   
-   total = printf("{%5p}", 0);
+   total = printf("%hd%hd", (short int)0, (short int)42);
    printf("--->total = %d\n", total);
-   
+   /*
+   total = ft_printf("{%010d}", -42);
+   ft_printf("--->total = %d\n", total);
+   total = printf("{%010d}", -42);
+   printf("--->total = %d\n", total);
+   */
    /*
    total = ft_printf("%s %d %p %% %S %D %i %o %O %u %U %x %X %c %C","bonjour", 42, &c, L"暖炉", LONG_MAX, 42, 42, 42, 100000, ULONG_MAX, 42, 42, 'c', L'플');
    ft_printf("--->total = %d\n", total);

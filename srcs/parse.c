@@ -56,12 +56,20 @@ void  parse_the_values2(va_list args, t_type *temp, char *str, int i)
 	}
 	if (str[i] == 's' && !temp->type)
 	{
-		temp->type = STR;
-		char *str1 = va_arg(args, char *);
-		if(str1 == NULL)
-			ft_strcpy(temp->str1, "(null)");
+		if(temp->cast == LONG)
+		{
+			temp->type = WCHAR;
+			temp->wc = va_arg(args, wchar_t);
+		}
 		else
-			ft_strcpy(temp->str1, str1);
+		{
+			temp->type = STR;
+			char *str1 = va_arg(args, char *);
+			if(str1 == NULL)
+				ft_strcpy(temp->str1, "(null)");
+			else
+				ft_strcpy(temp->str1, str1);
+		}
 	}
 	if (str[i] == 'S' && !temp->type)
 	{

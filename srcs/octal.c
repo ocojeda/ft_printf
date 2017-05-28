@@ -54,7 +54,6 @@ int    ft_putoctal(t_type *temp)
 
     if(temp->nopoint && temp->octal == 0 && temp->type == OCTAL)
         return 0;
-
     if(temp->cast == HH_CAST)
     {
         while(temp->octal > 256)
