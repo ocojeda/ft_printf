@@ -36,6 +36,7 @@ void	reset_type(t_type *temp)
 	temp->no_pres_right = 0;
 	temp->spaces = 0;
 	temp->currency = 0;
+	temp->nopoint = 0;
 	temp->cast = 0;
 }
 
