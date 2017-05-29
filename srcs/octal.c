@@ -58,17 +58,6 @@ int	set_presschar_octal(t_type *temp, int total)
 	return (all + total);
 }
 
-/*static	int	switch_hexam(int x)
-{
-	if (0 <= x && x <= 9)
-		return (48 + x);
-	if (x >= 10 && x <= 15)
-	{
-		x = x - 10;
-		return (65 + x);
-	}
-	return (0);
-}*/
 static	int	switch_octal(int x)
 {
 	if (0 <= x && x <= 9)
@@ -111,13 +100,14 @@ int	ft_putoctal(t_type *temp)
 
     i = 0;
 	if(temp->nopoint && temp->octal == 0 && temp->type == OCTAL)
-		return 0;
+		return (0); 
+	if(!temp->pres_left && !temp->pres_right && temp->octal == 0)
+		return (0); //new add
     if(temp->nopoint && temp->pres_left == 0 && temp->pres_right && temp->negative)
     {
         temp->pres_left = temp->pres_right;
         temp->pres_right = 0;
     }
-
 	if(temp->cast == HH_CAST)
 	{
 		while(temp->octal > 256)
@@ -130,6 +120,8 @@ int	ft_putoctal(t_type *temp)
 	}
 	i = 0;
 	str = ft_itoa_octal(temp->octal);
+	if(temp->pres_left && temp->no_pres_right == 2 && temp->octal == 0)
+            return 0;
 	if(temp->negative == NEGATIVE)
 	{
         if(temp->hash_tag)

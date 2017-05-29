@@ -34,6 +34,7 @@
 # define OCTALM 12
 # define WCHAR 13
 # define WSTR 14
+
 /*
 * OPTIONS DEFINE
 */

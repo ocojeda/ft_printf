@@ -69,9 +69,7 @@ int	printer(t_type *all)
 {
 	t_type *temp;
 	int everything;
-	int i;
 
-	i = 0;
 	everything = 0;
 	temp = all;
 	temp = all;
@@ -80,9 +78,7 @@ int	printer(t_type *all)
 		if (temp->type == STR)
 			everything = print_string(temp, everything);
 		if (temp->type == INTI)
-		{
 			everything += print_number(temp);
-		}
 		if (temp->type == HEXA)
 			everything += ft_puthexa(temp);
 		if (temp->type == HEXAM)

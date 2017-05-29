@@ -14,7 +14,7 @@
 
 void            ft_printlongnbr(long long ll)
 {
-    if (ll == LONG_LONG_MIN)
+    if (ll == LLONG_MIN)
     {
         ft_putstr("-9223372036854775808");
         return ;
