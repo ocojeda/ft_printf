@@ -174,7 +174,12 @@ int   parse_the_values(va_list args, t_type *temp, char *str, int i)
 	if (str[i] == 'o' && !temp->type)
 	{
 		temp->type = OCTAL;
-		temp->octal = va_arg(args, long long);
+		if(temp->cast == LONG_LONG || temp->cast == LONG)
+			temp->octal = va_arg(args, unsigned long long);
+		else if(temp->cast == J_CAST)
+			temp->octal = va_arg(args, uintmax_t);
+		else
+			temp->octal = va_arg(args, unsigned int);
 	}
 	if (str[i] == 'O' && !temp->type)
 	{

@@ -19,7 +19,7 @@ int	set_presschar(t_type *temp, int total)
 
 	all = 0;
 	i = 0;
-	if (temp->pres_left < total && temp->pres_right < total && 
+	 if (temp->pres_left < total && temp->pres_right < total && 
 			temp->hash_tag == 2)
 	{
 		if (temp->type == HEXAM)
