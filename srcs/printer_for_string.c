@@ -29,12 +29,24 @@ int	print_string(t_type *temp, int everything)
 	if(temp->pres_left > total)
 	{
 		i = temp->pres_left - total;
-		while(i > 0)
+		if(temp->negative)
 		{
-			ft_putchar(' ');
-			i--;
+			ft_putstr(str_temp);
+			while(i > 0)
+			{
+				ft_putchar(' ');
+				i--;
+			}
 		}
-		ft_putstr(str_temp);
+		else
+		{
+			while(i > 0)
+			{
+				ft_putchar(' ');
+				i--;
+			}
+			ft_putstr(str_temp);
+		}
 		free(str_temp);
 		return (temp->pres_left);
 	}
