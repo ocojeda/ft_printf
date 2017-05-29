@@ -62,7 +62,7 @@ int	 precission_handler2(char *str, int i, t_type *temp)
 	
 	if (str[i] == '.')
 		{
-			temp->nopoint = 1;  //iciiiiiiiiiiiii
+			temp->nopoint = 0;  //iciiiiiiiiiiiii
 			if(ft_isdigit(str[i-1]) == 0)
 					temp->no_pres_left = 2;
 			i++;
