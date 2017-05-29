@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_number.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/29 15:53:45 by myernaux          #+#    #+#             */
+/*   Updated: 2017/05/29 15:53:49 by myernaux         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 # include "../includes/ft_printf.h"
 
 void            ft_printlongnbr(long long ll)
@@ -56,6 +68,8 @@ int     set_presschar_for_int(t_type *temp, int total)
             {
                 ft_putchar('+');
                 a++;
+                if (t == 0)
+                    a++;
             }
         if(t < 0)
             {

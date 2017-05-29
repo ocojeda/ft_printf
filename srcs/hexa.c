@@ -50,6 +50,8 @@ int	set_presschar(t_type *temp, int total)
 		}
 		if (temp->pres_right > total)
 			i = temp->pres_right - total;
+		/*if (temp->hash_tag && (temp->pres_right + 2 > ft_strlen(temp->hexa)))
+			i -= 2;*/
 		all += i;
 		while (i > 0)
 		{
