@@ -92,7 +92,7 @@ void   parse_the_values3(va_list args, t_type *temp, char *str, int i)
 	if (str[i] == 'X' && !temp->type)
 	{
 		temp->type = HEXAM;
-		temp->hexa = va_arg(args, unsigned long long);
+		temp->hexa = va_arg(args, unsigned int);
 	}
 	if (str[i] == 'c' && !temp->type)
 	{

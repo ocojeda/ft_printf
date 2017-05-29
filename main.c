@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 00:05:50 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/24 12:42:05 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/29 11:46:23 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_printf.h"
+#include <stdlib.h>
 
 int main(void)
 {
@@ -36,9 +37,10 @@ int main(void)
    //ft_printf("--->%d\n", total);
   // ft_putnbr(INT_MAX+1);
   short x = 100;
-   total = ft_printf("%hd%hd", (short int)0, (short int)42);
+  char str[] = "-42";
+   total = ft_printf("%x", atoll(str));
    ft_printf("--->total = %d\n", total);
-   total = printf("%hd%hd", (short int)0, (short int)42);
+   total = printf("%x", atoll(str));
    printf("--->total = %d\n", total);
    /*
    total = ft_printf("{%010d}", -42);
