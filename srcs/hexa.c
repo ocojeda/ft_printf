@@ -121,24 +121,31 @@ int	ft_puthexa(t_type *temp)
 		while (temp->hexa > 256)
 			temp->hexa -= 256;
 	}
-	/*if (temp->cast == 0 && temp->type == HEXAM && temp->hexa > 4294967295)
-	{
-		while (temp->hexa > 65535)
-			temp->hexa -= 65535;
-			temp->hexa--;
-	}*/
-    /*ft_putlnbr(UINT_MAX);
-    ft_putchar('=');
-    ft_putlnbr(temp->hexa);
-    ft_putchar('\n');*/
 	if(temp->type == HEXAM)
 		str = ft_hexa_itoa_capital(temp->hexa);
 	else if(temp->type == POINTER_ADRESSE)
 		str = ft_hexa_itoa(temp->pointer);
 	else
 		str = ft_hexa_itoa(temp->hexa);
-	i = set_presschar(temp, ft_strlen(str));
-	ft_putstr(str);
+	i = 0;
+	if(temp->hexa == 0 && temp->hash_tag)
+		temp->hash_tag = 0;
+	if(temp->negative)
+	{
+		if(temp->hash_tag)
+			{
+				ft_putstr("0x");
+				i = 2;
+				temp->hash_tag = 0;
+			}
+		ft_putstr(str);
+		i += set_presschar(temp, ft_strlen(str));
+	}
+	else
+	{
+		i = set_presschar(temp, ft_strlen(str));
+		ft_putstr(str);
+	}
 	free(str);
 	return (i);
 }

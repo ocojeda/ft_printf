@@ -84,7 +84,12 @@ void  parse_the_values2(va_list args, t_type *temp, char *str, int i)
 	if (str[i] == 'x' && !temp->type)
 	{
 		temp->type = HEXA;
-		temp->hexa = va_arg(args, unsigned long long);
+		if(temp->cast == LONG_LONG || temp->cast == LONG)
+			temp->hexa = va_arg(args, unsigned long long);
+		else if(temp->cast == J_CAST)
+			temp->hexa = va_arg(args, uintmax_t);
+		else
+			temp->hexa = va_arg(args, unsigned int);
 	}
 }
 void   parse_the_values3(va_list args, t_type *temp, char *str, int i)
@@ -92,7 +97,11 @@ void   parse_the_values3(va_list args, t_type *temp, char *str, int i)
 	if (str[i] == 'X' && !temp->type)
 	{
 		temp->type = HEXAM;
-		temp->hexa = va_arg(args, unsigned int);
+		if(temp->cast == LONG || temp->cast == LONG_LONG)
+			temp->hexa = va_arg(args, unsigned long long);
+		else
+			temp->hexa = va_arg(args, unsigned int); 
+
 	}
 	if (str[i] == 'c' && !temp->type)
 	{
