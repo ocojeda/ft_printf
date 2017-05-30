@@ -198,11 +198,9 @@ int	 parse_all(char *str, va_list args)
 {
 	int	 i;
 	int	 e;
-	int total;
 	int everything;
 	t_type  *all;
 
-	total = 0;
 	i = 0;
 	if(!(all = (t_type *)malloc(sizeof(t_type))))
 			return -1;

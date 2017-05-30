@@ -29,12 +29,10 @@ int	check_for_prints(char *str)
 int	ft_printf(char *format, ...)
 {
 	va_list	 args;
-	//char		*str;
 	int   everything;
 	
 	everything = 0;
 	va_start(args, format);
-	//str = ft_strdup(format);
 	if (check_for_prints(format))
 		everything = parse_all(format, args);
 	else
@@ -42,7 +40,6 @@ int	ft_printf(char *format, ...)
 		ft_putstr(format);
 		everything = ft_strlen(format);
 	}
-	//free(str);
 	va_end(args);
 	return (everything);
 }
