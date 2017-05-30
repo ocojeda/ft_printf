@@ -38,9 +38,9 @@ int main(void)
   // ft_putnbr(INT_MAX+1);
   short x = 100;
   char str[] = "-42";
-   total = ft_printf("%x", atoll(str));
+   total = ft_printf("%0+5d", -42);
    ft_printf("--->total = %d\n", total);
-   total = printf("%x", atoll(str));
+   total = printf("%0+5d", -42);
    printf("--->total = %d\n", total);
    /*
    total = ft_printf("{%010d}", -42);

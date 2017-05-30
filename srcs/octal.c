@@ -97,12 +97,17 @@ int	ft_putoctal(t_type *temp)
 {
 	char			*str;
 	int i;
+	int total;
 
     i = 0;
-	if(temp->nopoint && temp->octal == 0 && temp->type == OCTAL)
-		return (0); 
-	if(!temp->pres_left && !temp->pres_right && temp->octal == 0)
-		return (0); //new add
+	   if(temp->no_pres_left == 2 && (temp->no_pres_right == 2 || temp->no_pres_right == 0)
+     && temp->octal == 0 && temp->pres_left == 0 && !temp->hash_tag)
+            return 0;
+		if(temp->no_pres_left&& temp->no_pres_right && temp->octal == 0 && temp->nopoint == 0)
+	{
+		ft_putchar('0');
+		return (1);
+	}
     if(temp->nopoint && temp->pres_left == 0 && temp->pres_right && temp->negative)
     {
         temp->pres_left = temp->pres_right;
@@ -120,22 +125,51 @@ int	ft_putoctal(t_type *temp)
 	}
 	i = 0;
 	str = ft_itoa_octal(temp->octal);
-	if(temp->pres_left && temp->no_pres_right == 2 && temp->octal == 0)
-            return 0;
-	if(temp->negative == NEGATIVE)
+	total = ft_strlen(str);
+	if(temp->negative == NEGATIVE && temp->pres_left > temp->pres_right)
 	{
-        if(temp->hash_tag)
+        if(temp->hash_tag && temp->pres_right < total)
             {
                 ft_putnbr(0);
                 i++;
             }
+		if(temp->pres_right > total)
+		{
+			while(temp->pres_right > total)
+			{
+				temp->pres_right--;
+				ft_putchar('0');
+				total++;
+			}
+		}
 		ft_putstr(str);
-		i += set_presschar_octal(temp, ft_strlen(str));
+		i += set_presschar_octal(temp, total);
 	}
+
 	else
 	{
-		i = set_presschar_octal(temp, ft_strlen(str));
-		ft_putstr(str);
+		if(temp->hash_tag && !temp->pres_left && !temp->pres_right && temp->octal == 0)
+			{
+				ft_putchar('0');
+				i = 1;
+			}
+		else
+		{
+			if((temp->pres_right == 0 && temp->octal == 0 && temp->pres_left))
+			{
+				free(str);
+				temp->pres_left++;
+				i = set_presschar_octal(temp, total);
+				return temp->pres_left-1;
+			}
+			if(temp->pres_right == 0 && temp->octal == 0 && temp->pres_left)
+			 	{
+					 temp->pres_left++;
+					 i--;
+				 }
+			i += set_presschar_octal(temp, total);
+				ft_putstr(str);
+		}
 	}
 	free(str);
 	return (i);

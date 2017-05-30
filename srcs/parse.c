@@ -38,6 +38,7 @@ void	reset_type(t_type *temp)
 	temp->currency = 0;
 	temp->nopoint = 0;
 	temp->cast = 0;
+	temp->cero = 0;
 }
 
 void  parse_the_values2(va_list args, t_type *temp, char *str, int i)
@@ -198,13 +199,14 @@ int	 parse_all(char *str, va_list args)
 	int	 i;
 	int	 e;
 	int total;
+	int everything;
 	t_type  *all;
 
 	total = 0;
 	i = 0;
 	if(!(all = (t_type *)malloc(sizeof(t_type))))
-		return -1;
-	all->everything = 0;
+			return -1;
+	everything = 0;
 	while (str[i])
 	{
 		if (str[i] == '%')
@@ -227,11 +229,10 @@ int	 parse_all(char *str, va_list args)
 				ft_strncpy(all->str1, all->str, e);
 				free(all->str);
 			}
-		all->everything += printer(all);
+		everything += printer(all);
 		reset_type(all);
 	}
-	total = all->everything;
 	free(all);
 	all = NULL;
-	return (total);
+	return (everything);
 }

@@ -189,6 +189,12 @@ int    print_number(t_type *temp)
     i = 0;
     total = 0;
     t = temp->number;
+    if(temp->cero && temp->pres_left)
+    {
+        temp->pres_left--;
+        temp->pres_right = temp->pres_left; 
+    }
+
     if(temp->cast == LONG_LONG || temp->cast == LONG 
     || temp->cast == Z_CAST || temp->cast == J_CAST)
       return(ft_putllnbr(temp));

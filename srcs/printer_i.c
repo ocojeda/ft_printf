@@ -72,7 +72,6 @@ int	printer(t_type *all)
 
 	everything = 0;
 	temp = all;
-	temp = all;
 	if (temp)
 	{
 		if (temp->type == STR)
@@ -86,7 +85,6 @@ int	printer(t_type *all)
 		if (temp->type == D_MOD)
 			everything += ft_double_modulo_handler(temp);
 		everything = printer2(temp, everything);
-			temp = temp->next;
 	}
 	return everything;
 }

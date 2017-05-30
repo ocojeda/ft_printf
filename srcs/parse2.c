@@ -142,6 +142,12 @@ int	 precission_handler(char *str, int i, t_type *temp)
 
 int	 option_handler(char *str, int i, t_type *temp)
 {
+	if(str[i] == '0' && (str [i+1] == '#' || str[i+1] == '$' || str[i+1] == '+' 
+	|| str[i+1] == '-' || str[i+1] == ' ' ) && str[i+1])
+	{
+		temp->cero = 1;
+		i++;
+	}
 	while (str [i] == '#' || str[i] == '$' || str[i] == '+' 
 	|| str[i] == '-' || str[i] == ' ')
 	{
