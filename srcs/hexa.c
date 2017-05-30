@@ -50,8 +50,6 @@ int	set_presschar(t_type *temp, int total)
 		}
 		if (temp->pres_right > total)
 			i = temp->pres_right - total;
-		/*if (temp->hash_tag && (temp->pres_right + 2 > ft_strlen(temp->hexa)))
-			i -= 2;*/
 		all += i;
 		while (i > 0)
 		{
@@ -100,15 +98,12 @@ char		*ft_hexa_itoa_capital(unsigned long long n)
 	}
 	return (str);
 }
-int	ft_puthexa(t_type *temp)
+static int	special_case_handler(t_type *temp)
 {
-	char			*str;
-	int i;
-
 	if(temp->type == HEXA && temp->hexa == 0 && temp->nopoint)
-		return (0);
+		return (1);
 	if(temp->type == HEXAM && temp->hexa == 0 && temp->nopoint)
-		return (0);
+		return (1);
 	if (temp->cast == H_CAST)
 	{
 		if(temp->hexa > 65535)
@@ -123,15 +118,12 @@ int	ft_puthexa(t_type *temp)
 		while (temp->hexa > 256)
 			temp->hexa -= 256;
 	}
-	if(temp->type == HEXAM)
-		str = ft_hexa_itoa_capital(temp->hexa);
-	else if(temp->type == POINTER_ADRESSE)
-		str = ft_hexa_itoa(temp->pointer);
-	else
-		str = ft_hexa_itoa(temp->hexa);
-	i = 0;
 	if(temp->hexa == 0 && temp->hash_tag)
 		temp->hash_tag = 0;
+	return (0);
+}
+static int decider(t_type *temp, char *str, int i)
+{
 	if(temp->negative)
 	{
 		if(temp->hash_tag)
@@ -149,5 +141,17 @@ int	ft_puthexa(t_type *temp)
 		ft_putstr(str);
 	}
 	free(str);
-	return (i);
+	return(i);
+}
+int	ft_puthexa(t_type *temp)
+{
+	char			*str;
+
+	if(special_case_handler(temp))
+		return (0);
+	if(temp->type == HEXAM)
+		str = ft_hexa_itoa_capital(temp->hexa);
+	else
+		str = ft_hexa_itoa(temp->hexa);
+	return(decider(temp, str, 0));
 }

@@ -11,7 +11,21 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
+static void	reset_options(t_type *temp)
+{
+	temp->plus = 0;
+	temp->negative = 0;
+	temp->hash_tag =0;
+	temp->pres_left = 0;
+	temp->pres_right = 0;
+	temp->no_pres_left = 0;
+	temp->no_pres_right = 0;
+	temp->spaces = 0;
+	temp->currency = 0;
+	temp->nopoint = 0;
+	temp->cast = 0;
+	temp->cero = 0;
+}
 void	reset_type(t_type *temp)
 {
 	temp->type = 0;
@@ -26,30 +40,18 @@ void	reset_type(t_type *temp)
 	temp->wc = 0;
 	temp->hexa = 0;
 	ft_bzero(temp->str1, 1000);
-
-	temp->plus = 0;
-	temp->negative = 0;
-	temp->hash_tag =0;
-	temp->pres_left = 0;
-	temp->pres_right = 0;
-	temp->no_pres_left = 0;
-	temp->no_pres_right = 0;
-	temp->spaces = 0;
-	temp->currency = 0;
-	temp->nopoint = 0;
-	temp->cast = 0;
-	temp->cero = 0;
+	reset_options(temp);
 }
 
 void  parse_the_values2(va_list args, t_type *temp, char *str, int i)
 {
 	if (str[i] == '%' && !temp->type)
 		temp->type = D_MOD;
-	if ((str[i] == 'd' || str[i] == 'i') && !temp->type)
+	/*if ((str[i] == 'd' || str[i] == 'i') && !temp->type)
 	{
 		temp->type = INTI;
 		temp->number = va_arg(args, long long);
-	}
+	}*/
 	if (str[i] == 'D' && !temp->type)
 	{
 		temp->type = INTI;
@@ -105,7 +107,7 @@ void   parse_the_values3(va_list args, t_type *temp, char *str, int i)
 			temp->hexa = va_arg(args, unsigned int); 
 
 	}
-	if (str[i] == 'c' && !temp->type)
+	/*if (str[i] == 'c' && !temp->type)
 	{
 		temp->type = CHAR;
 		if(temp->cast == LONG_LONG || temp->cast == LONG)
@@ -115,7 +117,7 @@ void   parse_the_values3(va_list args, t_type *temp, char *str, int i)
 		}
 		else
 			temp->c = va_arg(args, int);
-	}
+	}*/
 	if (str[i] == 'C' && !temp->type)
 	{
 		temp->type = WCHAR;
@@ -162,16 +164,45 @@ void   parse_the_values3(va_list args, t_type *temp, char *str, int i)
 		temp->lunbr = va_arg(args, long unsigned int);
 	}
 }
-int   parse_the_values(va_list args, t_type *temp, char *str, int i)
+int	  cdip_cases(t_type *temp, char *str, int i, va_list args)
 {
-	i = option_handler(str, i, temp);
-	parse_the_values2(args, temp, str, i);
-	parse_the_values3(args, temp, str, i);
+	if (str[i] == 'c' && !temp->type)
+	{
+		temp->type = CHAR;
+		if(temp->cast == LONG_LONG || temp->cast == LONG)
+		{
+			 temp->type = WCHAR;
+			 temp->wc = va_arg(args, wchar_t);
+		}
+		else
+			temp->c = va_arg(args, int);
+	}
+	if ((str[i] == 'd' || str[i] == 'i') && !temp->type)
+	{
+		temp->type = INTI;
+		temp->number = va_arg(args, long long);
+	}
 	if (str[i] == 'p' && !temp->type)
 	{
 		temp->type = POINTER_ADRESSE;
 		temp->pointer = va_arg(args, unsigned long);
 	}
+	return (i+1);
+}
+int   parse_the_values(va_list args, t_type *temp, char *str, int i)
+{
+	i = option_handler(str, i, temp);
+	parse_the_values2(args, temp, str, i);
+	parse_the_values3(args, temp, str, i);
+	
+	if(str[i] == 'd' || str[i] == 'i' || str[i] == 'c' || str[i] == 'p')
+		return cdip_cases(temp, str, i, args);
+
+	/*if (str[i] == 'p' && !temp->type)
+	{
+		temp->type = POINTER_ADRESSE;
+		temp->pointer = va_arg(args, unsigned long);
+	}*/
 	if (str[i] == 'o' && !temp->type)
 	{
 		temp->type = OCTAL;
