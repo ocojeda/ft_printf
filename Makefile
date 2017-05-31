@@ -23,10 +23,10 @@ LIBFTA = libft.a
 LIBFT = $(addprefix $(LIBFT_PATH)/,$(LIBFTA))
 
 SRC_NAME = ft_printf.c ft_putunbr.c hexa.c parse.c \
-           parse2.c parse3.c printer_i.c adresse_printer.c ft_putlunbr.c \
-            ft_putlnbr.c octal.c ft_putwchar.c ft_putwstr.c \
-            print_number.c double_modulo.c octalm.c printer_for_string.c \
-            print_chars.c
+		   parse2.c printer_i.c adresse_printer.c ft_putlunbr.c \
+			ft_putlnbr.c octal.c ft_putwchar.c ft_putwstr.c \
+			print_number.c double_modulo.c octalm.c printer_for_string.c \
+			print_chars.c
 SRCS = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 OBJS = $(addprefix $(OBJ_PATH)/,$(SRC_NAME:.c=.o))
 
@@ -56,4 +56,4 @@ fclean: clean
 	@/bin/rm -rf $(NAME)
 	@echo "$(GREEN)---ft_printf removed completely---$(NC)"
 
-re:	fclean all
+re: fclean all

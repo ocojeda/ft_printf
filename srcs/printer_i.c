@@ -14,6 +14,36 @@
 
 int	printer2(t_type *temp, int everything)
 {
+	/*if (temp->type == CHAR && temp->negative)
+	   {
+		   if(temp->c != 0)
+			   ft_putchar(temp->c);
+			if(temp->pres_left)
+			{
+				temp->pres_left--;
+				while(temp->pres_left--)
+					{
+						everything++;
+						ft_putchar(' ');
+					}
+			}
+		   everything++;
+	   }
+	else if(temp->type == CHAR)
+	   {
+		   if(temp->pres_left)
+			{
+				temp->pres_left--;
+				while(temp->pres_left--)
+					{
+						everything++;
+						ft_putchar(' ');
+					}
+			}
+		   if(temp->c != 0)
+			   ft_putchar(temp->c);
+		   everything++;
+	   }*/
 	if(temp->type == CHAR)
 		everything += print_chars(temp);
 	if (temp->type == INTU)
