@@ -157,25 +157,14 @@ int	 option_handler(char *str, int i, t_type *temp)
 				i++;
 		}
 		if (str[i] == '#')
-		{
-			   temp->hash_tag = HASH_TAG;
-			   i++;
-		}
+		   temp->hash_tag = HASH_TAG;
 		if (str[i] == '$')
-		{
-				temp->currency = CURRENCY;
-				i++;
-		}
+			temp->currency = CURRENCY;
 		if (str[i] == '+')
-		{
-				temp->plus = POSITIVE;
-				i++;
-		}
+			temp->plus = POSITIVE;
 		if (str[i] == '-')
-		{
 			temp->negative = NEGATIVE;
-            i++;
-        }
+	   i++;
 	}
 	return (precission_handler(str, i, temp));
 }
