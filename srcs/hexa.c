@@ -68,7 +68,14 @@ int		ft_puthexaneg(t_type *temp, int i, char *str)
 	else
 	{
 		i = set_presschar(temp, ft_strlen(str));
-		ft_putstr(str);
+		if(temp->pres_left && temp->pres_right == 1 && temp->hexa == 0 && (temp->type == HEXA || 
+			temp->type == HEXAM))
+			{
+				ft_putchar(' ');
+				return (i);
+			}
+		else
+			ft_putstr(str);
 	}
 	return (i);
 }
@@ -96,9 +103,17 @@ int	ft_puthexa(t_type *temp)
 	char			*str;
 	int i;
 
-	if (temp->type == HEXA && temp->hexa == 0 && temp->nopoint)
-		return (0);
-	if (temp->type == HEXAM && temp->hexa == 0 && temp->nopoint)
+	if(temp->nopoint && !temp->pres_left && temp->pres_right && temp->negative)
+		{
+			temp->pres_left = temp->pres_right - temp->hash_tag;
+			temp->pres_right = 0;
+			temp->nopoint = 0;
+		}
+	if (temp->no_pres_left == 2 && (temp->no_pres_right == 2 || temp->no_pres_right == 0)
+     && temp->hexa == 0 && (temp->type == HEXA || temp->type == HEXAM))
+            return (0);
+	if ((temp->type == HEXA || temp->type == HEXAM) && temp->hexa == 0 
+		&& temp->nopoint)
 		return (0);
 	ft_puthexacast(temp);
 	if (temp->type == HEXAM)
@@ -108,6 +123,21 @@ int	ft_puthexa(t_type *temp)
 	else
 		str = ft_hexa_itoa(temp->hexa);
 	i = 0;
+	/*
+	ft_putnbr(temp->hexa);
+    ft_putnbr(temp->nopoint);
+    ft_putnbr(temp->no_pres_left);
+    ft_putnbr(temp->no_pres_right);
+    ft_putnbr(temp->pres_left);
+    ft_putnbr(temp->pres_right);
+    ft_putnbr(temp->cero);
+    ft_putchar('\n');*/
+	if(temp->cero)
+		if(temp->pres_left && !temp->pres_right)
+			{
+			temp->pres_right = temp->pres_left;
+			temp->pres_left = 0;
+			}
 	if (temp->hexa == 0 && temp->hash_tag)
 		temp->hash_tag = 0;
 	i = ft_puthexaneg(temp, i, str);

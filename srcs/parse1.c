@@ -62,10 +62,12 @@ void   parse_the_values3_3(va_list args, t_type *temp)
 void   parse_the_values3_4(va_list args, t_type *temp)
 {
 	temp->type = INTI;
-	temp->number = va_arg(args, long long);
-	temp->cast = LONG_LONG;
-	if (temp->number < 0)
-		temp->number *= -1;
+	temp->number = va_arg(args, unsigned int);
+	if(temp->number >= 4294967295)
+		temp->cast = LONG_LONG;
+	//printf("%lld->", temp->number);
+	//if (temp->number < 0)
+	//	temp->number *= -1;
 	temp->spaces = 0;
 }
 

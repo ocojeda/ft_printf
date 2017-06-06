@@ -37,10 +37,11 @@ int main(void)
    //ft_printf("--->%d\n", total);
   // ft_putnbr(INT_MAX+1);
   short x = 100;
-  char str[] = "-42";
-   total = ft_printf("%0+5d", -42);
+  char *str = "-1";
+  
+   total = ft_printf("%u", 4294967295);
    ft_printf("--->total = %d\n", total);
-   total = printf("%0+5d", -42);
+   total = printf("%u", 4294967295);
    printf("--->total = %d\n", total);
    /*
    total = ft_printf("{%010d}", -42);

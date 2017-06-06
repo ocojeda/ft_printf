@@ -72,6 +72,12 @@ int	ft_putoctal(t_type *temp)
 		while (temp->octal > 256)
 			temp->octal -= 256;
 	}
+		if(temp->cero)
+		if(temp->pres_left && !temp->pres_right)
+			{
+			temp->pres_right = temp->pres_left;
+			temp->pres_left = 0;
+			}
 	i = 0;
 	str = ft_itoa_octal(temp->octal);
 	total = ft_strlen(str);

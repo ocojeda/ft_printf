@@ -26,11 +26,11 @@ int    print_unumber(t_type *temp)
     int all;
 
     total = 0;
-    if (temp->number < 0)
+    /*if (temp->number < 0)
     {
         temp->number *= -1;
         temp->negative = NEGATIVE;
-    }
+    }*/
     t = temp->unbr;
     while (t != 0)
     {

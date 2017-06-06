@@ -82,7 +82,7 @@ int	option_handler2(char *str, int i, t_type *temp)
 int	 option_handler(char *str, int i, t_type *temp)
 {
 	if(str[i] == '0' && (str [i+1] == '#' || str[i+1] == '$' || str[i+1] == '+' 
-	|| str[i+1] == '-' || str[i+1] == ' ' ) && str[i+1])
+	|| str[i+1] == '-' || str[i+1] == ' ' || (str[i+1]  >= '0' && str[i+1]  <= '9' )) && str[i+1])
 	{
 		temp->cero = 1;
 		i++;
