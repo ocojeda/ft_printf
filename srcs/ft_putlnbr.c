@@ -39,6 +39,7 @@ int	print_lnumber(t_type *temp)
 	long long t;
 	int total;
 	int all;
+
 	total = 0;
 	if (temp->number < 0)
 	{

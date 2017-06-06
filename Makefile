@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+         #
+#    By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/15 15:25:14 by myernaux          #+#    #+#              #
-#    Updated: 2017/05/28 18:58:38 by ocojeda-         ###   ########.fr        #
+#    Updated: 2017/06/06 09:34:48 by myernaux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ SRC_NAME = ft_printf.c ft_putunbr.c hexa.c parse.c \
 		   parse2.c printer_i.c adresse_printer.c ft_putlunbr.c \
 			ft_putlnbr.c octal.c ft_putwchar.c ft_putwstr.c \
 			print_number.c double_modulo.c octalm.c printer_for_string.c \
-			print_chars.c
+			print_chars.c wutils.c parse1.c parse3.c parse4.c \
+			adresse_printer2.c hexa2.c octal2.c ft_putwstr2.c
 SRCS = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 OBJS = $(addprefix $(OBJ_PATH)/,$(SRC_NAME:.c=.o))
 

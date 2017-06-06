@@ -1,181 +1,101 @@
 /* ************************************************************************** */
-/*																			*/
-/*														:::	  ::::::::   */
-/*   parse2.c										   :+:	  :+:	:+:   */
-/*													+:+ +:+		 +:+	 */
-/*   By: myernaux <myernaux@student.42.fr>		  +#+  +:+	   +#+		*/
-/*												+#+#+#+#+#+   +#+		   */
-/*   Created: 2017/01/07 16:25:14 by ocojeda-		  #+#	#+#			 */
-/*   Updated: 2017/05/26 11:20:20 by myernaux		 ###   ########.fr	   */
-/*																			*/
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse2.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/06/06 08:30:48 by myernaux          #+#    #+#             */
+/*   Updated: 2017/06/06 08:33:19 by myernaux         ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
-# include "ft_printf.h"
+#include "ft_printf.h"
 
-int	 cast_handler2(char *str, int i, t_type *temp)
+void  parse_the_values2_1(va_list args, t_type *temp, char *str, int i)
 {
-	if (str[i] == 'l')
+	if (str[i] == '%' && !temp->type)
+		temp->type = D_MOD;
+	if ((str[i] == 'd' || str[i] == 'i') && !temp->type)
+	{
+		temp->type = INTI;
+		temp->number = va_arg(args, long long);
+	}
+	if (str[i] == 'D' && !temp->type)
+	{
+		temp->type = INTI;
+		temp->cast = LONG_LONG;
+		temp->number = va_arg(args, long long);
+	}
+	if (str[i] == 'S' && !temp->type)
+	{
+		temp->type = WSTR;
+		temp->wstr = va_arg(args, wchar_t *);
+		if (temp->wstr == 0 || temp->wstr == NULL)
 		{
-			if (str[i + 1] == 'l')
-			{
-				temp->cast = LONG_LONG;
-				i++;
-			}
+			temp->type = STR;
+			ft_strcpy(temp->str1, "(null)");
+		}
+	}
+}
+
+void  parse_the_values2_2(va_list args, t_type *temp, char *str, int i)
+{
+	if (str[i] == 's' && !temp->type)
+	{
+		if (temp->cast == LONG)
+		{
+			temp->type = WCHAR;
+			temp->wc = va_arg(args, wchar_t);
+		}
+		else
+		{
+			temp->type = STR;
+			char *str1 = va_arg(args, char *);
+			if (str1 == NULL)
+				ft_strcpy(temp->str1, "(null)");
 			else
-				temp->cast = LONG;
+				ft_strcpy(temp->str1, str1);
 		}
-	if(str[i] == 'j')
-		temp->cast = J_CAST;
-	return i;
+	}
 }
 
-int	 cast_handler(char *str, int i, t_type *temp)
+void  parse_the_values2(va_list args, t_type *temp, char *str, int i)
 {
-	while (str[i] == 'h' || str[i] == 'l' || 
-	str[i] == 'j' || str[i] == 'z')
+	parse_the_values2_1(args, temp, str, i);
+	parse_the_values2_2(args, temp, str, i);
+	if (str[i] == 'x' && !temp->type)
 	{
-		i = cast_handler2(str, i, temp);
-		if(str[i] == 'h')
-		{
-			if(str[i + 1] == 'h')
-			{
-				temp->cast = HH_CAST; 
-				i++;
-			}
-			else
-				temp->cast = H_CAST;
-		}
-		if(str[i] == 'z')
-			temp->cast = Z_CAST;
-		i++;	
+		temp->type = HEXA;
+		if (temp->cast == LONG_LONG || temp->cast == LONG)
+			temp->hexa = va_arg(args, unsigned long long);
+		else if (temp->cast == J_CAST)
+			temp->hexa = va_arg(args, uintmax_t);
+		else
+			temp->hexa = va_arg(args, unsigned int);
 	}
-	if(temp->plus && temp->spaces)
-		temp->spaces = 0;
-	return (i);
 }
 
-int	 precission_handler2(char *str, int i, t_type *temp)
+void   parse_the_values4(va_list args, t_type *temp, char *str, int i)
 {
-	int e;
-	int j;
-	char *str1;
-	
-	if (str[i] == '.')
-		{
-			temp->nopoint = 0;  //iciiiiiiiiiiiii
-			if(ft_isdigit(str[i-1]) == 0)
-					temp->no_pres_left = 2;
-			i++;
-			j = i;
-			e = 0;
-			if(ft_isdigit(str[i]) == 0 || !str[i])
-					temp->no_pres_right = 2;
-			if (str[i] >= '0' && str[i] <= '9')
-			{
-				while (str[i] >= '0' && str[i] <= '9')
-				{
-					i++;
-					e++;
-				}
-				str1 = ft_strsub(str, j, e);
-				temp->pres_right = ft_atoi(str1);
-				free(str1);			
-			}
-		}
-	return i;
-}
-
-int	 precission_handler1(char *str, int i, t_type *temp)
-{
-	int e;
-	int j;
-	char *str1;
-
-	j = i;
-	e = 0;
-	if(str[i] == '0' && str[i + 1] >= '0' && str[i + 1] <= '9')
+	if (str[i] == 'p' && !temp->type)
 	{
-		temp->pres_left = 0;
-		while(str[i] >= '0' && str[i] <= '9')
-		{
-			i++;
-			e++;	
-		}
-		str1 = ft_strsub(str, j, e);
-		temp->pres_right = ft_atoi(str1);
-		free(str1);
-		temp->nopoint = 1;
+		temp->type = POINTER_ADRESSE;
+		temp->pointer = va_arg(args, unsigned long);
 	}
-	else
+	if (str[i] == 'o' && !temp->type)
 	{
-		while (str[i] >= '0' && str[i] <= '9')
-		{
-			i++;
-			e++;
-		}
-		str1 = ft_strsub(str, j, e);
-		temp->pres_left = ft_atoi(str1);
-		free(str1);
-		temp->nopoint = 0;
+		temp->type = OCTAL;
+		if (temp->cast == LONG_LONG || temp->cast == LONG)
+			temp->octal = va_arg(args, unsigned long long);
+		else if (temp->cast == J_CAST)
+			temp->octal = va_arg(args, uintmax_t);
+		else
+			temp->octal = va_arg(args, unsigned int);
 	}
-	return i;
-}
-
-int	 precission_handler(char *str, int i, t_type *temp)
-{
-	if ((str[i] >= '0' && str[i] <= '9') || 
-			str[i] == '.')
+	if (str[i] == 'O' && !temp->type)
 	{
-		i = precission_handler1(str, i ,temp);
-		if (str[i] == '.')
-			i = precission_handler2(str, i, temp);
-		else if (!temp->pres_right)
-			temp->pres_right = 0;
+		temp->type = OCTALM;
+		temp->number = va_arg(args, unsigned long long);
 	}
-	else
-	{
-		temp->no_pres_left = 1;
-		temp->no_pres_right = 1;
-	}
-	return (cast_handler(str, i, temp));
-}
-
-int	 option_handler(char *str, int i, t_type *temp)
-{
-	if(str[i] == '0' && (str [i+1] == '#' || str[i+1] == '$' || str[i+1] == '+' 
-	|| str[i+1] == '-' || str[i+1] == ' ' ) && str[i+1])
-	{
-		temp->cero = 1;
-		i++;
-	}
-	while (str [i] == '#' || str[i] == '$' || str[i] == '+' 
-	|| str[i] == '-' || str[i] == ' ')
-	{
-		while(str[i] == ' ')
-		{
-				temp->spaces++;
-				i++;
-		}
-		if (str[i] == '#')
-		{
-			   temp->hash_tag = HASH_TAG;
-			   i++;
-		}
-		if (str[i] == '$')
-		{
-				temp->currency = CURRENCY;
-				i++;
-		}
-		if (str[i] == '+')
-		{
-				temp->plus = POSITIVE;
-				i++;
-		}
-		if (str[i] == '-')
-		{
-			temp->negative = NEGATIVE;
-            i++;
-        }
-	}
-	return (precission_handler(str, i, temp));
 }

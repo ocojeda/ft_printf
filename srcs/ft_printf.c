@@ -20,7 +20,7 @@ int	check_for_prints(char *str)
 	while (str[i])
 	{
 		if (str[i] == '%')
-				return 1;
+				return (1);
 		i++;
 	}
 	return (0);	

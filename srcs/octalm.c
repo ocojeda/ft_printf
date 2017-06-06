@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   octalm.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 09:30:09 by myernaux          #+#    #+#             */
-/*   Updated: 2017/05/24 10:33:15 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/31 16:10:07 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ char        *ft_itoa_octal_capital(unsigned long long n)
     }
     return (str);
 }
+
 int    ft_putoctalm(t_type *temp)
 {
     char            *str;

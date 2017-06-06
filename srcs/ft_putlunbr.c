@@ -11,57 +11,81 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int	ft_putpresschar(int a, int i, int n)
+{
+	if (n == 1)
+	{
+		ft_putchar(' ');
+		a--;
+		return (a);
+	}
+	if (n == 2)
+	{
+		ft_putchar(' ');
+		i--;
+		return (i);
+	}
+	if (n == 3)
+	{
+		ft_putchar('+');
+		a++;
+		return (a);
+	}
+	if (n == 4)
+	{
+		ft_putchar('-');
+		a++;
+		return (a);
+	}
+	return (0);
+}
+
+int	 set_presschar_for_ul2(t_type *temp, int total, int i, int a)
+{
+	while (i > 0)
+		ft_putpresschar(a, i, 2);
+	if (temp->plus && temp->number >= 0 && !temp->negative)
+		ft_putpresschar(a, i, 3);
+	if (temp->negative)
+		ft_putpresschar(a, i, 4);
+	if (temp->pres_right > total - temp->negative)
+		i = temp->pres_right - total + temp->negative;
+	a += i - temp->negative;
+	while (i > 0)
+	{
+		i--;
+		ft_putchar('0');
+	}
+	return (a);
+}
+
 int	 set_presschar_for_ul(t_type *temp, int total)
 {
 	int i;
 	int a;
 
 	i = 0;
-	
-	if((temp->pres_left < total + temp->spaces) && temp->spaces && 
+	if ((temp->pres_left < total + temp->spaces) && temp->spaces && 
 	temp->lunbr > 0)
-		{
-			i = temp->spaces;
-			a = temp->spaces;
-			while(a)
-			{
-				ft_putchar(' ');
-				a--;
-			}
-		}
+	{
+		i = temp->spaces;
+		a = temp->spaces;
+		while (a)
+			ft_putpresschar(a, i, 1);
+	}
 	a = i;
 	i = 0;
-		if (temp->pres_right < total)
-			temp->pres_right = total - temp->negative;
-		if (temp->pres_left > temp->pres_right)
-			 i = temp->pres_left - temp->pres_right 
-			 - temp->plus - temp->negative;
-		a += i;
-		while (i > 0)
-		{
-			ft_putchar(' ');
-			i--;
-		}
-		if (temp->plus && temp->number >= 0 && !temp->negative)
-			{
-				ft_putchar('+');
-				a++;
-			}
-		if(temp->negative)
-			{
-				ft_putchar('-');
-				a++;
-			}
-		if (temp->pres_right > total - temp->negative)
-				i = temp->pres_right - total + temp->negative;
-		a += i - temp->negative;
-		while (i > 0)
-		{
-		   i--;
-		   ft_putchar('0');
-		}
+	if (temp->pres_right < total)
+		temp->pres_right = total - temp->negative;
+	if (temp->pres_left > temp->pres_right)
+		i = temp->pres_left - temp->pres_right 
+		- temp->plus - temp->negative;
+	a += i;
+	a = set_presschar_for_ul2(temp, total, i, a);
 	return (a + total);
 }
+
 int	ft_putlunbr(long unsigned int lunbr, int all)
 {
 	if (lunbr == ULONG_MAX)
@@ -72,7 +96,7 @@ int	ft_putlunbr(long unsigned int lunbr, int all)
 	if (lunbr / 10)
 		ft_putlunbr(lunbr / 10, all);
 	ft_putchar('0' + (lunbr % 10));
-	return all;
+	return (all);
 }
 
 int	print_lunumber(t_type *temp)

@@ -6,13 +6,13 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 15:21:17 by myernaux          #+#    #+#             */
-/*   Updated: 2017/05/24 11:57:24 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/05/31 15:36:53 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void    init_wchar(unsigned char *f, wchar_t c, int mode)
+static void    init_wchar(unsigned char *f, wchar_t c, int mode)
 {
     if (mode == 2)
     {
@@ -34,7 +34,7 @@ void    init_wchar(unsigned char *f, wchar_t c, int mode)
     }
 }
 
-void    ft_putnchar(unsigned char *f, int size)
+static void    ft_putnchar(unsigned char *f, int size)
 {
     int i;
 
@@ -46,7 +46,7 @@ void    ft_putnchar(unsigned char *f, int size)
     }
 }
 
-char    ft_print_w(unsigned char *f, unsigned int e, wchar_t c)
+static char    ft_print_w(unsigned char *f, unsigned int e, wchar_t c)
 {
     if (e < 0x07FF)
     {
