@@ -6,11 +6,20 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 08:46:59 by myernaux          #+#    #+#             */
-/*   Updated: 2017/06/07 11:14:12 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/06/07 11:43:05 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int		ft_putx(t_type *temp, int all)
+{
+	if (temp->type == HEXAM)
+		ft_putstr("0X");
+	else
+		ft_putstr("0x");
+	return (all += 2);
+}
 
 int	set_presschar2(t_type *temp, int i, int total, int all)
 {
@@ -46,26 +55,17 @@ int	set_presschar(t_type *temp, int total)
 	all = 0;
 	i = 0;
 	if (temp->pres_left < total && temp->pres_right < total && 
-			temp->hash_tag == 2)
-	{
-		if (temp->type == HEXAM)
-			ft_putstr("0X");
-		else
-			ft_putstr("0x");
-		all += 2;
-	}
+		temp->hash_tag == 2)
+		all = ft_putx(temp, all);
 	if (temp->pres_left > total || temp->pres_right > total)
 	{
 		if (temp->pres_right < total)
 			temp->pres_right = total;
-		if (temp->type == HEXA && temp->nopoint && temp->hash_tag && temp->pres_right > total + 2
-	&& !temp->pres_left)
-		temp->pres_right -= 2;
-		//printf("%d %d %d %d\n", temp->hash_tag, temp->pres_left, temp->pres_right, temp->nopoint);
+		if (temp->type == HEXA && temp->nopoint && temp->hash_tag && 
+		temp->pres_right > total + 2 && !temp->pres_left)
+			temp->pres_right -= 2;
 		if (temp->pres_left > temp->pres_right)
-		{
 			i = temp->pres_left - (temp->pres_right + temp->hash_tag);
-		}
 		all += i;
 		all = set_presschar2(temp, i, total, all);
 	}
