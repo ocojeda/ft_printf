@@ -6,15 +6,15 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 15:34:38 by myernaux          #+#    #+#             */
-/*   Updated: 2017/06/07 11:32:42 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/06/07 15:11:00 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	 ft_wstrlen(wchar_t *s)
+int			ft_wstrlen(wchar_t *s)
 {
- 	int i;
+	int i;
 
 	i = 0;
 	while (s[i] != '\0')
@@ -22,10 +22,10 @@ int	 ft_wstrlen(wchar_t *s)
 	return (i);
 }
 
-wchar_t	  *ft_wstrdup(wchar_t *s1)
+wchar_t		*ft_wstrdup(wchar_t *s1)
 {
-	wchar_t	*s2;
-	int		i;
+	wchar_t		*s2;
+	int			i;
 
 	i = 0;
 	s2 = (wchar_t *)malloc(sizeof(wchar_t) * (ft_wstrlen(s1) + 1));
@@ -40,10 +40,10 @@ wchar_t	  *ft_wstrdup(wchar_t *s1)
 	return (s2);
 }
 
-wchar_t  *ft_wstrsub(wchar_t *s, int start, size_t len)
+wchar_t		*ft_wstrsub(wchar_t *s, int start, size_t len)
 {
-	wchar_t	*str;
-	int		i;
+	wchar_t		*str;
+	int			i;
 
 	if (s == NULL)
 		return (NULL);
@@ -64,7 +64,7 @@ wchar_t  *ft_wstrsub(wchar_t *s, int start, size_t len)
 	return (str);
 }
 
-int	 ft_wputstr(wchar_t *str)
+int			ft_wputstr(wchar_t *str)
 {
 	int i;
 
