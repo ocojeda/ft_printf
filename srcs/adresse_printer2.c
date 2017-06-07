@@ -6,16 +6,15 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 08:41:10 by myernaux          #+#    #+#             */
-/*   Updated: 2017/06/06 08:44:39 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/06/07 13:32:12 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-
-int	set_presschar_forprev(t_type *temp, int total)
+int			set_presschar_forprev(t_type *temp, int total)
 {
-	int i;
+	int	i;
 	int all;
 
 	all = 0;
@@ -38,10 +37,10 @@ int	set_presschar_forprev(t_type *temp, int total)
 	return (all + total);
 }
 
-static int	set_presschar_forp2(t_type * temp, int all, int total)
+static int	set_presschar_forp2(t_type *temp, int all, int total)
 {
 	int i;
-	
+
 	i = -1;
 	if (temp->pres_right < total)
 		temp->pres_right = total;
@@ -54,7 +53,7 @@ static int	set_presschar_forp2(t_type * temp, int all, int total)
 	{
 		if (temp->type == HEXAM)
 			ft_putstr("0X");
-		else	
+		else
 			ft_putstr("0x");
 		all += 2;
 	}
@@ -66,12 +65,12 @@ static int	set_presschar_forp2(t_type * temp, int all, int total)
 	return (all);
 }
 
-int	set_presschar_forp(t_type *temp, int total)
+int			set_presschar_forp(t_type *temp, int total)
 {
 	int all;
 
 	all = 0;
-	if (temp->pres_left < total && temp->pres_right < total && 
+	if (temp->pres_left < total && temp->pres_right < total &&
 			temp->hash_tag == 2)
 	{
 		ft_putstr("0x");
