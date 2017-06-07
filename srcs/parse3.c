@@ -1,18 +1,18 @@
 /* ************************************************************************** */
-/*																			*/
-/*														:::	  ::::::::   */
-/*   parse2.c										   :+:	  :+:	:+:   */
-/*													+:+ +:+		 +:+	 */
-/*   By: myernaux <myernaux@student.42.fr>		  +#+  +:+	   +#+		*/
-/*												+#+#+#+#+#+   +#+		   */
-/*   Created: 2017/01/07 16:25:14 by ocojeda-		  #+#	#+#			 */
-/*   Updated: 2017/05/26 11:20:20 by myernaux		 ###   ########.fr	   */
-/*																			*/
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse3.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: myernaux <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/06/07 14:44:24 by myernaux          #+#    #+#             */
+/*   Updated: 2017/06/07 14:47:40 by myernaux         ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
-# include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
-int	 cast_handler2(char *str, int i, t_type *temp)
+int		cast_handler2(char *str, int i, t_type *temp)
 {
 	if (str[i] == 'l')
 	{
@@ -29,17 +29,17 @@ int	 cast_handler2(char *str, int i, t_type *temp)
 	return (i);
 }
 
-int	 cast_handler(char *str, int i, t_type *temp)
+int		cast_handler(char *str, int i, t_type *temp)
 {
-	while (str[i] == 'h' || str[i] == 'l' || 
-	str[i] == 'j' || str[i] == 'z')
+	while (str[i] == 'h' || str[i] == 'l' ||
+			str[i] == 'j' || str[i] == 'z')
 	{
 		i = cast_handler2(str, i, temp);
 		if (str[i] == 'h')
 		{
 			if (str[i + 1] == 'h')
 			{
-				temp->cast = HH_CAST; 
+				temp->cast = HH_CAST;
 				i++;
 			}
 			else
@@ -47,14 +47,14 @@ int	 cast_handler(char *str, int i, t_type *temp)
 		}
 		if (str[i] == 'z')
 			temp->cast = Z_CAST;
-		i++;	
+		i++;
 	}
 	if (temp->plus && temp->spaces)
 		temp->spaces = 0;
 	return (i);
 }
 
-int	option_handler2(char *str, int i, t_type *temp)
+int		option_handler2(char *str, int i, t_type *temp)
 {
 	while (str[i] == ' ')
 	{
@@ -63,8 +63,8 @@ int	option_handler2(char *str, int i, t_type *temp)
 	}
 	if (str[i] == '#')
 	{
-	   temp->hash_tag = HASH_TAG;
-	   i++;
+		temp->hash_tag = HASH_TAG;
+		i++;
 	}
 	if (str[i] == '$')
 	{
@@ -79,24 +79,24 @@ int	option_handler2(char *str, int i, t_type *temp)
 	return (i);
 }
 
-int	 option_handler(char *str, int i, t_type *temp)
+int		option_handler(char *str, int i, t_type *temp)
 {
-	if(str[i] == '0' && (str [i+1] == '#' || str[i+1] == '$' || str[i+1] == '+' 
-	|| str[i+1] == '-' || str[i+1] == ' ' || (str[i+1]  >= '0' && 
-	str[i+1]  <= '9' )) && str[i+1])
+	if (str[i] == '0' && (str[i + 1] == '#' || str[i + 1] == '$' || str[i + 1]
+				== '+' || str[i + 1] == '-' || str[i + 1] == ' ' || (str[i + 1]
+					>= '0' && str[i + 1] <= '9')) && str[i + 1])
 	{
 		temp->cero = 1;
 		i++;
 	}
-	while (str [i] == '#' || str[i] == '$' || str[i] == '+' 
-	|| str[i] == '-' || str[i] == ' ')
+	while (str[i] == '#' || str[i] == '$' || str[i] == '+'
+			|| str[i] == '-' || str[i] == ' ')
 	{
 		i = option_handler2(str, i, temp);
 		if (str[i] == '-')
 		{
 			temp->negative = NEGATIVE;
-    		i++;
-   		}
+			i++;
+		}
 	}
 	return (precission_handler(str, i, temp));
 }
