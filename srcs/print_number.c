@@ -175,16 +175,47 @@ int     ft_putllnbr(t_type *temp)
     if (temp->no_pres_left == 2 && (temp->no_pres_right == 2 || temp->no_pres_right == 0)
      && t == 0)
             return (0);
-    if (temp->number < 0)
+    
+    if (temp->pres_left > temp->pres_right + total && temp->negative)    
     {
-        total++;
-        temp->negative = NEGATIVE;
-        t *= -1;
+        int temp1;
+        if (temp->pres_right > total)
+        {
+            temp1 = temp->pres_right - total;
+            if (temp->number > 0 && temp->plus)
+            {
+                ft_putchar('+');
+                total++;
+                temp->plus = 0;
+            }
+            while (temp1--)
+            {
+                temp->pres_right--;
+                ft_putchar('0');
+                total++;
+            }
+        }
+        ft_printlongnbr(t);
+        if (t < 0)
+        {
+            temp->number *= -1;
+            total++;
+        }
+        i = set_presschar_for_int_inverse(temp, total);
     }
-    i = set_presschar_for_int(temp, total);
-    ft_printlongnbr(t);
-    if (t == 0 && temp->pres_right)
-        i++;
+    else 
+    {
+        if(temp->number < 0)
+        {
+            total++;
+            temp->negative = NEGATIVE;
+            t *= -1;
+        }
+        i = set_presschar_for_int(temp, total);
+        ft_printlongnbr(t);
+        if (t == 0 && temp->pres_right)
+            i++;
+    }
     return (i);
 }
 

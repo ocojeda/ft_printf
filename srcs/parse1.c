@@ -74,6 +74,8 @@ void   parse_the_values3(va_list args, t_type *temp, char *str, int i)
 	parse_the_values3_2(args, temp, str, i);
 	if (str[i] == 'u' && !temp->type)
 	{
+		if(temp->plus)
+			temp->plus = 0;
 		if (temp->cast == HH_CAST)
 		{
 			temp->type = INTI;
