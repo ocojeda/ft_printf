@@ -68,7 +68,7 @@ int	 parse_all(char *str, va_list args)
 
 	i = 0;
 	if (!(all = (t_type *)malloc(sizeof(t_type))))
-			return (-1);
+			return (0);
 	everything = 0;
 	while (str[i])
 	{
@@ -87,7 +87,7 @@ int	 parse_all(char *str, va_list args)
 			}
 			all->type = STR;
 			if (!(all->str = ft_strsub(str, i - e, e)))
-				return (-1);
+				return (0);
 			ft_strncpy(all->str1, all->str, e);
 			free(all->str);
 		}
