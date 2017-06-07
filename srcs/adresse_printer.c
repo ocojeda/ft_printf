@@ -6,13 +6,13 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 13:26:16 by myernaux          #+#    #+#             */
-/*   Updated: 2017/06/06 08:44:39 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/06/07 14:39:33 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static	int	switch_hexa(int x)
+static int	switch_hexa(int x)
 {
 	if (0 <= x && x <= 9)
 		return (48 + x);
@@ -52,7 +52,7 @@ char		*ft_hexa_itoa(unsigned long long n)
 	return (str);
 }
 
-int	adresse_printer3(t_type *temp, int i, char *str, int total)
+int			adresse_printer3(t_type *temp, int i, char *str, int total)
 {
 	temp->hash_tag = HASH_TAG;
 	total = set_presschar_forp(temp, total);
@@ -65,7 +65,7 @@ int	adresse_printer3(t_type *temp, int i, char *str, int total)
 	return (total);
 }
 
-int	adresse_printer2(t_type *temp, int i, char *str, int total)
+int			adresse_printer2(t_type *temp, int i, char *str, int total)
 {
 	if (str[0] == '\0')
 	{
@@ -79,12 +79,12 @@ int	adresse_printer2(t_type *temp, int i, char *str, int total)
 	return (total);
 }
 
-int	adresse_printer(t_type *temp)
+int			adresse_printer(t_type *temp)
 {
 	char			*str;
 	unsigned long	nb;
-	int i;
-	int total;
+	int				i;
+	int				total;
 
 	i = 0;
 	total = 2;
