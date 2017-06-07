@@ -1,18 +1,18 @@
 /* ************************************************************************** */
-/*																			*/
-/*														:::	  ::::::::   */
-/*   ft_printf.c										:+:	  :+:	:+:   */
-/*													+:+ +:+		 +:+	 */
-/*   By: ocojeda- <ocojeda-@student.42.fr>		  +#+  +:+	   +#+		*/
-/*												+#+#+#+#+#+   +#+		   */
-/*   Created: 2017/01/07 16:25:14 by ocojeda-		  #+#	#+#			 */
-/*   Updated: 2017/05/24 09:19:58 by ocojeda-		 ###   ########.fr	   */
-/*																			*/
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: myernaux <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/06/07 13:38:53 by myernaux          #+#    #+#             */
+/*   Updated: 2017/06/07 13:39:31 by myernaux         ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	check_for_prints(char *str)
+int		check_for_prints(char *str)
 {
 	int i;
 
@@ -20,21 +20,19 @@ int	check_for_prints(char *str)
 	while (str[i])
 	{
 		if (str[i] == '%')
-				return (1);
+			return (1);
 		i++;
 	}
-	return (0);	
+	return (0);
 }
 
-int	ft_printf(char *format, ...)
+int		ft_printf(char *format, ...)
 {
-	va_list	 args;
-	//char		*str;
-	int   everything;
-	
+	va_list	args;
+	int		everything;
+
 	everything = 0;
 	va_start(args, format);
-	//str = ft_strdup(format);
 	if (check_for_prints(format))
 		everything = parse_all(format, args);
 	else
@@ -42,7 +40,6 @@ int	ft_printf(char *format, ...)
 		ft_putstr(format);
 		everything = ft_strlen(format);
 	}
-	//free(str);
 	va_end(args);
 	return (everything);
 }
