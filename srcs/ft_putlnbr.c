@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*																			*/
-/*														:::	  ::::::::   */
-/*   ft_putlnbr.c									   :+:	  :+:	:+:   */
-/*													+:+ +:+		 +:+	 */
-/*   By: ocojeda- <ocojeda-@student.42.fr>		  +#+  +:+	   +#+		*/
-/*												+#+#+#+#+#+   +#+		   */
-/*   Created: 2017/05/15 15:25:14 by myernaux		  #+#	#+#			 */
-/*   Updated: 2017/05/19 13:24:47 by ocojeda-		 ###   ########.fr	   */
-/*																			*/
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putlnbr.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: myernaux <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/06/07 13:41:00 by myernaux          #+#    #+#             */
+/*   Updated: 2017/06/07 13:41:24 by myernaux         ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
@@ -34,11 +34,11 @@ void	ft_putlnbr(long int lnbr)
 	}
 }
 
-int	print_lnumber(t_type *temp)
+int		print_lnumber(t_type *temp)
 {
-	long long t;
-	int total;
-	int all;
+	long long	t;
+	int			total;
+	int			all;
 
 	total = 0;
 	if (temp->number < 0)
