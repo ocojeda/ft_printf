@@ -150,6 +150,13 @@ int     ft_putllnbr(t_type *temp)
         t /= 10;
     }
     t = temp->number;
+    if (temp->cero)
+    {
+        if (temp->pres_left && !temp->pres_right && temp->plus)
+            temp->pres_right = temp->pres_left -1;
+        else if (temp->pres_left && !temp->pres_right)
+            temp->pres_right = temp->pres_left;
+    }
     if (temp->no_pres_left == 1 && temp->no_pres_right == 1 && temp->plus == 0)
     {
         if (temp->spaces)
