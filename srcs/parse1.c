@@ -6,7 +6,7 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 08:23:15 by myernaux          #+#    #+#             */
-/*   Updated: 2017/06/06 08:34:34 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/06/07 11:20:59 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void   parse_the_values3_4(va_list args, t_type *temp)
 {
 	temp->type = INTI;
 	temp->number = va_arg(args, unsigned int);
-	if(temp->number >= 4294967295)
+	if (temp->number >= 4294967295)
 		temp->cast = LONG_LONG;
 	//printf("%lld->", temp->number);
 	//if (temp->number < 0)

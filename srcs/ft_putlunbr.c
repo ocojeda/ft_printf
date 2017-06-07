@@ -105,7 +105,7 @@ int	print_lunumber(t_type *temp)
 	int total;
 	int all;
 
-	if(temp->lunbr == 0)
+	if (temp->lunbr == 0)
 		total = 1;
 	else 
 		total = 0;

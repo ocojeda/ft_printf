@@ -6,7 +6,7 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 08:30:48 by myernaux          #+#    #+#             */
-/*   Updated: 2017/06/06 08:33:19 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/06/07 11:23:54 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void  parse_the_values2_1(va_list args, t_type *temp, char *str, int i)
 
 void  parse_the_values2_2(va_list args, t_type *temp, char *str, int i)
 {
+	char *str1;
+
 	if (str[i] == 's' && !temp->type)
 	{
 		if (temp->cast == LONG)
@@ -51,7 +53,7 @@ void  parse_the_values2_2(va_list args, t_type *temp, char *str, int i)
 		else
 		{
 			temp->type = STR;
-			char *str1 = va_arg(args, char *);
+			str1 = va_arg(args, char *);
 			if (str1 == NULL)
 				ft_strcpy(temp->str1, "(null)");
 			else

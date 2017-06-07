@@ -6,7 +6,7 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 08:46:59 by myernaux          #+#    #+#             */
-/*   Updated: 2017/06/06 08:47:51 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/06/07 11:14:12 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,14 @@ int	set_presschar(t_type *temp, int total)
 	{
 		if (temp->pres_right < total)
 			temp->pres_right = total;
-		if(temp->type == HEXA && temp->nopoint && temp->hash_tag && temp->pres_right > total + 2
+		if (temp->type == HEXA && temp->nopoint && temp->hash_tag && temp->pres_right > total + 2
 	&& !temp->pres_left)
 		temp->pres_right -= 2;
 		//printf("%d %d %d %d\n", temp->hash_tag, temp->pres_left, temp->pres_right, temp->nopoint);
 		if (temp->pres_left > temp->pres_right)
-			{
-				i = temp->pres_left - (temp->pres_right + temp->hash_tag);
-			}
+		{
+			i = temp->pres_left - (temp->pres_right + temp->hash_tag);
+		}
 		all += i;
 		all = set_presschar2(temp, i, total, all);
 	}

@@ -6,7 +6,7 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 09:30:09 by myernaux          #+#    #+#             */
-/*   Updated: 2017/05/31 16:10:07 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/06/07 11:17:14 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ int    ft_putoctalm(t_type *temp)
     char            *str;
     int i;
 
-    if(temp->nopoint && temp->number == 0 && temp->type == OCTALM)
-        return 0;
+    if (temp->nopoint && temp->number == 0 && temp->type == OCTALM)
+        return (0);
     str = NULL;
     if (temp->type == OCTALM)
         str = ft_itoa_octal_capital(temp->number);
