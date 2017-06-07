@@ -6,7 +6,7 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 08:23:15 by myernaux          #+#    #+#             */
-/*   Updated: 2017/06/07 11:20:59 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/06/07 12:43:30 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,6 @@ void   parse_the_values3_4(va_list args, t_type *temp)
 	temp->number = va_arg(args, unsigned int);
 	if (temp->number >= 4294967295)
 		temp->cast = LONG_LONG;
-	//printf("%lld->", temp->number);
-	//if (temp->number < 0)
-	//	temp->number *= -1;
 	temp->spaces = 0;
 }
 
