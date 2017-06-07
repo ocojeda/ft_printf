@@ -6,7 +6,7 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/29 15:53:45 by myernaux          #+#    #+#             */
-/*   Updated: 2017/06/07 11:31:56 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/06/07 11:57:40 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,31 @@ void            ft_printlongnbr(long long ll)
     }
     else
         ft_putchar(ll + '0');
+}
+
+int     set_presschar_for_int2(t_type *temp, int total, int i, int a)
+{
+    if (temp->plus && temp->number >= 0)
+    {
+        ft_putchar('+');
+        a++;
+        if (temp->number == 0)
+            a++;
+    }
+    if (temp->number < 0)
+    {
+        ft_putchar('-');
+        temp->number *= -1;
+    }
+    if (temp->pres_right > total - temp->negative)
+        i = temp->pres_right - total + temp->negative;
+    while (i > 0)
+    {
+        i--;
+        ft_putchar('0');
+        a++;
+    }
+    return (a);
 }
 
 int     set_presschar_for_int(t_type *temp, int total)
@@ -64,27 +89,7 @@ int     set_presschar_for_int(t_type *temp, int total)
         ft_putchar(' ');
         i--;
     }
-    if (temp->plus && t >= 0)
-    {
-        ft_putchar('+');
-        a++;
-        if (t == 0)
-            a++;
-    }
-    if (t < 0)
-    {
-        ft_putchar('-');
-        temp->number *= -1;
-    }
-    if (temp->pres_right > total - temp->negative)
-        i = temp->pres_right - total + temp->negative;
-    while (i > 0)
-    {
-        i--;
-        ft_putchar('0');
-        a++;
-    }
-    return (a + total);
+    return (set_presschar_for_int2(temp, total, i , a) + total);
 }
 
 int     set_presschar_for_int_inverse(t_type *temp, int total)
