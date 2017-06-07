@@ -6,13 +6,13 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 08:52:57 by myernaux          #+#    #+#             */
-/*   Updated: 2017/06/07 11:17:16 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/06/07 17:09:45 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int set_presschar_octal2(t_type *temp, int i, int all, int total)
+int		set_presschar_octal2(t_type *temp, int i, int all, int total)
 {
 	while (i > 0)
 	{
@@ -35,18 +35,18 @@ int set_presschar_octal2(t_type *temp, int i, int all, int total)
 	return (all);
 }
 
-int	set_presschar_octal(t_type *temp, int total)
+int		set_presschar_octal(t_type *temp, int total)
 {
-	int i;
-	int all;
+	int	i;
+	int	all;
 
 	all = 0;
 	i = 0;
-	if (temp->pres_left < total && temp->pres_right < total && 
+	if (temp->pres_left < total && temp->pres_right < total &&
 			temp->hash_tag == 2)
 	{
 		ft_putstr("0");
-		all ++;
+		all++;
 	}
 	if (temp->pres_left > total || temp->pres_right > total)
 	{
