@@ -12,46 +12,6 @@
 
 #include "ft_printf.h"
 
-static	int	switch_hexam(int x)
-{
-	if (0 <= x && x <= 9)
-		return (48 + x);
-	if (x >= 10 && x <= 15)
-	{
-		x = x - 10;
-		return (65 + x);
-	}
-	return (0);
-}
-
-char		*ft_hexa_itoa_capital(unsigned long long n)
-{
-	char				*str;
-	int					size;
-	unsigned long long	x;
-
-	x = n;
-	size = 0;
-	while (x >= 16)
-	{
-		x /= 16;
-		size++;
-	}
-	str = (char *)malloc(sizeof(str) * (size + 1));
-	if (str)
-	{
-		str[size + 1] = '\0';
-		while (size >= 0)
-		{
-			x = n % 16;
-			str[size] = switch_hexam(x);
-			n /= 16;
-			size--;
-		}
-	}
-	return (str);
-}
-
 int		ft_puthexaneg(t_type *temp, int i, char *str)
 {
 	if (temp->negative)
@@ -68,8 +28,8 @@ int		ft_puthexaneg(t_type *temp, int i, char *str)
 	else
 	{
 		i = set_presschar(temp, ft_strlen(str));
-		if (temp->pres_left && temp->pres_right == 1 && temp->hexa == 0 && (temp->type == HEXA || 
-			temp->type == HEXAM))
+		if (temp->pres_left && temp->pres_right == 1 && temp->hexa == 0 
+		&& (temp->type == HEXA || temp->type == HEXAM))
 		{
 			ft_putchar(' ');
 			return (i);
@@ -98,6 +58,20 @@ void	ft_puthexacast(t_type *temp)
 	}
 }
 
+int ft_puthexa2(t_type *temp, int i, char *str)
+{
+	if (temp->pres_left && !temp->pres_right && temp->cero)
+	{
+		temp->pres_right = temp->pres_left;
+		temp->pres_left = 0;
+	}
+	if (temp->hexa == 0 && temp->hash_tag)
+		temp->hash_tag = 0;
+	i = ft_puthexaneg(temp, i, str);
+	free(str);
+	return (i);
+}
+
 int	ft_puthexa(t_type *temp)
 {
 	char			*str;
@@ -123,26 +97,5 @@ int	ft_puthexa(t_type *temp)
 	else
 		str = ft_hexa_itoa(temp->hexa);
 	i = 0;
-	/*
-	ft_putnbr(temp->hexa);
-    ft_putnbr(temp->nopoint);
-    ft_putnbr(temp->no_pres_left);
-    ft_putnbr(temp->no_pres_right);
-    ft_putnbr(temp->pres_left);
-    ft_putnbr(temp->pres_right);
-    ft_putnbr(temp->cero);
-    ft_putchar('\n');*/
-	if (temp->cero)
-	{
-		if (temp->pres_left && !temp->pres_right)
-		{
-			temp->pres_right = temp->pres_left;
-			temp->pres_left = 0;
-		}
-	}
-	if (temp->hexa == 0 && temp->hash_tag)
-		temp->hash_tag = 0;
-	i = ft_puthexaneg(temp, i, str);
-	free(str);
-	return (i);
+	return (ft_puthexa2(temp, i, str));
 }

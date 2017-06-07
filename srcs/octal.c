@@ -47,21 +47,8 @@ char		*ft_itoa_octal(unsigned long long n)
 	return (str);
 }
 
-int	ft_putoctal(t_type *temp)
+void	ft_putocal2(t_type *temp)
 {
-	char			*str;
-	int i;
-	int total;
-
-    i = 0;
-	if (temp->no_pres_left == 2 && (temp->no_pres_right == 2 || temp->no_pres_right == 0)
-     && temp->octal == 0 && temp->pres_left == 0 && !temp->hash_tag)
-            return (0);
-	if (temp->no_pres_left&& temp->no_pres_right && temp->octal == 0 && temp->nopoint == 0)
-	{
-		ft_putchar('0');
-		return (1);
-	}
     if (temp->nopoint && temp->pres_left == 0 && temp->pres_right && temp->negative)
     {
         temp->pres_left = temp->pres_right;
@@ -77,6 +64,24 @@ int	ft_putoctal(t_type *temp)
 		temp->pres_right = temp->pres_left;
 		temp->pres_left = 0;
 	}
+}
+
+int	ft_putoctal(t_type *temp)
+{
+	char			*str;
+	int i;
+	int total;
+
+    i = 0;
+	if (temp->no_pres_left == 2 && (temp->no_pres_right == 2 || temp->no_pres_right == 0)
+     && temp->octal == 0 && temp->pres_left == 0 && !temp->hash_tag)
+            return (0);
+	if (temp->no_pres_left&& temp->no_pres_right && temp->octal == 0 && temp->nopoint == 0)
+	{
+		ft_putchar('0');
+		return (1);
+	}
+	ft_putocal2(temp);
 	i = 0;
 	str = ft_itoa_octal(temp->octal);
 	total = ft_strlen(str);

@@ -99,6 +99,7 @@ int	set_presschar_forp(t_type *temp, int total);
 int	set_presschar(t_type *temp, int total);
 int	set_presschar_octal(t_type *temp, int total);
 int		ft_puthexa(t_type *temp);
+char		*ft_hexa_itoa_capital(unsigned long long n);
 int		ft_putoctal(t_type *temp);
 void		ft_putunbr(unsigned int unbr);
 void		ft_putlnbr(long int lnbr);
