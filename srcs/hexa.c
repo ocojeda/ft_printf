@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*																			*/
-/*														:::	  ::::::::   */
-/*   hexa.c											 :+:	  :+:	:+:   */
-/*													+:+ +:+		 +:+	 */
-/*   By: myernaux <myernaux@student.42.fr>		  +#+  +:+	   +#+		*/
-/*												+#+#+#+#+#+   +#+		   */
-/*   Created: 2017/01/07 16:25:14 by ocojeda-		  #+#	#+#			 */
-/*   Updated: 2017/05/26 10:50:20 by myernaux		 ###   ########.fr	   */
-/*																			*/
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hexa.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: myernaux <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/06/07 14:15:15 by myernaux          #+#    #+#             */
+/*   Updated: 2017/06/07 14:18:51 by myernaux         ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
@@ -28,8 +28,8 @@ int		ft_puthexaneg(t_type *temp, int i, char *str)
 	else
 	{
 		i = set_presschar(temp, ft_strlen(str));
-		if (temp->pres_left && temp->pres_right == 1 && temp->hexa == 0 
-		&& (temp->type == HEXA || temp->type == HEXAM))
+		if (temp->pres_left && temp->pres_right == 1 && temp->hexa == 0
+				&& (temp->type == HEXA || temp->type == HEXAM))
 		{
 			ft_putchar(' ');
 			return (i);
@@ -58,7 +58,7 @@ void	ft_puthexacast(t_type *temp)
 	}
 }
 
-int ft_puthexa2(t_type *temp, int i, char *str)
+int		ft_puthexa2(t_type *temp, int i, char *str)
 {
 	if (temp->pres_left && !temp->pres_right && temp->cero)
 	{
@@ -72,10 +72,10 @@ int ft_puthexa2(t_type *temp, int i, char *str)
 	return (i);
 }
 
-int	ft_puthexa(t_type *temp)
+int		ft_puthexa(t_type *temp)
 {
-	char			*str;
-	int i;
+	char	*str;
+	int		i;
 
 	if (temp->nopoint && !temp->pres_left && temp->pres_right && temp->negative)
 	{
@@ -83,11 +83,12 @@ int	ft_puthexa(t_type *temp)
 		temp->pres_right = 0;
 		temp->nopoint = 0;
 	}
-	if (temp->no_pres_left == 2 && (temp->no_pres_right == 2 || temp->no_pres_right == 0)
-     && temp->hexa == 0 && (temp->type == HEXA || temp->type == HEXAM))
-            return (0);
-	if ((temp->type == HEXA || temp->type == HEXAM) && temp->hexa == 0 
-		&& temp->nopoint)
+	if (temp->no_pres_left == 2 && (temp->no_pres_right == 2 ||
+				temp->no_pres_right == 0) && temp->hexa == 0 &&
+			(temp->type == HEXA || temp->type == HEXAM))
+		return (0);
+	if ((temp->type == HEXA || temp->type == HEXAM) && temp->hexa == 0
+			&& temp->nopoint)
 		return (0);
 	ft_puthexacast(temp);
 	if (temp->type == HEXAM)
