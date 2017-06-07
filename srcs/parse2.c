@@ -6,13 +6,13 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 08:30:48 by myernaux          #+#    #+#             */
-/*   Updated: 2017/06/07 11:23:54 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/06/07 15:14:17 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
-void  parse_the_values2_1(va_list args, t_type *temp, char *str, int i)
+void	parse_the_values2_1(va_list args, t_type *temp, char *str, int i)
 {
 	if (str[i] == '%' && !temp->type)
 		temp->type = D_MOD;
@@ -39,7 +39,7 @@ void  parse_the_values2_1(va_list args, t_type *temp, char *str, int i)
 	}
 }
 
-void  parse_the_values2_2(va_list args, t_type *temp, char *str, int i)
+void	parse_the_values2_2(va_list args, t_type *temp, char *str, int i)
 {
 	char *str1;
 
@@ -62,7 +62,7 @@ void  parse_the_values2_2(va_list args, t_type *temp, char *str, int i)
 	}
 }
 
-void  parse_the_values2(va_list args, t_type *temp, char *str, int i)
+void	parse_the_values2(va_list args, t_type *temp, char *str, int i)
 {
 	parse_the_values2_1(args, temp, str, i);
 	parse_the_values2_2(args, temp, str, i);
@@ -78,7 +78,7 @@ void  parse_the_values2(va_list args, t_type *temp, char *str, int i)
 	}
 }
 
-void   parse_the_values4(va_list args, t_type *temp, char *str, int i)
+void	parse_the_values4(va_list args, t_type *temp, char *str, int i)
 {
 	if (str[i] == 'p' && !temp->type)
 	{
