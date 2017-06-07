@@ -6,7 +6,7 @@
 /*   By: ocojeda- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 14:22:32 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/06/07 15:27:11 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/06/07 15:30:05 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int		cero_manager(t_type *temp, int i, int total, long long t)
 		else
 			return (total);
 	}
-	return i;
+	return (i);
 }
 
 int		cast_for_number(t_type *temp, int i)
