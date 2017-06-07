@@ -6,7 +6,7 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/29 15:53:45 by myernaux          #+#    #+#             */
-/*   Updated: 2017/06/07 11:58:39 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/06/07 14:59:00 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,14 +150,8 @@ int     ft_putllnbr(t_type *temp)
         t /= 10;
     }
     t = temp->number;
-    if (temp->cero)
-    {
-        if (temp->pres_left && !temp->pres_right && temp->plus)
-            temp->pres_right = temp->pres_left -1;
-        else if (temp->pres_left && !temp->pres_right)
-            temp->pres_right = temp->pres_left;
-    }
-    if (temp->no_pres_left == 1 && temp->no_pres_right == 1 && temp->plus == 0)
+   	cero_manager(temp);
+	if (temp->no_pres_left == 1 && temp->no_pres_right == 1 && temp->plus == 0)
     {
         if (temp->spaces)
         {
@@ -241,36 +235,13 @@ int    print_number(t_type *temp)
     if (temp->cast == LONG_LONG || temp->cast == LONG 
     || temp->cast == Z_CAST || temp->cast == J_CAST)
         return (ft_putllnbr(temp));
-    if (temp->cast == HH_CAST)
-    {
-        if (t < -128)
-        {
-            while (t <= -128)
-            t += 256;
-            temp->number = t;
-        }
-        else if (t >= 256)
-        {
-            while (t > 128)
-            {
-                temp->number -= 256;
-                t = temp->number;
-            }
-        }
-        else if (t >= 128)
-        {
-            //a faire une fonction que transforme le n dans une echelle de -128 a 128
-            temp->number = temp->number * -1;
-            t = temp->number;
-        }
-    }
-    while (t != 0)
-    {
-        total++;
-        t /= 10;
-    }
+	total = cast_for_number(temp, i);
     t = temp->number;
-    if (temp->nopoint && !temp->pres_left && temp->pres_right && temp->negative)
+   	if(temp->no_pres_left == 2 && (temp->no_pres_right == 2 || 
+	temp->no_pres_right == 0) && t == 0)
+        return (0);
+ 
+	if (temp->nopoint && !temp->pres_left && temp->pres_right && temp->negative)
 	{
 			temp->pres_left = temp->pres_right;
 			temp->pres_right = 0;
@@ -282,9 +253,10 @@ int    print_number(t_type *temp)
         temp->pres_right = temp->pres_left - 1;
         temp->pres_left = 0; 
     }
-    if (t < 0 && temp->plus)
+	if (t < 0 && temp->plus)
         temp->plus = 0;
-    if (t < 0 && temp->pres_left > temp->pres_right + total && !temp->negative)
+    
+	if (t < 0 && temp->pres_left > temp->pres_right + total && !temp->negative)
     {
         if (temp->cero)
         {
@@ -302,19 +274,10 @@ int    print_number(t_type *temp)
             ft_putnbr(t);
         return (i + 1);
     }
-    if (temp->no_pres_left == 2 && (temp->no_pres_right == 2 || temp->no_pres_right == 0)
-     && t == 0)
-        return (0);
     if (temp->nopoint && temp->pres_right && !temp->pres_left && t < 0)
         temp->pres_right--;
-    if (temp->cero)
-    {
-        if (temp->pres_left && !temp->pres_right && temp->plus)
-            temp->pres_right = temp->pres_left -1;
-        else if (temp->pres_left && !temp->pres_right)
-            temp->pres_right = temp->pres_left;
-    }
-    if (temp->no_pres_left == 1 && temp->no_pres_right == 1 && temp->plus == 0)
+    cero_manager(temp);
+	if (temp->no_pres_left == 1 && temp->no_pres_right == 1 && temp->plus == 0)
     {
         if (temp->spaces)
         {
