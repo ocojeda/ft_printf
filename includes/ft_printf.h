@@ -6,7 +6,7 @@
 /*   By: myernaux <myernaux@student.42.fr>		  +#+  +:+	   +#+		*/
 /*												+#+#+#+#+#+   +#+		   */
 /*   Created: 2017/05/21 10:11:11 by ocojeda-		  #+#	#+#			 */
-/*   Updated: 2017/05/26 11:20:21 by myernaux		 ###   ########.fr	   */
+/*   Updated: 2017/06/07 14:24:41 by ocojeda-         ###   ########.fr       */
 /*																			*/
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include <wchar.h>
 # include "../libft/libft.h"
 /*
-*TYPE OF VARIABLE DEFINE
-*/
+ *TYPE OF VARIABLE DEFINE
+ */
 # define INTI 1
 # define HEXA 2
 # define HEXAM 3
@@ -36,15 +36,15 @@
 # define WSTR 14
 
 /*
-* OPTIONS DEFINE
-*/
+ * OPTIONS DEFINE
+ */
 # define HASH_TAG 2 
 # define CURRENCY 1
 # define POSITIVE 1
 # define NEGATIVE 1
 /*
-* FLAGS DEFINE
-*/
+ * FLAGS DEFINE
+ */
 # define LONG_LONG 2 
 # define LONG 1
 # define UNSIGNED 5
@@ -71,7 +71,7 @@ typedef struct	  s_type
 	unsigned int			 c;
 	wchar_t		 *wstr;
 	wchar_t		 wc;
-	
+
 	int			 pres_left;
 	int			 pres_right;
 	short		   no_pres_left;
@@ -125,5 +125,5 @@ int	 ft_wstrlen(wchar_t *s);
 wchar_t	  *ft_wstrdup(wchar_t *s1);
 wchar_t  *ft_wstrsub(wchar_t *s, int start, size_t len);
 int	 ft_wputstr(wchar_t *str);
-
+void cero_manager(t_type *temp);
 #endif
