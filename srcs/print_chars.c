@@ -6,13 +6,13 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 16:14:25 by myernaux          #+#    #+#             */
-/*   Updated: 2017/06/05 10:48:45 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/06/07 14:35:35 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	print_chars4(t_type *temp, int everything)
+int		print_chars4(t_type *temp, int everything)
 {
 	if (temp->pres_left)
 	{
@@ -29,7 +29,7 @@ int	print_chars4(t_type *temp, int everything)
 	return (everything);
 }
 
-int	print_chars3(t_type *temp, int everything)
+int		print_chars3(t_type *temp, int everything)
 {
 	if (temp->c != 0)
 		ft_putchar(temp->c);
@@ -46,7 +46,7 @@ int	print_chars3(t_type *temp, int everything)
 	return (everything);
 }
 
-int	print_chars2(t_type *temp, int everything)
+int		print_chars2(t_type *temp, int everything)
 {
 	ft_putnbr(temp->nopoint);
 	temp->pres_right--;
@@ -60,7 +60,7 @@ int	print_chars2(t_type *temp, int everything)
 	return (everything);
 }
 
-int	 print_chars(t_type *temp)
+int		print_chars(t_type *temp)
 {
 	int everything;
 
