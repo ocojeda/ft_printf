@@ -6,13 +6,13 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/29 15:53:45 by myernaux          #+#    #+#             */
-/*   Updated: 2017/06/07 14:59:00 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/06/07 15:28:51 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../includes/ft_printf.h"
 
-void            ft_printlongnbr(long long ll)
+/*void            ft_printlongnbr(long long ll)
 {
     if (ll == LONG_LONG_MIN)
     {
@@ -32,7 +32,7 @@ void            ft_printlongnbr(long long ll)
     else
         ft_putchar(ll + '0');
 }
-
+*/
 int     set_presschar_for_int2(t_type *temp, int total, int i, int a)
 {
     if (temp->plus && temp->number >= 0)
@@ -150,29 +150,8 @@ int     ft_putllnbr(t_type *temp)
         t /= 10;
     }
     t = temp->number;
-   	cero_manager(temp);
-	if (temp->no_pres_left == 1 && temp->no_pres_right == 1 && temp->plus == 0)
-    {
-        if (temp->spaces)
-        {
-            i = temp->spaces;
-            total += temp->spaces;
-            if (t < 0)
-            {
-                total--;
-                i--;
-            }
-            while (i--)
-                ft_putchar(' ');
-        }
-        ft_printlongnbr(t);
-        if (t < 0)
-            return total +1;
-        else if (t == 0)
-            return 1;
-        else
-            return (total);
-    }
+   if((i =cero_manager(temp, i, total, t)))
+		return i;	
     if (temp->no_pres_left == 2 && (temp->no_pres_right == 2 || temp->no_pres_right == 0)
      && t == 0)
             return (0);
@@ -219,28 +198,8 @@ int     ft_putllnbr(t_type *temp)
     }
     return (i);
 }
-
-int    print_number(t_type *temp)
+int		cast_manager2(t_type *temp, int t, int total, int i)
 {
-    int t;
-    int total;
-    int i;
-    int temp1;
-
-    i = 0;
-    total = 0;
-    t = temp->number;
-    if (temp->cast == H_CAST && temp->number > 32767)
-            temp->number = temp->number * -1;
-    if (temp->cast == LONG_LONG || temp->cast == LONG 
-    || temp->cast == Z_CAST || temp->cast == J_CAST)
-        return (ft_putllnbr(temp));
-	total = cast_for_number(temp, i);
-    t = temp->number;
-   	if(temp->no_pres_left == 2 && (temp->no_pres_right == 2 || 
-	temp->no_pres_right == 0) && t == 0)
-        return (0);
- 
 	if (temp->nopoint && !temp->pres_left && temp->pres_right && temp->negative)
 	{
 			temp->pres_left = temp->pres_right;
@@ -274,31 +233,31 @@ int    print_number(t_type *temp)
             ft_putnbr(t);
         return (i + 1);
     }
+	return (0);
+}
+int    print_number(t_type *temp)
+{
+    int t;
+    int total;
+    int i;
+    int temp1;
+
+    i = 0;
+    total = 0;
+    if (temp->cast == LONG_LONG || temp->cast == LONG 
+    || temp->cast == Z_CAST || temp->cast == J_CAST)
+        return (ft_putllnbr(temp));
+	total = cast_for_number(temp, i);
+    t = temp->number;
+   	if(temp->no_pres_left == 2 && (temp->no_pres_right == 2 || 
+	temp->no_pres_right == 0) && t == 0)
+        return (0);
+	if((i = cast_manager2(temp, t, total, i)))
+		return (i);
     if (temp->nopoint && temp->pres_right && !temp->pres_left && t < 0)
         temp->pres_right--;
-    cero_manager(temp);
-	if (temp->no_pres_left == 1 && temp->no_pres_right == 1 && temp->plus == 0)
-    {
-        if (temp->spaces)
-        {
-            i = temp->spaces;
-            total += temp->spaces;
-            if (t < 0)
-            {
-                total--;
-                i--;
-            }
-            while (i--)
-                ft_putchar(' ');
-        }
-        ft_putnbr(t);
-        if (t < 0)
-            return (total + 1);
-        else if (t == 0)
-            return (1);
-        else
-            return (total);
-    }
+    if((i =cero_manager(temp, i, total, t)))
+		return i;
     if (temp->pres_left > temp->pres_right + total && temp->negative)    
     {
         if (temp->pres_right > total)

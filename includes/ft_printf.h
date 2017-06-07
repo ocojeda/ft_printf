@@ -6,7 +6,7 @@
 /*   By: myernaux <myernaux@student.42.fr>		  +#+  +:+	   +#+		*/
 /*												+#+#+#+#+#+   +#+		   */
 /*   Created: 2017/05/21 10:11:11 by ocojeda-		  #+#	#+#			 */
-/*   Updated: 2017/06/07 14:24:41 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/06/07 15:27:20 by ocojeda-         ###   ########.fr       */
 /*																			*/
 /* ************************************************************************** */
 
@@ -125,5 +125,7 @@ int	 ft_wstrlen(wchar_t *s);
 wchar_t	  *ft_wstrdup(wchar_t *s1);
 wchar_t  *ft_wstrsub(wchar_t *s, int start, size_t len);
 int	 ft_wputstr(wchar_t *str);
-void cero_manager(t_type *temp);
+int cero_manager(t_type *temp, int i, int total, long long t);
+int	cast_for_number(t_type *temp, int i);
+void            ft_printlongnbr(long long ll);
 #endif
