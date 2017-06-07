@@ -221,6 +221,7 @@ int    print_number(t_type *temp)
         }
         else if (t >= 128)
         {
+            //a faire une fonction que transforme le n dans une echelle de -128 a 128
             temp->number = temp->number * -1;
             t = temp->number;
         }
