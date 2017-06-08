@@ -6,7 +6,7 @@
 /*   By: myernaux <myernaux@student.42.fr>		  +#+  +:+	   +#+		*/
 /*												+#+#+#+#+#+   +#+		   */
 /*   Created: 2017/05/21 10:11:11 by ocojeda-		  #+#	#+#			 */
-/*   Updated: 2017/06/08 13:23:37 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/06/08 14:24:45 by ocojeda-         ###   ########.fr       */
 /*																			*/
 /* ************************************************************************** */
 
@@ -132,4 +132,7 @@ int cero_manager(t_type *temp, int i, int total, long long t);
 int	cast_for_number(t_type *temp, int i);
 void            ft_printlongnbr(long long ll);
 int		ft_putchar_spe(char c);
+int     set_presschar_for_int(t_type *temp, int total);
+int     print_number_inverse(t_type *temp, long long t, int total);
+void		cast_manager3(t_type *temp, int t);
 #endif

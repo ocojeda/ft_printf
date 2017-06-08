@@ -3,150 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   print_number.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ocojeda- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/29 15:53:45 by myernaux          #+#    #+#             */
-/*   Updated: 2017/06/08 13:24:03 by ocojeda-         ###   ########.fr       */
+/*   Created: 2017/06/08 14:22:17 by ocojeda-          #+#    #+#             */
+/*   Updated: 2017/06/08 14:25:21 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/ft_printf.h"
-
-int     set_presschar_for_int2(t_type *temp, int total, int i, int a)
-{
-	if (temp->plus && temp->number >= 0)
-	{
-		ft_putchar('+');
-		a++;
-		if (temp->number == 0)
-			a++;
-	}
-	if (temp->number < 0)
-		temp->number *= -ft_putchar_spe('-');	
-	if (temp->pres_right > total - temp->negative)
-		i = temp->pres_right - total + temp->negative;
-	while (i > 0)
-	{
-		i -= ft_putchar_spe('0');
-		a++;
-	}
-	return (a);
-}
-
-int     set_presschar_for_int(t_type *temp, int total)
-{
-	int i;
-	int a;
-	short t;
-
-	t = temp->number;
-	i = 0;
-	if ((temp->pres_left < total + temp->spaces) && temp->spaces && 
-			t > 0)
-	{
-		i = temp->spaces;
-		a = temp->spaces;
-		while (a)
-		{
-			ft_putchar(' ');
-			a--;
-		}
-	}
-	a = i;
-	i = 0;
-	if (temp->pres_right < total)
-		temp->pres_right = total - temp->negative;
-	if (temp->pres_left > temp->pres_right)
-		i = temp->pres_left - temp->pres_right - temp->plus - temp->negative;
-	a += i;
-	while (i--)
-		ft_putchar(' ');
-	return (set_presschar_for_int2(temp, total, i , a) + total);
-}
-
-int     set_presschar_for_int_inverse(t_type *temp, int total)
-{
-	int i;
-	int a;
-	short t;
-
-	t = temp->number;
-	i = 0;
-	if ((temp->pres_left < total + temp->spaces) && temp->spaces && t > 0)
-	{
-		i = temp->spaces;
-		a = temp->spaces;
-		while (a--)
-			ft_putchar(' ');
-	}
-	a = i;
-	i = 0;
-	if (temp->pres_right < total)
-		temp->pres_right = total - temp->negative;
-	if (temp->pres_left > temp->pres_right)
-	{
-		i = temp->pres_left - temp->pres_right - temp->plus - temp->negative;
-		a += i;
-	}
-	while (i > 0)
-	{
-		ft_putchar(' ');
-		i--;
-	}
-	if (temp->pres_right > total - temp->negative)
-		i = temp->pres_right - total + temp->negative;
-	while (i--)
-	{
-		ft_putchar('0');
-		a++;
-	}
-	return (a + total);
-}
-int		print_number_inverse(t_type *temp, long long t, int total)
-{
-	int temp1;
-
-	if (temp->pres_right > total)
-	{
-		temp1 = temp->pres_right - total;
-		if (temp->number > 0 && temp->plus)
-		{
-			ft_putchar('+');
-			total++;
-			temp->plus = 0;
-		}
-		while (temp1--)
-		{
-			temp->pres_right--;
-			ft_putchar('0');
-			total++;
-		}
-	}
-	ft_printlongnbr(t);
-	if (t < 0)
-	{
-		temp->number *= -1;
-		total++;
-	}
-	return(set_presschar_for_int_inverse(temp, total));
-}
+#include "../includes/ft_printf.h"
 
 int		cast_manager2(t_type *temp, int t, int total, int i)
 {
-	if (temp->nopoint && !temp->pres_left && temp->pres_right && temp->negative)
-	{
-		temp->pres_left = temp->pres_right;
-		temp->pres_right = 0;
-		temp->nopoint = 0;
-	}
-	if (temp->plus && t < 0 && temp->pres_left && !temp->pres_right && temp->cero)
-	{
-		temp->plus = 0;
-		temp->pres_right = temp->pres_left - 1;
-		temp->pres_left = 0; 
-	}
-	if (t < 0 && temp->plus)
-		temp->plus = 0;
+	cast_manager3(temp, t);
 	if (t < 0 && temp->pres_left > temp->pres_right + total && !temp->negative)
 	{
 		if (temp->cero)
@@ -164,13 +32,14 @@ int		cast_manager2(t_type *temp, int t, int total, int i)
 	}
 	return (0);
 }
+
 int		choose_to_print_lr_forll(t_type *temp, int i, long long t, int total)
 {
-	if (temp->pres_left > temp->pres_right + total && temp->negative)    
-		i = print_number_inverse(temp, t , total);
-	else 
+	if (temp->pres_left > temp->pres_right + total && temp->negative)
+		i = print_number_inverse(temp, t, total);
+	else
 	{
-		if(temp->number < 0)
+		if (temp->number < 0)
 		{
 			total++;
 			temp->negative = NEGATIVE;
@@ -180,15 +49,16 @@ int		choose_to_print_lr_forll(t_type *temp, int i, long long t, int total)
 		ft_printlongnbr(t);
 		if (t == 0 && temp->pres_right)
 			i++;
-	}	
+	}
 	return (i);
 }
-int     ft_putllnbr(t_type *temp)
+
+int		ft_putllnbr(t_type *temp)
 {
-	long long t;
-	int total;
-	int i;
-	
+	long long	t;
+	int			total;
+	int			i;
+
 	i = 0;
 	total = 0;
 	t = temp->number;
@@ -198,19 +68,19 @@ int     ft_putllnbr(t_type *temp)
 		t /= 10;
 	}
 	t = temp->number;
-	if((i =cero_manager(temp, i, total, t)))
-		return i;	
-	if (temp->no_pres_left == 2 && (temp->no_pres_right == 2 
-	|| temp->no_pres_right == 0) && t == 0)
+	if ((i = cero_manager(temp, i, total, t)))
+		return (i);
+	if (temp->no_pres_left == 2 && (temp->no_pres_right == 2
+				|| temp->no_pres_right == 0) && t == 0)
 		return (0);
-	return(choose_to_print_lr_forll(temp, i, t, total));
+	return (choose_to_print_lr_forll(temp, i, t, total));
 }
 
 int		choose_to_print_lr_fori(t_type *temp, int i, long long t, int total)
 {
-	if (temp->pres_left > temp->pres_right + total && temp->negative)    
+	if (temp->pres_left > temp->pres_right + total && temp->negative)
 		i = print_number_inverse(temp, t, total);
-	else 
+	else
 	{
 		t = temp->number;
 		if (t < 0 && temp->cero && temp->pres_left)
@@ -224,34 +94,34 @@ int		choose_to_print_lr_fori(t_type *temp, int i, long long t, int total)
 		(temp->cero && temp->number == 0) ? i-- : ft_putnbr(temp->number);
 		if (t < 0)
 			i++;
-	}	
+	}
 	if (t == 0 && temp->pres_right)
 		i++;
 	return (i);
 }
 
-int    print_number(t_type *temp)
+int		print_number(t_type *temp)
 {
-	int t;
-	int total;
-	int i;
+	int			t;
+	int			total;
+	int			i;
 
 	i = 0;
 	total = 0;
-	if (temp->cast == LONG_LONG || temp->cast == LONG 
+	if (temp->cast == LONG_LONG || temp->cast == LONG
 			|| temp->cast == Z_CAST || temp->cast == J_CAST)
 		return (ft_putllnbr(temp));
 	total = cast_for_number(temp, i);
 	t = temp->number;
-	if(temp->no_pres_left == 2 && (temp->no_pres_right == 2 || 
+	if (temp->no_pres_left == 2 && (temp->no_pres_right == 2 ||
 				temp->no_pres_right == 0) && t == 0)
 		return (0);
-	if((i = cast_manager2(temp, t, total, i)))
+	if ((i = cast_manager2(temp, t, total, i)))
 		return (i);
 	if (temp->nopoint && temp->pres_right && !temp->pres_left && t < 0)
 		temp->pres_right--;
-	if((i =cero_manager(temp, i, total, t)))
-		return i;
+	if ((i = cero_manager(temp, i, total, t)))
+		return (i);
 	i = choose_to_print_lr_fori(temp, i, t, total);
 	return (i);
 }
