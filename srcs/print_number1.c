@@ -6,7 +6,7 @@
 /*   By: ocojeda- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/08 14:11:01 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/06/08 14:26:02 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/06/08 14:29:11 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void		cast_manager3(t_type *temp, int t)
 		temp->plus = 0;
 }
 
-static int		set_presschar_for_int2(t_type *temp, int total, int i, int a)
+static int	set_presschar_for_int2(t_type *temp, int total, int i, int a)
 {
 	if (temp->plus && temp->number >= 0)
 	{
@@ -52,7 +52,7 @@ static int		set_presschar_for_int2(t_type *temp, int total, int i, int a)
 	return (a);
 }
 
-int		set_presschar_for_int(t_type *temp, int total)
+int			set_presschar_for_int(t_type *temp, int total)
 {
 	int			i;
 	int			a;
@@ -79,7 +79,7 @@ int		set_presschar_for_int(t_type *temp, int total)
 	return (set_presschar_for_int2(temp, total, i, a) + total);
 }
 
-static int		set_presschar_for_int_inverse(t_type *temp, int total, int i)
+static int	set_presschar_for_int_inverse(t_type *temp, int total, int i)
 {
 	int			a;
 
@@ -107,7 +107,7 @@ static int		set_presschar_for_int_inverse(t_type *temp, int total, int i)
 	return (a + total);
 }
 
-int		print_number_inverse(t_type *temp, long long t, int total)
+int			print_number_inverse(t_type *temp, long long t, int total)
 {
 	int			temp1;
 
