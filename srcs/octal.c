@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>		  +#+  +:+	   +#+		*/
 /*												+#+#+#+#+#+   +#+		   */
 /*   Created: 2017/05/24 10:33:58 by ocojeda-		  #+#	#+#			 */
-/*   Updated: 2017/05/24 10:33:59 by ocojeda-		 ###   ########.fr	   */
+/*   Updated: 2017/06/07 14:26:32 by myernaux         ###   ########.fr       */
 /*																			*/
 /* ************************************************************************** */
 
@@ -45,6 +45,27 @@ char		*ft_itoa_octal(unsigned long long n)
 		}
 	}
 	return (str);
+}
+
+int		ft_putoctal3(t_type *temp, int i, int total, char *str)
+{
+	if (temp->hash_tag && temp->pres_right < total)
+    {
+    	ft_putnbr(0);
+    	i++;
+    }
+	if (temp->pres_right > total)
+	{
+		while (temp->pres_right > total)
+		{
+			temp->pres_right--;
+			ft_putchar('0');
+			total++;
+		}
+	}
+	ft_putstr(str);
+	i += set_presschar_octal(temp, total);
+	return (i);
 }
 
 void	ft_putocal2(t_type *temp)
@@ -86,24 +107,7 @@ int	ft_putoctal(t_type *temp)
 	str = ft_itoa_octal(temp->octal);
 	total = ft_strlen(str);
 	if (temp->negative == NEGATIVE && temp->pres_left > temp->pres_right)
-	{
-        if (temp->hash_tag && temp->pres_right < total)
-        {
-        	ft_putnbr(0);
-        	i++;
-        }
-		if (temp->pres_right > total)
-		{
-			while (temp->pres_right > total)
-			{
-				temp->pres_right--;
-				ft_putchar('0');
-				total++;
-			}
-		}
-		ft_putstr(str);
-		i += set_presschar_octal(temp, total);
-	}
+		i = ft_putoctal3(temp, i, total, str);
 	else
 	{
 		if (temp->hash_tag && !temp->pres_left && !temp->pres_right && temp->octal == 0)
