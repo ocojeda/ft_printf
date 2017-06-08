@@ -6,33 +6,12 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/29 15:53:45 by myernaux          #+#    #+#             */
-/*   Updated: 2017/06/07 15:49:01 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/06/08 12:21:08 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../includes/ft_printf.h"
 
-/*void            ft_printlongnbr(long long ll)
-  {
-  if (ll == LONG_LONG_MIN)
-  {
-  ft_putstr("-9223372036854775808");
-  return ;
-  }
-  if (ll < 0)
-  {
-  ft_putchar('-');
-  ll = -ll;
-  }
-  if (ll >= 10)
-  {
-  ft_printlongnbr(ll / 10);
-  ft_printlongnbr(ll % 10);
-  }
-  else
-  ft_putchar(ll + '0');
-  }
-  */
 int     set_presschar_for_int2(t_type *temp, int total, int i, int a)
 {
 	if (temp->plus && temp->number >= 0)
@@ -84,11 +63,8 @@ int     set_presschar_for_int(t_type *temp, int total)
 	if (temp->pres_left > temp->pres_right)
 		i = temp->pres_left - temp->pres_right - temp->plus - temp->negative;
 	a += i;
-	while (i > 0)
-	{
+	while (i--)
 		ft_putchar(' ');
-		i--;
-	}
 	return (set_presschar_for_int2(temp, total, i , a) + total);
 }
 
@@ -104,11 +80,8 @@ int     set_presschar_for_int_inverse(t_type *temp, int total)
 	{
 		i = temp->spaces;
 		a = temp->spaces;
-		while (a)
-		{
+		while (a--)
 			ft_putchar(' ');
-			a--;
-		}
 	}
 	a = i;
 	i = 0;
@@ -126,77 +99,43 @@ int     set_presschar_for_int_inverse(t_type *temp, int total)
 	}
 	if (temp->pres_right > total - temp->negative)
 		i = temp->pres_right - total + temp->negative;
-	while (i > 0)
+	while (i--)
 	{
-		i--;
 		ft_putchar('0');
 		a++;
 	}
 	return (a + total);
 }
-
-int     ft_putllnbr(t_type *temp)
+int		print_number_inverse(t_type *temp, int i, long long t, int total)
 {
-	long long t;
-	int total;
-	int i;
 	int temp1;
-	i = 0;
-	total = 0;
-	t = temp->number;
-	while (t != 0)
-	{
-		total++;
-		t /= 10;
-	}
-	t = temp->number;
-	if((i =cero_manager(temp, i, total, t)))
-		return i;	
-	if (temp->no_pres_left == 2 && (temp->no_pres_right == 2 || temp->no_pres_right == 0)
-			&& t == 0)
-		return (0);
 
-	if (temp->pres_left > temp->pres_right + total && temp->negative)    
+	if (temp->pres_right > total)
 	{
-		if (temp->pres_right > total)
+		temp1 = temp->pres_right - total;
+		if (temp->number > 0 && temp->plus)
 		{
-			temp1 = temp->pres_right - total;
-			if (temp->number > 0 && temp->plus)
-			{
-				ft_putchar('+');
-				total++;
-				temp->plus = 0;
-			}
-			while (temp1--)
-			{
-				temp->pres_right--;
-				ft_putchar('0');
-				total++;
-			}
+			ft_putchar('+');
+			total++;
+			temp->plus = 0;
 		}
-		ft_printlongnbr(t);
-		if (t < 0)
+		while (temp1--)
 		{
-			temp->number *= -1;
+			temp->pres_right--;
+			ft_putchar('0');
 			total++;
 		}
-		i = set_presschar_for_int_inverse(temp, total);
 	}
-	else 
+	ft_printlongnbr(t);
+	if (t < 0)
 	{
-		if(temp->number < 0)
-		{
-			total++;
-			temp->negative = NEGATIVE;
-			t *= -1;
-		}
-		i = set_presschar_for_int(temp, total);
-		ft_printlongnbr(t);
-		if (t == 0 && temp->pres_right)
-			i++;
+		temp->number *= -1;
+		total++;
 	}
-	return (i);
+	i = set_presschar_for_int_inverse(temp, total);
+	return i;
 }
+
 int		cast_manager2(t_type *temp, int t, int total, int i)
 {
 	if (temp->nopoint && !temp->pres_left && temp->pres_right && temp->negative)
@@ -226,45 +165,80 @@ int		cast_manager2(t_type *temp, int t, int total, int i)
 		}
 		temp->pres_left--;
 		i = set_presschar_for_int(temp, total);
-		if (t < 0)
-			ft_putnbr(-t);
-		else 
-			ft_putnbr(t);
+		(t < 0) ? ft_putnbr(-t) : ft_putnbr(t);
 		return (i + 1);
 	}
 	return (0);
 }
-int		print_number_inverse(t_type *temp, int i, long long t, int total)
+int		choose_to_print_lr_forll(t_type *temp, int i, long long t, int total)
 {
-	int temp1;
-
-	if (temp->pres_right > total)
+	if (temp->pres_left > temp->pres_right + total && temp->negative)    
+		i = print_number_inverse(temp, i, t , total);
+	else 
 	{
-		temp1 = temp->pres_right - total;
-		if (temp->number > 0 && temp->plus)
+		if(temp->number < 0)
 		{
-			ft_putchar('+');
 			total++;
-			temp->plus = 0;
+			temp->negative = NEGATIVE;
+			t *= -1;
 		}
-		while (temp1--)
-		{
-			temp->pres_right--;
-			ft_putchar('0');
-			total++;
-		}
-	}
-	ft_putnbr(t);
-	if (t < 0)
-	{
-		temp->number *= -1;
-		total++;
-	}
-	i = set_presschar_for_int_inverse(temp, total);
-	if (t == 0 && temp->pres_right)
-		i++;	
-	return i;
+		i = set_presschar_for_int(temp, total);
+		ft_printlongnbr(t);
+		if (t == 0 && temp->pres_right)
+			i++;
+	}	
+	return (i);
 }
+int     ft_putllnbr(t_type *temp)
+{
+	long long t;
+	int total;
+	int i;
+	
+	i = 0;
+	total = 0;
+	t = temp->number;
+	while (t != 0)
+	{
+		total++;
+		t /= 10;
+	}
+	t = temp->number;
+	if((i =cero_manager(temp, i, total, t)))
+		return i;	
+	if (temp->no_pres_left == 2 && (temp->no_pres_right == 2 
+	|| temp->no_pres_right == 0) && t == 0)
+		return (0);
+	return(choose_to_print_lr_forll(temp, i, t, total));
+}
+
+int		choose_to_print_lr_fori(t_type *temp, int i, long long t, int total)
+{
+	if (temp->pres_left > temp->pres_right + total && temp->negative)    
+		i = print_number_inverse(temp, i, t, total);
+	else 
+	{
+		t = temp->number;
+		if (t < 0 && temp->cero && temp->pres_left)
+			temp->pres_left--;
+		if (temp->number == 0 && temp->pres_left && !temp->pres_right)
+		{
+			i = set_presschar_for_int(temp, total);
+			return (i);
+		}
+		i = set_presschar_for_int(temp, total);
+		if (temp->cero && temp->number == 0)
+			i--;
+		else
+			ft_putnbr(temp->number);
+		if (t < 0)
+			i++;
+	}
+	if (t == 0 && temp->pres_right)
+		i++;
+	return (i);
+}
+
 int    print_number(t_type *temp)
 {
 	int t;
@@ -287,27 +261,6 @@ int    print_number(t_type *temp)
 		temp->pres_right--;
 	if((i =cero_manager(temp, i, total, t)))
 		return i;
-	if (temp->pres_left > temp->pres_right + total && temp->negative)    
-		return(print_number_inverse(temp, i, t, total));
-	else 
-	{
-		t = temp->number;
-		if (t < 0 && temp->cero && temp->pres_left)
-			temp->pres_left--;
-		if (temp->number == 0 && temp->pres_left && !temp->pres_right)
-		{
-			i = set_presschar_for_int(temp, total);
-			return (i);
-		}
-		i = set_presschar_for_int(temp, total);
-		if (temp->cero && temp->number == 0)
-			i--;
-		else
-			ft_putnbr(temp->number);
-		if (t < 0)
-			i++;
-	}
-	if (t == 0 && temp->pres_right)
-		i++;
+	i = choose_to_print_lr_fori(temp, i, t, total);
 	return (i);
 }
