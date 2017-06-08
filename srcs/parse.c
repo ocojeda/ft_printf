@@ -1,22 +1,22 @@
 /* ************************************************************************** */
-/*																			*/
-/*														:::	  ::::::::   */
-/*   parse.c											:+:	  :+:	:+:   */
-/*													+:+ +:+		 +:+	 */
-/*   By: myernaux <myernaux@student.42.fr>		  +#+  +:+	   +#+		*/
-/*												+#+#+#+#+#+   +#+		   */
-/*   Created: 2017/01/07 16:25:14 by ocojeda-		  #+#	#+#			 */
-/*   Updated: 2017/05/26 11:20:48 by myernaux		 ###   ########.fr	   */
-/*																			*/
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ocojeda- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/06/08 15:29:48 by ocojeda-          #+#    #+#             */
+/*   Updated: 2017/06/08 15:42:50 by ocojeda-         ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
 void	reset_type2(t_type *temp)
 {
 	temp->plus = 0;
 	temp->negative = 0;
-	temp->hash_tag =0;
+	temp->hash_tag = 0;
 	temp->pres_left = 0;
 	temp->pres_right = 0;
 	temp->no_pres_left = 0;
@@ -45,7 +45,7 @@ void	reset_type(t_type *temp)
 	reset_type2(temp);
 }
 
-int   parse_the_values(va_list args, t_type *temp, char *str, int i)
+int		parse_the_values(va_list args, t_type *temp, char *str, int i)
 {
 	i = option_handler(str, i, temp);
 	parse_the_values2(args, temp, str, i);
@@ -59,32 +59,22 @@ int   parse_the_values(va_list args, t_type *temp, char *str, int i)
 	return (i + 1);
 }
 
-int	 parse_all(char *str, va_list args)
+int		parse_all(char *str, va_list args, int i, int everything)
 {
-	int	 i;
-	int	 e;
-	int everything;
-	t_type  *all;
+	int		e;
+	t_type	*all;
 
-	i = 0;
 	if (!(all = (t_type *)malloc(sizeof(t_type))))
-			return (0);
-	everything = 0;
+		return (0);
 	while (str[i])
 	{
 		if (str[i] == '%')
-		{
-			i++;
-			i = parse_the_values(args, all, str, i);
-		}
+			i = parse_the_values(args, all, str, i + 1);
 		else if (str[i])
 		{
 			e = 0;
 			while (str[i] != '%' && str[i])
-			{
-				e++;
-				i++;
-			}
+				increase_one(&e, &i);
 			all->type = STR;
 			if (!(all->str = ft_strsub(str, i - e, e)))
 				return (0);
@@ -95,6 +85,5 @@ int	 parse_all(char *str, va_list args)
 		reset_type(all);
 	}
 	free(all);
-	all = NULL;
 	return (everything);
 }

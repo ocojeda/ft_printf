@@ -6,7 +6,7 @@
 /*   By: myernaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 13:38:53 by myernaux          #+#    #+#             */
-/*   Updated: 2017/06/07 13:39:31 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/06/08 15:34:54 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		ft_printf(char *format, ...)
 	everything = 0;
 	va_start(args, format);
 	if (check_for_prints(format))
-		everything = parse_all(format, args);
+		everything = parse_all(format, args, 0, 0);
 	else
 	{
 		ft_putstr(format);

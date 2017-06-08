@@ -6,7 +6,7 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 00:05:50 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/29 11:46:23 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/06/08 17:48:46 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ int main(void)
   short x = 100;
   char *str = "-1";
   
-   total = ft_printf("%u", 4294967295);
+   total = ft_printf("%hd", SHRT_MIN);
    ft_printf("--->total = %d\n", total);
-   total = printf("%u", 4294967295);
+   total = printf("%hd", SHRT_MIN);
    printf("--->total = %d\n", total);
    /*
    total = ft_printf("{%010d}", -42);

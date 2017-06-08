@@ -6,7 +6,7 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/08 13:30:21 by myernaux          #+#    #+#             */
-/*   Updated: 2017/06/08 13:39:32 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/06/08 17:35:57 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,15 @@ int		print_string5(t_type *temp, int i, int everything, char *str_temp)
 	return (everything);
 }
 
-int		print_string4(t_type *temp, int total, int everything, char *str_temp)
+int		print_string4(t_type *temp, int total, int evr, char *str_temp)
 {
 	if (total < temp->pres_right)
 		total -= temp->pres_right;
 	if (total < 0)
 		total = ft_strlen(str_temp);
 	if (temp->pres_right > total)
-		everything += total;
+		evr += total;
 	else
-		everything += temp->pres_right;
-	return (everything);
+		evr += temp->pres_right;
+	return (evr);
 }

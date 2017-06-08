@@ -6,7 +6,7 @@
 /*   By: ocojeda- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/08 14:22:17 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/06/08 14:25:21 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/06/08 14:54:06 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ int		print_number(t_type *temp)
 	if (temp->cast == LONG_LONG || temp->cast == LONG
 			|| temp->cast == Z_CAST || temp->cast == J_CAST)
 		return (ft_putllnbr(temp));
-	total = cast_for_number(temp, i);
+	total = cast_for_number(temp, i, 0, temp->number);
 	t = temp->number;
 	if (temp->no_pres_left == 2 && (temp->no_pres_right == 2 ||
 				temp->no_pres_right == 0) && t == 0)

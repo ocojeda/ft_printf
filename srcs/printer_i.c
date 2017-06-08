@@ -6,7 +6,7 @@
 /*   By: myernaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 14:36:55 by myernaux          #+#    #+#             */
-/*   Updated: 2017/06/07 14:37:00 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/06/08 17:06:10 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		printer2(t_type *temp, int everything)
 	if (temp->type == WCHAR)
 		everything += ft_putwchar(temp->wc);
 	if (temp->type == WSTR)
-		everything = ft_putwstr(temp, temp->wstr, everything);
+		everything = ft_putwstr(temp, temp->wstr, everything, 0);
 	return (everything);
 }
 
