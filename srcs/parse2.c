@@ -19,7 +19,11 @@ void	parse_the_values2_1(va_list args, t_type *temp, char *str, int i)
 	if ((str[i] == 'd' || str[i] == 'i') && !temp->type)
 	{
 		temp->type = INTI;
-		temp->number = va_arg(args, long long);
+		if(temp->cast == HH_CAST)
+			temp->number = va_arg(args, int);
+		else 
+			temp->number = va_arg(args, long long);
+
 	}
 	if (str[i] == 'D' && !temp->type)
 	{
