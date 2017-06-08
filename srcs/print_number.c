@@ -6,7 +6,7 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/29 15:53:45 by myernaux          #+#    #+#             */
-/*   Updated: 2017/06/08 12:21:08 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/06/08 13:24:03 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,12 @@ int     set_presschar_for_int2(t_type *temp, int total, int i, int a)
 			a++;
 	}
 	if (temp->number < 0)
-	{
-		ft_putchar('-');
-		temp->number *= -1;
-	}
+		temp->number *= -ft_putchar_spe('-');	
 	if (temp->pres_right > total - temp->negative)
 		i = temp->pres_right - total + temp->negative;
 	while (i > 0)
 	{
-		i--;
-		ft_putchar('0');
+		i -= ft_putchar_spe('0');
 		a++;
 	}
 	return (a);
@@ -106,7 +102,7 @@ int     set_presschar_for_int_inverse(t_type *temp, int total)
 	}
 	return (a + total);
 }
-int		print_number_inverse(t_type *temp, int i, long long t, int total)
+int		print_number_inverse(t_type *temp, long long t, int total)
 {
 	int temp1;
 
@@ -132,8 +128,7 @@ int		print_number_inverse(t_type *temp, int i, long long t, int total)
 		temp->number *= -1;
 		total++;
 	}
-	i = set_presschar_for_int_inverse(temp, total);
-	return i;
+	return(set_presschar_for_int_inverse(temp, total));
 }
 
 int		cast_manager2(t_type *temp, int t, int total, int i)
@@ -152,7 +147,6 @@ int		cast_manager2(t_type *temp, int t, int total, int i)
 	}
 	if (t < 0 && temp->plus)
 		temp->plus = 0;
-
 	if (t < 0 && temp->pres_left > temp->pres_right + total && !temp->negative)
 	{
 		if (temp->cero)
@@ -173,7 +167,7 @@ int		cast_manager2(t_type *temp, int t, int total, int i)
 int		choose_to_print_lr_forll(t_type *temp, int i, long long t, int total)
 {
 	if (temp->pres_left > temp->pres_right + total && temp->negative)    
-		i = print_number_inverse(temp, i, t , total);
+		i = print_number_inverse(temp, t , total);
 	else 
 	{
 		if(temp->number < 0)
@@ -215,7 +209,7 @@ int     ft_putllnbr(t_type *temp)
 int		choose_to_print_lr_fori(t_type *temp, int i, long long t, int total)
 {
 	if (temp->pres_left > temp->pres_right + total && temp->negative)    
-		i = print_number_inverse(temp, i, t, total);
+		i = print_number_inverse(temp, t, total);
 	else 
 	{
 		t = temp->number;
@@ -227,13 +221,10 @@ int		choose_to_print_lr_fori(t_type *temp, int i, long long t, int total)
 			return (i);
 		}
 		i = set_presschar_for_int(temp, total);
-		if (temp->cero && temp->number == 0)
-			i--;
-		else
-			ft_putnbr(temp->number);
+		(temp->cero && temp->number == 0) ? i-- : ft_putnbr(temp->number);
 		if (t < 0)
 			i++;
-	}
+	}	
 	if (t == 0 && temp->pres_right)
 		i++;
 	return (i);

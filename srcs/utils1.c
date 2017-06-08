@@ -6,11 +6,17 @@
 /*   By: ocojeda- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 14:22:32 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/06/07 15:30:05 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/06/08 13:23:53 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../includes/ft_printf.h"
+
+int     ft_putchar_spe(char c)
+{
+	ft_putchar(c);
+	return (1);
+}
 
 void            ft_printlongnbr(long long ll)
 {
