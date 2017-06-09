@@ -62,9 +62,9 @@ int		print_chars2(t_type *temp, int everything)
 
 int		print_chars(t_type *temp)
 {
-	int everything;
+	//int everything;
 
-	everything = 0;
+	//everything = 0;
 	//ft_putnbr(temp->pres_right);
 	//	ft_putnbr(temp->pres_left);
 	//	ft_putnbr(temp->c);
@@ -85,17 +85,13 @@ int		print_chars(t_type *temp)
 		}
 	}*/
 	if (temp->nopoint && temp->pres_right)
-		everything = print_chars2(temp, everything);
+		return (print_chars2(temp, 0));
 	else if (temp->negative)
-		everything = print_chars3(temp, everything);
+		return (print_chars3(temp, 0));
 	else if (temp->type == CHAR && temp->pres_left)
-		everything = print_chars4(temp, everything);
+		return (print_chars4(temp, 0));
 	else if (temp->c == 0)
 		return (1);
 	else
-	{
-		ft_putchar(temp->c);
-		everything = 1;
-	}
-	return (everything);
+		return(ft_putchar_spe(temp->c));
 }

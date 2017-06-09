@@ -51,14 +51,28 @@ int			ft_putoctalm(t_type *temp)
 {
 	char	*str;
 	int		i;
+	int 	total;
 
-	if (temp->nopoint && temp->number == 0 && temp->type == OCTALM)
+	i = 0;
+	if (temp->no_pres_left == 2 && (temp->no_pres_right == 2 ||
+				!temp->no_pres_right) && !temp->octal &&
+			!temp->pres_left && !temp->hash_tag)
 		return (0);
-	str = NULL;
-	if (temp->type == OCTALM)
-		str = ft_itoa_octal_capital(temp->number);
-	i = set_presschar(temp, ft_strlen(str));
-	ft_putstr(str);
+	if (temp->no_pres_left && temp->no_pres_right && !temp->octal
+			&& !temp->nopoint)
+		return (ft_putchar_spe('0'));
+	if (temp->nopoint && !temp->pres_left &&
+			temp->pres_right && temp->negative)
+	{
+		temp->pres_left = temp->pres_right;
+		temp->pres_right = 0;
+	}
+	str = ft_itoa_octal_capital(temp->octal);
+	total = ft_strlen(str);
+	if (temp->negative == NEGATIVE && temp->pres_left > temp->pres_right)
+		i = ft_putoctal3(temp, i, total, str);
+	else if (ft_putoctal4(temp, str, &i, total))
+		return (temp->pres_left - 1);
 	free(str);
 	return (i);
 }

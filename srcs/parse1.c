@@ -42,7 +42,7 @@ void	parse_the_values3_1(va_list args, t_type *temp, char *str, int i)
 			temp->wc = va_arg(args, wchar_t);
 		}
 		else
-			temp->c = va_arg(args, int);
+			temp->c = va_arg(args, uintmax_t);
 	}
 }
 

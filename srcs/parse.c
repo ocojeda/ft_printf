@@ -26,6 +26,8 @@ void	reset_type2(t_type *temp)
 	temp->nopoint = 0;
 	temp->cast = 0;
 	temp->cero = 0;
+	temp->number = 0;
+	temp->octal = 0;
 }
 
 void	reset_type(t_type *temp)
@@ -77,11 +79,11 @@ int		parse_all(char *str, va_list args, int i, int everything)
 				increase_one(&e, &i);
 			all->type = STR;
 			if (!(all->str = ft_strsub(str, i - e, e)))
-				return (0);
+				exit(0);
 			if(ft_strncpy(all->str1, all->str, e))
 				free(all->str);
 			else
-				return (0);
+				exit(0);
 		}
 		if(all->type >= 1 && all->type <= 14)
 			{
@@ -92,8 +94,9 @@ int		parse_all(char *str, va_list args, int i, int everything)
 			}
 		else 
 			return (0);
-		if((size_t)i > ft_strlen(str))
-			return 0;
+		if(str)
+			if((size_t)i > ft_strlen(str))
+				return 0;
 		reset_type(all);
 	}
 	free(all);

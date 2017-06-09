@@ -81,23 +81,26 @@ int			cero_manager(t_type *temp, int i, int total, long long t)
 
 int			cast_for_number(t_type *temp, int i, int total, int t)
 {
+	
 	if (temp->cast == H_CAST && temp->number > 32767)
 		temp->number = temp->number * -1;
 	i = temp->number;
 	if (temp->cast == HH_CAST)
 	{
-		if (t < -128)
+		if (temp->number < -128)
 		{
-			while (t <= -128)
-				t += 256;
-			temp->number = t;
+			while (temp->number <= -128)
+				temp->number += 256;
+			//temp->number = t;
 		}
-		else if (t >= 256)
-			while (t > 128)
+		else if (temp->number >= 256)
+			while (temp->number > 128)
 				temp->number -= 256;
 		else if (t >= 128)
 			temp->number = temp->number * -1;
 	}
+	//ft_printlongnbr(t);
+	//ft_printlongnbr(temp->number);
 	while (i)
 	{
 		total++;

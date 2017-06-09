@@ -35,7 +35,7 @@ void	parse_the_values2_1(va_list args, t_type *temp, char *str, int i)
 				temp->number = va_arg(args, long long );
 		}
 		else 
-			temp->number = va_arg(args, signed int);
+			temp->number = va_arg(args, long long);
 	}
 	if (str[i] == 'D' && !temp->type)
 	{
@@ -130,6 +130,18 @@ void	parse_the_values4(va_list args, t_type *temp, char *str, int i)
 	if (str[i] == 'O' && !temp->type)
 	{
 		temp->type = OCTALM;
-		temp->number = va_arg(args, unsigned long long);
+		if(temp->cast)
+		{
+			if (temp->cast == LONG_LONG || temp->cast == LONG)
+				temp->octal = va_arg(args, unsigned long long);
+			if (temp->cast == J_CAST)
+				temp->octal = va_arg(args, uintmax_t);
+			if (temp->cast == Z_CAST)
+				temp->octal = va_arg(args, size_t);
+			if (temp->cast == H_CAST || temp->cast == HH_CAST)
+				temp->octal = va_arg(args, unsigned int);
+		}
+		else
+			temp->octal = va_arg(args, unsigned long long);
 	}
 }

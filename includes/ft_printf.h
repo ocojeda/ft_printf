@@ -59,7 +59,7 @@ typedef struct			s_type
 	double				fnumber;
 	char				str1[1000];
 	char				*str;
-	unsigned int		c;
+	uintmax_t			c;
 	wchar_t				*wstr;
 	wchar_t				wc;
 	int					pres_left;
@@ -75,6 +75,7 @@ typedef struct			s_type
 	short				nopoint;
 	short				cero;
 }						t_type;
+
 
 void					increase_one(int *a, int *b);
 int						print_chars(t_type *temp);
@@ -92,6 +93,8 @@ int						set_presschar_octal(t_type *temp, int total);
 int						ft_puthexa(t_type *temp);
 char					*ft_hexa_itoa_capital(unsigned long long n);
 int						ft_putoctal(t_type *temp);
+int						ft_putoctal3(t_type *temp, int i, int total, char *str);
+int						ft_putoctal4(t_type *temp, char *str, int *i, int total);
 void					ft_putunbr(unsigned int unbr);
 void					ft_putlnbr(long int lnbr);
 int						ft_putwchar(wchar_t wc);

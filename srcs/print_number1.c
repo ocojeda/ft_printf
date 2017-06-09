@@ -33,6 +33,8 @@ void		cast_manager3(t_type *temp, int t)
 
 static int	set_presschar_for_int2(t_type *temp, int total, int i, int a)
 {
+	int t;
+	t = temp->number;
 	if (temp->plus && temp->number >= 0)
 	{
 		ft_putchar('+');
@@ -40,7 +42,7 @@ static int	set_presschar_for_int2(t_type *temp, int total, int i, int a)
 		if (temp->number == 0)
 			a++;
 	}
-	if (temp->number < 0)
+	if (t < 0)
 		temp->number *= -ft_putchar_spe('-');
 	if (temp->pres_right > total - temp->negative)
 		i = temp->pres_right - total + temp->negative;

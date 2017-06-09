@@ -27,7 +27,7 @@ int		cast_manager2(t_type *temp, int t, int total, int i)
 		}
 		temp->pres_left--;
 		i = set_presschar_for_int(temp, total);
-		(t < 0) ? ft_putnbr(-t) : ft_putnbr(t);
+		(t < 0) ? ft_printlongnbr(-t) : ft_printlongnbr(t);
 		return (i + 1);
 	}
 	return (0);
