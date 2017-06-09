@@ -91,6 +91,7 @@ int		choose_to_print_lr_fori(t_type *temp, int i, long long t, int total)
 			return (i);
 		}
 		i = set_presschar_for_int(temp, total);
+		//problem!!!
 		(temp->cero && temp->number == 0) ? i-- : ft_putnbr(temp->number);
 		if (temp->number < 0)
 			{
