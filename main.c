@@ -42,10 +42,10 @@ int main(void)
    //total = ft_printf("%02d", NULL);
    //ft_printf("--->total = %d\n", total);
 
-   total = ft_printf("%.4d", -424242);
+   total = ft_printf("%0d", -42);
    ft_printf("--->total = %d\n", total);
-
-   total = printf("%.4d", -424242);
+   
+   total = printf("%0d", -42);
    printf("--->total = %d\n", total);
    /*
    total = ft_printf("{%010d}", -42);

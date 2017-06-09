@@ -49,7 +49,7 @@ void	reset_type(t_type *temp)
 
 int		parse_the_values(va_list args, t_type *temp, char *str, int i)
 {
-	i = option_handler(str, i, temp);
+	i = option_handler(str, i + 1, temp);
 	parse_the_values2(args, temp, str, i);
 	parse_the_values3(args, temp, str, i);
 	parse_the_values4(args, temp, str, i);
@@ -71,32 +71,36 @@ int		parse_all(char *str, va_list args, int i, int everything)
 	while (str[i])
 	{
 		if (str[i] == '%')
-			i = parse_the_values(args, all, str, i + 1);
-		else if (str[i])
+			{
+				i = parse_the_values(args, all, str, i);
+				if(all->type >= 1 && all->type <= 14)
+				{
+					e = printer(all);
+					everything += e;
+					if (e < 0)
+						return (0);
+				}
+				reset_type(all);
+			}
+		if (str[i])
 		{
 			e = 0;
 			while (str[i] != '%' && str[i])
 				increase_one(&e, &i);
 			all->type = STR;
 			if (!(all->str = ft_strsub(str, i - e, e)))
-				exit(0);
+				return(0);
 			if(ft_strncpy(all->str1, all->str, e))
-				free(all->str);
-			else
-				exit(0);
+				{
+					if(all->str)
+					{
+						free(all->str);
+						all->str1[e] = '\0';
+						e = printer(all);
+						everything += e;
+					}
+				}
 		}
-		if(all->type >= 1 && all->type <= 14)
-			{
-				e = printer(all);
-				everything += e;
-				if (e < 0)
-					return (0);
-			}
-		else 
-			return (0);
-		if(str)
-			if((size_t)i > ft_strlen(str))
-				return 0;
 		reset_type(all);
 	}
 	free(all);

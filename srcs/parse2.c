@@ -33,7 +33,7 @@ void	parse_the_values2_1(va_list args, t_type *temp, char *str, int i)
 				temp->number = va_arg(args, long long );
 		}
 		else 
-			temp->number = va_arg(args, long long);
+			temp->number = va_arg(args, intmax_t);
 	}
 	if (str[i] == 'D' && !temp->type)
 	{
@@ -70,6 +70,12 @@ void	parse_the_values2_2(va_list args, t_type *temp, char *str, int i)
 			str1 = va_arg(args, char *);
 			if (str1 == NULL)
 				ft_strcpy(temp->str1, "(null)");
+			else if(str1[0] == 0)
+				{
+					ft_bzero(temp->str1, 1000);
+					//temp->type = INTI;
+					//temp->number = 0;
+				}
 			else
 				ft_strcpy(temp->str1, str1);
 		}
