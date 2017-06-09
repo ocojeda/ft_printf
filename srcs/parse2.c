@@ -19,11 +19,23 @@ void	parse_the_values2_1(va_list args, t_type *temp, char *str, int i)
 	if ((str[i] == 'd' || str[i] == 'i') && !temp->type)
 	{
 		temp->type = INTI;
-		if(temp->cast == HH_CAST)
-			temp->number = va_arg(args, int);
+		if(temp->cast)
+		{
+			if(temp->cast == HH_CAST)
+				temp->number = va_arg(args, int);
+			if(temp->cast == H_CAST)
+				temp->number = va_arg(args, int);
+			if(temp->cast == J_CAST)
+				temp->number = va_arg(args, intmax_t);
+			if(temp->cast == Z_CAST)
+				temp->number = va_arg(args, size_t);
+			if(temp->cast == LONG)
+				temp->number = va_arg(args, long int);
+			if(temp->cast == LONG_LONG)
+				temp->number = va_arg(args, long long );
+		}
 		else 
-			temp->number = va_arg(args, long long);
-
+			temp->number = va_arg(args, signed int);
 	}
 	if (str[i] == 'D' && !temp->type)
 	{
@@ -73,10 +85,19 @@ void	parse_the_values2(va_list args, t_type *temp, char *str, int i)
 	if (str[i] == 'x' && !temp->type)
 	{
 		temp->type = HEXA;
+		if(temp->cast)
+		{
 		if (temp->cast == LONG_LONG || temp->cast == LONG)
 			temp->hexa = va_arg(args, unsigned long long);
-		else if (temp->cast == J_CAST)
+		if (temp->cast == J_CAST)
 			temp->hexa = va_arg(args, uintmax_t);
+		if (temp->cast == Z_CAST)
+			temp->hexa = va_arg(args, size_t);
+		if (temp->cast == H_CAST)
+			temp->hexa = va_arg(args, unsigned int);
+		if (temp->cast == HH_CAST)
+			temp->hexa = va_arg(args, unsigned int);
+		}
 		else
 			temp->hexa = va_arg(args, unsigned int);
 	}
@@ -92,10 +113,17 @@ void	parse_the_values4(va_list args, t_type *temp, char *str, int i)
 	if (str[i] == 'o' && !temp->type)
 	{
 		temp->type = OCTAL;
-		if (temp->cast == LONG_LONG || temp->cast == LONG)
-			temp->octal = va_arg(args, unsigned long long);
-		else if (temp->cast == J_CAST)
-			temp->octal = va_arg(args, uintmax_t);
+		if(temp->cast)
+		{
+			if (temp->cast == LONG_LONG || temp->cast == LONG)
+				temp->octal = va_arg(args, unsigned long long);
+			if (temp->cast == J_CAST)
+				temp->octal = va_arg(args, uintmax_t);
+			if (temp->cast == Z_CAST)
+				temp->octal = va_arg(args, size_t);
+			if (temp->cast == H_CAST || temp->cast == HH_CAST)
+				temp->octal = va_arg(args, unsigned int);
+		}
 		else
 			temp->octal = va_arg(args, unsigned int);
 	}

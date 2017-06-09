@@ -78,10 +78,22 @@ int		parse_all(char *str, va_list args, int i, int everything)
 			all->type = STR;
 			if (!(all->str = ft_strsub(str, i - e, e)))
 				return (0);
-			ft_strncpy(all->str1, all->str, e);
-			free(all->str);
+			if(ft_strncpy(all->str1, all->str, e))
+				free(all->str);
+			else
+				return (0);
 		}
-		everything += printer(all);
+		if(all->type >= 1 && all->type <= 14)
+			{
+				e = printer(all);
+				everything += e;
+				if (e < 0)
+					return (0);
+			}
+		else 
+			return (0);
+		if((size_t)i > ft_strlen(str))
+			return 0;
 		reset_type(all);
 	}
 	free(all);

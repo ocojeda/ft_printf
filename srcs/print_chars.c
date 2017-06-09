@@ -65,6 +65,25 @@ int		print_chars(t_type *temp)
 	int everything;
 
 	everything = 0;
+	//ft_putnbr(temp->pres_right);
+	//	ft_putnbr(temp->pres_left);
+	//	ft_putnbr(temp->c);
+	/*if(temp->cero)
+	{
+		if(temp->pres_left && !temp->pres_right)
+			{
+				temp->pres_right = temp->pres_left - 1;
+				temp->pres_left = 0;
+			}
+	//	if(temp->c == 0)
+	//		ft_putchar('h');
+		if(temp->c == 0 && temp->pres_right)
+		{
+			while(temp->pres_right--)
+				everything += ft_putchar_spe('0');
+			return (everything + 1);
+		}
+	}*/
 	if (temp->nopoint && temp->pres_right)
 		everything = print_chars2(temp, everything);
 	else if (temp->negative)

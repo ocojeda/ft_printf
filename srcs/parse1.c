@@ -17,10 +17,19 @@ void	parse_the_values3_1(va_list args, t_type *temp, char *str, int i)
 	if (str[i] == 'X' && !temp->type)
 	{
 		temp->type = HEXAM;
+		if(temp->cast)
+		{
 		if (temp->cast == LONG_LONG || temp->cast == LONG)
 			temp->hexa = va_arg(args, unsigned long long);
-		else if (temp->cast == J_CAST)
+		if (temp->cast == J_CAST)
 			temp->hexa = va_arg(args, uintmax_t);
+		if (temp->cast == Z_CAST)
+			temp->hexa = va_arg(args, size_t);
+		if (temp->cast == H_CAST)
+			temp->hexa = va_arg(args, unsigned int);
+		if (temp->cast == HH_CAST)
+			temp->hexa = va_arg(args, unsigned int);
+		}
 		else
 			temp->hexa = va_arg(args, unsigned int);
 	}

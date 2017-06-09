@@ -39,9 +39,11 @@ int main(void)
   short x = 100;
   char *str = "-1";
   
-   total = ft_printf("%hd", SHRT_MIN);
+   //total = ft_printf("%02d", NULL);
+   //ft_printf("--->total = %d\n", total);
+   total = ft_printf("%03c", NULL);
    ft_printf("--->total = %d\n", total);
-   total = printf("%hd", SHRT_MIN);
+   total = printf("%03c", NULL);
    printf("--->total = %d\n", total);
    /*
    total = ft_printf("{%010d}", -42);
