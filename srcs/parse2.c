@@ -21,9 +21,7 @@ void	parse_the_values2_1(va_list args, t_type *temp, char *str, int i)
 		temp->type = INTI;
 		if(temp->cast)
 		{
-			if(temp->cast == HH_CAST)
-				temp->number = va_arg(args, int);
-			if(temp->cast == H_CAST)
+			if(temp->cast == HH_CAST || temp->cast == H_CAST )
 				temp->number = va_arg(args, int);
 			if(temp->cast == J_CAST)
 				temp->number = va_arg(args, intmax_t);

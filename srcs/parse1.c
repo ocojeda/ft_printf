@@ -59,24 +59,24 @@ void	parse_the_values3_2(va_list args, t_type *temp, char *str, int i)
 		temp->lunbr = va_arg(args, long unsigned int);
 	}
 }
-
+/*
 void	parse_the_values3_3(va_list args, t_type *temp)
 {
-	temp->type = INTI;
-	temp->number = va_arg(args, long long);
-	while (temp->number > 65535)
-		temp->number -= 65535;
+	temp->type = INTU;
+	temp->unbr = va_arg(args, long long);
+	//while (temp->number > 65535)
+	//	temp->number -= 65535;
 	temp->cast = 0;
-}
-
+}*/
+/*
 void	parse_the_values3_4(va_list args, t_type *temp)
 {
-	temp->type = INTI;
-	temp->number = va_arg(args, unsigned int);
-	if (temp->number >= 4294967295)
-		temp->cast = LONG_LONG;
-	temp->spaces = 0;
-}
+	temp->type = INTU;
+	temp->unbr = va_arg(args, unsigned int);
+	//if (temp->unbr >= 4294967295)
+	//	temp->cast = LONG_LONG;
+	//temp->spaces = 0;
+}*/
 
 void	parse_the_values3(va_list args, t_type *temp, char *str, int i)
 {
@@ -84,25 +84,26 @@ void	parse_the_values3(va_list args, t_type *temp, char *str, int i)
 	parse_the_values3_2(args, temp, str, i);
 	if (str[i] == 'u' && !temp->type)
 	{
+		temp->type = INTU;
 		if (temp->plus)
 			temp->plus = 0;
-		if (temp->cast == HH_CAST)
+		if (temp->cast)
 		{
-			temp->type = INTI;
-			temp->number = va_arg(args, long long);
-			while (temp->number > 256)
-				temp->number -= 256;
-			temp->cast = 0;
-		}
-		else if (temp->cast == H_CAST)
-			parse_the_values3_3(args, temp);
-		else if (temp->cast == LONG_LONG || temp->cast == LONG ||
+			if (temp->cast == HH_CAST)
+				temp->unbr = va_arg(args, unsigned int);
+			if (temp->cast == H_CAST)
+				temp->unbr = va_arg(args, unsigned int);
+			if (temp->cast == LONG_LONG || temp->cast == LONG ||
 				temp->cast == J_CAST || temp->cast == Z_CAST)
-		{
-			temp->type = INTLU;
-			temp->lunbr = va_arg(args, long unsigned int);
+				{
+					temp->type = INTLU;
+					temp->lunbr = va_arg(args, uintmax_t);
+				}
+			//while (temp->number > 256)
+			//	temp->number -= 256;
+			//temp->cast = 0;
 		}
 		else
-			parse_the_values3_4(args, temp);
+			temp->unbr = va_arg(args, uintmax_t);
 	}
 }

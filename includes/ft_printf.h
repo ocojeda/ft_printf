@@ -95,7 +95,7 @@ char					*ft_hexa_itoa_capital(unsigned long long n);
 int						ft_putoctal(t_type *temp);
 int						ft_putoctal3(t_type *temp, int i, int total, char *str);
 int						ft_putoctal4(t_type *temp, char *str, int *i, int total);
-void					ft_putunbr(unsigned int unbr);
+void					ft_putunbr(unsigned long long unbr);
 void					ft_putlnbr(long int lnbr);
 int						ft_putwchar(wchar_t wc);
 int						ft_putwstr(t_type *temp, wchar_t *wstr, int everything,
