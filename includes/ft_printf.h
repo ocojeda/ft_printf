@@ -139,6 +139,6 @@ int						ft_putchar_spe(char c);
 int						set_presschar_for_int(t_type *temp, int total);
 int						print_number_inverse(t_type *temp,
 		long long t, int total);
-void					cast_manager3(t_type *temp, int t);
+void					cast_manager3(t_type *temp, long long t);
 void					reset_type(t_type *temp);
 #endif

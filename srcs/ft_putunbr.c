@@ -69,6 +69,9 @@ int		print_unumber(t_type *temp)
 		t /= 10;
 	}
 	all = total;
+	if (temp->no_pres_left == 2 && (temp->no_pres_right == 2 ||
+				temp->no_pres_right == 0) && temp->unbr == 0)
+		return (0);
 	if (temp->cero && temp->pres_left && !temp->pres_right)
 	{
 		temp->pres_right = temp->pres_left;

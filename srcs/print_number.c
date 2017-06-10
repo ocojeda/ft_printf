@@ -1,45 +1,218 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   print_number.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ocojeda- <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/08 14:22:17 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/06/08 14:54:06 by ocojeda-         ###   ########.fr       */
-/*                                                                            */
+/*																			*/
+/*														:::	  ::::::::   */
+/*   print_number.c									 :+:	  :+:	:+:   */
+/*													+:+ +:+		 +:+	 */
+/*   By: ocojeda- <marvin@42.fr>					+#+  +:+	   +#+		*/
+/*												+#+#+#+#+#+   +#+		   */
+/*   Created: 2017/06/08 14:22:17 by ocojeda-		  #+#	#+#			 */
+/*   Updated: 2017/06/08 14:54:06 by ocojeda-		 ###   ########.fr	   */
+/*																			*/
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int		cast_manager2(t_type *temp, int t, int total, int i)
+void			ft_printlongnbr(long long ll)
 {
-	cast_manager3(temp, t);
-	if (t < 0 && temp->pres_left > temp->pres_right + total && !temp->negative)
+	if (ll == LONG_LONG_MIN)
 	{
-		if (temp->cero)
-		{
-			if (temp->pres_left && !temp->pres_right)
-			{
-				temp->pres_right = temp->pres_left - 1;
-				temp->pres_left = 0;
-			}
-		}
-		temp->pres_left--;
-		i = set_presschar_for_int(temp, total);
-		(t < 0) ? ft_printlongnbr(-t) : ft_printlongnbr(t);
-		return (i + 1);
+		ft_putstr("-9223372036854775808");
+		return ;
 	}
-	return (0);
+	if (ll < 0)
+	{
+		ft_putchar('-');
+		ll = -ll;
+	}
+	if (ll >= 10)
+	{
+		ft_printlongnbr(ll / 10);
+		ft_printlongnbr(ll % 10);
+	}
+	else
+		ft_putchar(ll + '0');
 }
 
-int		choose_to_print_lr_forll(t_type *temp, int i, long long t, int total)
+int	 set_presschar_for_int2(t_type *temp, int total, int i, int a)
 {
-	if (temp->pres_left > temp->pres_right + total && temp->negative)
-		i = print_number_inverse(temp, t, total);
-	else
+	if (temp->plus && temp->number >= 0)
 	{
-		if (temp->number < 0)
+		ft_putchar('+');
+		a++;
+		if (temp->number == 0)
+			a++;
+	}
+	if (temp->number < 0)
+	{
+		ft_putchar('-');
+		temp->number *= -1;
+	}
+	if (temp->pres_right > total - temp->negative)
+		i = temp->pres_right - total + temp->negative;
+	while (i > 0)
+	{
+		i--;
+		ft_putchar('0');
+		a++;
+	}
+	return (a);
+}
+
+int	 set_presschar_for_int(t_type *temp, int total)
+{
+	int i;
+	int a;
+	short t;
+
+	t = temp->number;
+	i = 0;
+	if ((temp->pres_left < total + temp->spaces) && temp->spaces && 
+	t > 0)
+	{
+		i = temp->spaces;
+		a = temp->spaces;
+		while (a)
+		{
+			ft_putchar(' ');
+			a--;
+		}
+	}
+	a = i;
+	i = 0;
+	if (temp->pres_right < total)
+		temp->pres_right = total - temp->negative;
+	if (temp->pres_left > temp->pres_right)
+		i = temp->pres_left - temp->pres_right - temp->plus - temp->negative;
+	a += i;
+	while (i > 0)
+	{
+		ft_putchar(' ');
+		i--;
+	}
+	return (set_presschar_for_int2(temp, total, i , a) + total);
+}
+
+int	 set_presschar_for_int_inverse(t_type *temp, int total)
+{
+	int i;
+	int a;
+	short t;
+
+	t = temp->number;
+	i = 0;
+	if ((temp->pres_left < total + temp->spaces) && temp->spaces && t > 0)
+	{
+		i = temp->spaces;
+		a = temp->spaces;
+		while (a)
+		{
+			ft_putchar(' ');
+			a--;
+		}
+	}
+	a = i;
+	i = 0;
+	if (temp->pres_right < total)
+		temp->pres_right = total - temp->negative;
+	if (temp->pres_left > temp->pres_right)
+	{
+		i = temp->pres_left - temp->pres_right - temp->plus - temp->negative;
+		a += i;
+	}
+	while (i > 0)
+	{
+		ft_putchar(' ');
+		i--;
+	}
+	if (temp->pres_right > total - temp->negative)
+		i = temp->pres_right - total + temp->negative;
+	while (i > 0)
+	{
+		i--;
+		ft_putchar('0');
+		a++;
+	}
+	return (a + total);
+}
+
+int	 ft_putllnbr(t_type *temp)
+{
+	long long t;
+	int total;
+	int i;
+
+	i = 0;
+	total = 0;
+	t = temp->number;
+	while (t != 0)
+	{
+		total++;
+		t /= 10;
+	}
+	t = temp->number;
+	if (temp->cero)
+	{
+		if (temp->pres_left && !temp->pres_right && temp->plus)
+			temp->pres_right = temp->pres_left -1;
+		else if (temp->pres_left && !temp->pres_right)
+			temp->pres_right = temp->pres_left;
+	}
+	if (temp->no_pres_left == 1 && temp->no_pres_right == 1 && temp->plus == 0)
+	{
+		if (temp->spaces)
+		{
+			i = temp->spaces;
+			total += temp->spaces;
+			if (t < 0)
+			{
+				total--;
+				i--;
+			}
+			while (i--)
+				ft_putchar(' ');
+		}
+		ft_printlongnbr(t);
+		if (t < 0)
+			return total +1;
+		else if (t == 0)
+			return 1;
+		else
+			return (total);
+	}
+	if (temp->no_pres_left == 2 && (temp->no_pres_right == 2 || temp->no_pres_right == 0)
+	 && t == 0)
+			return (0);
+	
+	if (temp->pres_left > temp->pres_right + total && temp->negative)	
+	{
+		int temp1;
+		if (temp->pres_right > total)
+		{
+			temp1 = temp->pres_right - total;
+			if (temp->number > 0 && temp->plus)
+			{
+				ft_putchar('+');
+				total++;
+				temp->plus = 0;
+			}
+			while (temp1--)
+			{
+				temp->pres_right--;
+				ft_putchar('0');
+				total++;
+			}
+		}
+		ft_printlongnbr(t);
+		if (t < 0)
+		{
+			temp->number *= -1;
+			total++;
+		}
+		i = set_presschar_for_int_inverse(temp, total);
+	}
+	else 
+	{
+		if(temp->number < 0)
 		{
 			total++;
 			temp->negative = NEGATIVE;
@@ -52,35 +225,67 @@ int		choose_to_print_lr_forll(t_type *temp, int i, long long t, int total)
 	}
 	return (i);
 }
-
-int		ft_putllnbr(t_type *temp)
+int		cast_mng(t_type *temp, long long t, int total)
 {
-	long long	t;
-	int			total;
-	int			i;
-
-	i = 0;
-	total = 0;
-	t = temp->number;
+	if (temp->cast == HH_CAST)
+	{
+		if (temp->number < -128)
+		{
+			while (temp->number <= -128)
+			temp->number += 256;
+			//temp->number = t;
+		}
+		else if (temp->number >= 256)
+			while (t > 128)
+				temp->number -= 256;
+		else if(t >= 128)
+		{
+			//a faire une fonction que transforme le n dans une echelle de -128 a 128
+			temp->number = temp->number * -1;
+			//t = temp->number;
+		}
+	}
 	while (t != 0)
 	{
 		total++;
 		t /= 10;
 	}
-	t = temp->number;
-	if ((i = cero_manager(temp, i, total, t)))
-		return (i);
-	if (temp->no_pres_left == 2 && (temp->no_pres_right == 2
-				|| temp->no_pres_right == 0) && t == 0)
-		return (0);
-	return (choose_to_print_lr_forll(temp, i, t, total));
+	return (total);
 }
-
-int		choose_to_print_lr_fori(t_type *temp, int i, long long t, int total)
+int		is_left(t_type *temp, int total, long long t, int i)
 {
-	if (temp->pres_left > temp->pres_right + total && temp->negative)
-		i = print_number_inverse(temp, t, total);
-	else
+	int temp1;
+
+	if (temp->pres_right > total)
+	{
+		temp1 = temp->pres_right - total;
+		if (temp->number > 0 && temp->plus)
+		{
+			ft_putchar('+');
+			total++;
+			temp->plus = 0;
+		}
+		while (temp1--)
+		{
+			temp->pres_right--;
+			ft_putchar('0');
+			total++;
+		}
+	}
+	ft_putnbr(t);
+	if (t < 0)
+	{
+		temp->number *= -1;
+		total++;
+	}
+	i = set_presschar_for_int_inverse(temp, total);
+	return (i);
+}
+int		choose_l_o_r(t_type *temp, int total, long long t, int i)
+{
+	if (temp->pres_left > temp->pres_right + total && temp->negative)	
+		i = is_left(temp, total, t, i);
+	else 
 	{
 		t = temp->number;
 		if (t < 0 && temp->cero && temp->pres_left)
@@ -91,40 +296,95 @@ int		choose_to_print_lr_fori(t_type *temp, int i, long long t, int total)
 			return (i);
 		}
 		i = set_presschar_for_int(temp, total);
-		//problem!!!
-		(temp->cero && temp->number == 0) ? i-- : ft_putnbr(temp->number);
-		if (temp->number < 0)
-			{
-				i++;
-			}
+		if (temp->cero && temp->number == 0)
+			i--;
+		else
+			ft_putnbr(temp->number);
+		if (t < 0)
+			  i++;
 	}
 	if (t == 0 && temp->pres_right)
 		i++;
 	return (i);
 }
 
+int		negative_press_right(t_type *temp, int total, int i)
+{
+	if (temp->cero)
+	{
+		if (temp->pres_left && !temp->pres_right)
+		{
+			temp->pres_right = temp->pres_left - 1;
+			temp->pres_left = 0;
+		}
+	}
+	temp->pres_left--;
+	i = set_presschar_for_int(temp, total);
+	if (temp->number < 0)
+		ft_putnbr(-temp->number);
+	else 
+		ft_putnbr(temp->number);
+	return (i + 1);
+}
+
+int		cero_manager_int(t_type *temp, int total, long long t, int i)
+{
+	if (temp->cero)
+	{
+		if (temp->pres_left && !temp->pres_right && temp->plus)
+			temp->pres_right = temp->pres_left -1;
+		else if (temp->pres_left && !temp->pres_right)
+			temp->pres_right = temp->pres_left;
+	}
+	if (temp->no_pres_left == 1 && temp->no_pres_right == 1 && temp->plus == 0)
+	{
+		if (temp->spaces)
+		{
+			i = temp->spaces;
+			total += temp->spaces;
+			if (t < 0)
+			{
+				total--;
+				i--;
+			}
+			while (i--)
+				ft_putchar(' ');
+		}
+		ft_putnbr(temp->number);
+		if (t < 0)
+			return (total + 1);
+		else if (t == 0)
+			return (1);
+		else
+			return (total);
+	}
+	return(0);
+}
 int		print_number(t_type *temp)
 {
-	int			t;
-	int			total;
-	int			i;
+	int t;
+	int total;
+	int i;
 
 	i = 0;
 	total = 0;
-	if (temp->cast == LONG_LONG || temp->cast == LONG
-			|| temp->cast == Z_CAST || temp->cast == J_CAST)
-		return (ft_putllnbr(temp));
-	total = cast_for_number(temp, i, 0, temp->number);
 	t = temp->number;
-	if (temp->no_pres_left == 2 && (temp->no_pres_right == 2 ||
-				temp->no_pres_right == 0) && t == 0)
+	if (temp->cast == H_CAST && temp->number > 32767)
+			temp->number = temp->number * -1;
+	if (temp->cast == LONG_LONG || temp->cast == LONG 
+	|| temp->cast == Z_CAST || temp->cast == J_CAST)
+		return (ft_putllnbr(temp));
+	total = cast_mng(temp, t, 0);
+	t = temp->number;
+	cast_manager3(temp, t);
+	if (temp->number < 0 && temp->pres_left > temp->pres_right + total && !temp->negative)
+		return (negative_press_right(temp, total, i));
+	if (temp->no_pres_left == 2 && (temp->no_pres_right == 2 || temp->no_pres_right == 0)
+	 && temp->number == 0)
 		return (0);
-	if ((i = cast_manager2(temp, t, total, i)))
-		return (i);
 	if (temp->nopoint && temp->pres_right && !temp->pres_left && t < 0)
 		temp->pres_right--;
-	if ((i = cero_manager(temp, i, total, t)))
+	if((i = cero_manager_int(temp, total, t , i)))
 		return (i);
-	i = choose_to_print_lr_fori(temp, i, t, total);
-	return (i);
+	return (choose_l_o_r(temp, total, t, i));
 }

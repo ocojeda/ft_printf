@@ -82,7 +82,7 @@ int		parse_all(char *str, va_list args, int i, int everything)
 				}
 				reset_type(all);
 			}
-		if (str[i])
+		if(str[i])
 		{
 			e = 0;
 			while (str[i] != '%' && str[i])

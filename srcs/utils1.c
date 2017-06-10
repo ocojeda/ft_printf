@@ -18,6 +18,7 @@ int			ft_putchar_spe(char c)
 	return (1);
 }
 
+/*
 void		ft_printlongnbr(long long ll)
 {
 	if (ll == LONG_LONG_MIN)
@@ -107,4 +108,4 @@ int			cast_for_number(t_type *temp, int i, int total, int t)
 		i /= 10;
 	}
 	return (total);
-}
+}*/

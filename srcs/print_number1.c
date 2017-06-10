@@ -12,7 +12,8 @@
 
 #include "../includes/ft_printf.h"
 
-void		cast_manager3(t_type *temp, int t)
+
+void		cast_manager3(t_type *temp, long long t)
 {
 	if (temp->nopoint && !temp->pres_left && temp->pres_right && temp->negative)
 	{
@@ -30,7 +31,7 @@ void		cast_manager3(t_type *temp, int t)
 	if (t < 0 && temp->plus)
 		temp->plus = 0;
 }
-
+/*
 static int	set_presschar_for_int2(t_type *temp, int total, int i, int a)
 {
 	int t;
@@ -134,4 +135,4 @@ int			print_number_inverse(t_type *temp, long long t, int total)
 		total++;
 	}
 	return (set_presschar_for_int_inverse(temp, total, 0));
-}
+}*/
