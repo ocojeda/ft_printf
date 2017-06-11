@@ -61,8 +61,13 @@ void	parse_the_values2_2(va_list args, t_type *temp, char *str, int i)
 	{
 		if (temp->cast == LONG)
 		{
-			temp->type = WCHAR;
-			temp->wc = va_arg(args, wchar_t);
+			temp->type = WSTR;
+			temp->wstr = va_arg(args, wchar_t *);
+			if (temp->wstr == 0 || temp->wstr == NULL)
+			{
+				temp->type = STR;
+				ft_strcpy(temp->str1, "(null)");
+			}
 		}
 		else
 		{
@@ -120,7 +125,10 @@ void	parse_the_values4(va_list args, t_type *temp, char *str, int i)
 		if(temp->cast)
 		{
 			if (temp->cast == LONG_LONG || temp->cast == LONG)
-				temp->octal = va_arg(args, unsigned long long);
+				{
+					temp->type = OCTALM;
+					temp->octal = va_arg(args, unsigned long long);
+				}
 			if (temp->cast == J_CAST)
 				temp->octal = va_arg(args, uintmax_t);
 			if (temp->cast == Z_CAST)

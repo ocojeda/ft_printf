@@ -36,17 +36,25 @@ int main(void)
    //total = printf("%ld%ld", 0L, 42L);
    //ft_printf("--->%d\n", total);
   // ft_putnbr(INT_MAX+1);
-  short x = 100;
+  long long x  = 999999999999999;
   char *str = "-1";
-  
-   //total = ft_printf("%02d", NULL);
-   //ft_printf("--->total = %d\n", total);
 
-   total = ft_printf("{%+03d}", 0);
+   total = ft_printf("%2.9p", 1234567);
    ft_printf("--->total = %d\n", total);
-   
-   total = printf("{%+03d}", 0);
+
+
+   total = printf("%2.9p", 1234567);
    printf("--->total = %d\n", total);
+
+   /*
+   total = ft_printf("%ho", -42);
+   ft_printf("--->total = %d\n", total);
+
+
+   total = printf("%ho", -42);
+   printf("--->total = %d\n", total);
+*/
+   //while()
    /*
    total = ft_printf("{%010d}", -42);
    ft_printf("--->total = %d\n", total);

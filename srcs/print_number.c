@@ -35,6 +35,9 @@ void			ft_printlongnbr(long long ll)
 
 int	 set_presschar_for_int2(t_type *temp, int total, int i, int a)
 {
+	int t;
+
+	t = temp->number;
 	if (temp->plus && temp->number >= 0)
 	{
 		ft_putchar('+');
@@ -42,7 +45,7 @@ int	 set_presschar_for_int2(t_type *temp, int total, int i, int a)
 		if (temp->number == 0)
 			a++;
 	}
-	if (temp->number < 0)
+	if (t < 0)
 	{
 		ft_putchar('-');
 		temp->number *= -1;
@@ -233,17 +236,27 @@ int		cast_mng(t_type *temp, long long t, int total)
 		{
 			while (temp->number <= -128)
 			temp->number += 256;
+			t = temp->number;
 			//temp->number = t;
 		}
-		else if (temp->number >= 256)
-			while (t > 128)
-				temp->number -= 256;
-		else if(t >= 128)
-		{
+		else if (temp->number >= 128)
+			{
+				while (temp->number >= 128)
+					temp->number -= 256;
+				t = temp->number;
+			}
+		//else if(t >= 128)
+		//{
 			//a faire une fonction que transforme le n dans une echelle de -128 a 128
-			temp->number = temp->number * -1;
+		//	temp->number = temp->number * -1;
 			//t = temp->number;
-		}
+		//}
+	}
+	if (temp->cast == H_CAST && temp->number > 32767)
+	{
+		while(temp->number > 32767)
+			temp->number -= 32768*2;
+		t = temp->number;
 	}
 	while (t != 0)
 	{
@@ -369,15 +382,13 @@ int		print_number(t_type *temp)
 	i = 0;
 	total = 0;
 	t = temp->number;
-	if (temp->cast == H_CAST && temp->number > 32767)
-			temp->number = temp->number * -1;
 	if (temp->cast == LONG_LONG || temp->cast == LONG 
 	|| temp->cast == Z_CAST || temp->cast == J_CAST)
 		return (ft_putllnbr(temp));
 	total = cast_mng(temp, t, 0);
 	t = temp->number;
 	cast_manager3(temp, t);
-	if (temp->number < 0 && temp->pres_left > temp->pres_right + total && !temp->negative)
+	if (t < 0 && (temp->pres_left > temp->pres_right + total) && !temp->negative)
 		return (negative_press_right(temp, total, i));
 	if (temp->no_pres_left == 2 && (temp->no_pres_right == 2 || temp->no_pres_right == 0)
 	 && temp->number == 0)

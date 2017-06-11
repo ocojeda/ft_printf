@@ -84,17 +84,15 @@ int		ft_puthexa(t_type *temp)
 		temp->nopoint = 0;
 	}
 	if (temp->no_pres_left == 2 && (temp->no_pres_right == 2 ||
-				temp->no_pres_right == 0) && temp->hexa == 0 &&
-			(temp->type == HEXA || temp->type == HEXAM))
+				temp->no_pres_right == 0) && temp->hexa == 0)
 		return (0);
-	if ((temp->type == HEXA || temp->type == HEXAM) && temp->hexa == 0
-			&& temp->nopoint)
+	if (temp->hexa == 0	&& temp->nopoint)
 		return (0);
 	ft_puthexacast(temp);
 	if (temp->type == HEXAM)
 		str = ft_hexa_itoa_capital(temp->hexa);
-	else if (temp->type == POINTER_ADRESSE)
-		str = ft_hexa_itoa(temp->pointer);
+	//else if (temp->type == POINTER_ADRESSE)
+	//	str = ft_hexa_itoa(temp->pointer);
 	else
 		str = ft_hexa_itoa(temp->hexa);
 	i = 0;

@@ -55,6 +55,7 @@ int		parse_the_values(va_list args, t_type *temp, char *str, int i)
 	parse_the_values4(args, temp, str, i);
 	if (!temp->type)
 	{
+		reset_type2(temp); //ceci est peut etre en trop, a verfier avant corriger
 		temp->type = CHAR;
 		temp->c = str[i];
 	}

@@ -89,10 +89,15 @@ int			adresse_printer(t_type *temp)
 	i = 0;
 	total = 2;
 	nb = temp->pointer;
-	if (nb == 0 && temp->nopoint && temp->pres_right == 0)
+	temp->hash_tag = HASH_TAG;
+	if (temp->no_pres_left == 2 && (temp->no_pres_right == 2 ||
+				temp->no_pres_right == 0) && temp->pointer == 0)
 	{
 		ft_putstr("0x");
-		return (2);
+		if(temp->pres_right)
+			while(temp->pres_right--)
+				total += ft_putchar_spe('0');
+		return (total);
 	}
 	if ((str = ft_hexa_itoa(nb)))
 	{

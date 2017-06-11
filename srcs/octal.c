@@ -114,6 +114,11 @@ int			ft_putoctal(t_type *temp)
 	int		total;
 
 	i = 0;
+	total = temp->octal;
+	if(total < 0 && temp->cast == H_CAST)
+		temp->octal = 65494;
+//	if(temp->cast == H_CAST && )
+//		ft_putnbr(temp->octal);
 	if (temp->no_pres_left == 2 && (temp->no_pres_right == 2 ||
 				!temp->no_pres_right) && !temp->octal &&
 			!temp->pres_left && !temp->hash_tag)

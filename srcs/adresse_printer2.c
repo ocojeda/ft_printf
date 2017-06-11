@@ -47,14 +47,11 @@ static int	set_presschar_forp2(t_type *temp, int all, int total)
 	if (temp->pres_left > temp->pres_right)
 		i = temp->pres_left - (temp->pres_right + temp->hash_tag);
 	all += i;
-	while (--i > 0)
-		ft_putchar(' ');
+	while (i > 0)
+		i -= ft_putchar_spe(' ');
 	if (temp->hash_tag)
 	{
-		if (temp->type == HEXAM)
-			ft_putstr("0X");
-		else
-			ft_putstr("0x");
+		ft_putstr("0x");
 		all += 2;
 	}
 	if (temp->pres_right > total)
@@ -77,6 +74,6 @@ int			set_presschar_forp(t_type *temp, int total)
 		all += 2;
 	}
 	if (temp->pres_left > total || temp->pres_right > total)
-		set_presschar_forp2(temp, all, total);
+		all = set_presschar_forp2(temp, all, total);
 	return (all + total);
 }

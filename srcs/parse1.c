@@ -99,8 +99,6 @@ void	parse_the_values3(va_list args, t_type *temp, char *str, int i)
 					temp->type = INTLU;
 					temp->lunbr = va_arg(args, uintmax_t);
 				}
-			//while (temp->number > 256)
-			//	temp->number -= 256;
 			//temp->cast = 0;
 		}
 		else

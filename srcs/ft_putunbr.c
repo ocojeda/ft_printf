@@ -62,7 +62,14 @@ int		print_unumber(t_type *temp)
 	int			all;
 
 	total = 0;
+
 	t = temp->unbr;
+	if(temp->cast == HH_CAST && temp->unbr >= 256)
+	{
+		while (temp->unbr >= 256)
+			temp->unbr -= 256;
+			t = temp->unbr;
+	}
 	while (t != 0)
 	{
 		total++;
