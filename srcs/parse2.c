@@ -24,22 +24,49 @@ int		parse_the_values2_1(va_list args, t_type *temp, char *str, int i)
 			if(temp->cast == HH_CAST || temp->cast == H_CAST )
 				temp->number = va_arg(args, int);
 			if(temp->cast == J_CAST)
-				temp->number = va_arg(args, intmax_t);
+				{
+					temp->type = INTL;
+					temp->lnbr = va_arg(args, intmax_t);
+				}
 			if(temp->cast == Z_CAST)
-				temp->number = va_arg(args, size_t);
+				{
+					temp->type = INTL;
+					temp->lnbr = va_arg(args, size_t);
+				}
 			if(temp->cast == LONG)
-				temp->number = va_arg(args, long int);
+				{
+					temp->type = INTL;
+					temp->lnbr = va_arg(args, long long );
+				}
 			if(temp->cast == LONG_LONG)
-				temp->number = va_arg(args, long long );
+				{
+					temp->type = INTL;
+					temp->lnbr = va_arg(args, long long );
+				}
 		}
 		else 
-			temp->number = va_arg(args, intmax_t);
+			temp->number = va_arg(args, int);
 	}
 	if (str[i] == 'D' && !temp->type)
 	{
-		temp->type = INTI;
-		temp->cast = LONG_LONG;
-		temp->number = va_arg(args, long long);
+		temp->type = INTL;
+		if(temp->cast)
+		{
+			if(temp->cast == HH_CAST || temp->cast == H_CAST )
+				temp->lnbr = va_arg(args, long long);	
+			if(temp->cast == J_CAST)
+				temp->lnbr = va_arg(args, intmax_t);
+			if(temp->cast == Z_CAST)
+				temp->lnbr = va_arg(args, size_t);
+			if(temp->cast == LONG)
+				temp->lnbr = va_arg(args, long long );
+				
+			if(temp->cast == LONG_LONG)
+				temp->lnbr = va_arg(args, long long );
+				
+		}
+		else 
+			temp->lnbr = va_arg(args, long long);
 	}
 	if (str[i] == 'S' && !temp->type)
 	{

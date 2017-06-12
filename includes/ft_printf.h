@@ -52,8 +52,8 @@ typedef struct			s_type
 	short				type;
 	unsigned int		unbr;
 	long unsigned int	lunbr;
-	long int			lnbr;
-	long long			number;
+	long long 			lnbr;
+	int					number;
 	unsigned long long	octal;
 	unsigned long long	hexa;
 	unsigned long		pointer;
