@@ -14,6 +14,18 @@
 
 int		print_string3(t_type *temp, int total, int i, char *str_temp)
 {
+	/*ft_putnbr(temp->pres_right);
+	ft_putnbr(temp->pres_left);
+	ft_putnbr(temp->cero);
+	ft_putnbr(total);*/
+	if(temp->cero && temp->pres_left > total)
+	{
+		i = temp->pres_left - total;
+		while(i--)
+			total += ft_putchar_spe('0');
+		ft_putstr(str_temp);
+		return total;
+	}
 	i = temp->pres_left - total;
 	if (temp->negative)
 	{
@@ -39,6 +51,22 @@ int		print_string3(t_type *temp, int total, int i, char *str_temp)
 
 int		print_string2(t_type *temp, int i)
 {
+	
+	if(temp->pres_left && temp->pres_right == 0 && temp->cero)
+	{
+		//ft_putchar('@');
+		//ft_putnbr(temp->pres_left);
+		//ft_putnbr(temp->pres_right);
+		//ft_putnbr(temp->negative);
+		//ft_putnbr(temp->cero);
+		i = temp->pres_left;
+		while (i > 0)
+		{
+			ft_putchar('0');
+			i--;
+		}
+		return (temp->pres_left);	
+	}
 	i = temp->pres_left;
 	while (i > 0)
 	{
@@ -56,6 +84,8 @@ int		print_string(t_type *temp, int everything)
 
 	total = ft_strlen(temp->str1);
 	i = 0;
+	
+	
 	if (temp->pres_right && temp->pres_right < total)
 	{
 		str_temp = ft_strsub(temp->str1, 0, temp->pres_right);
@@ -65,6 +95,24 @@ int		print_string(t_type *temp, int everything)
 		return (print_string2(temp, i));
 	else
 		str_temp = ft_strdup(temp->str1);
+	//if (temp->cero)
+	//{
+	//	if 
+	//	(temp->pres_left && !temp->pres_right)
+	//	{	temp->pres_right = temp->pres_left;
+	//		temp->pres_left = 0;
+	//	}
+	//}
+		/*
+	if(temp->pres_left && temp->pres_right == 0 && temp->cero)
+	{
+		temp->pres_right = temp->pres_left;
+		temp->pres_left = 0;
+	}*//*
+	ft_putnbr(temp->pres_left);
+	ft_putnbr(temp->pres_right);
+	ft_putnbr(temp->negative);
+	ft_putnbr(temp->cero);*/
 	if (temp->pres_left > total)
 		return (print_string3(temp, total, i, str_temp));
 	else if (temp->pres_right)

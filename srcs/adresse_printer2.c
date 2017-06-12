@@ -17,6 +17,7 @@ int			set_presschar_forprev(t_type *temp, int total)
 	int	i;
 	int all;
 
+
 	all = 0;
 	i = -1;
 	if (temp->pres_left > total || temp->pres_right > total)
@@ -26,8 +27,8 @@ int			set_presschar_forprev(t_type *temp, int total)
 		if (temp->pres_left > temp->pres_right)
 			i = temp->pres_left - (temp->pres_right + temp->hash_tag);
 		all += i;
-		while (--i > 0)
-			ft_putchar(' ');
+		while (i > 0)
+			i -= ft_putchar_spe(' ');
 		if (temp->pres_right > total)
 			i = temp->pres_right - total;
 		all += i;

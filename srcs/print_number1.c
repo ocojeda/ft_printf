@@ -13,7 +13,7 @@
 #include "../includes/ft_printf.h"
 
 
-void		cast_manager3(t_type *temp, long long t)
+void		cast_manager3(t_type *temp, int t)
 {
 	if (temp->nopoint && !temp->pres_left && temp->pres_right && temp->negative)
 	{

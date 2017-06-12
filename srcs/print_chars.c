@@ -48,7 +48,7 @@ int		print_chars3(t_type *temp, int everything)
 
 int		print_chars2(t_type *temp, int everything)
 {
-	ft_putnbr(temp->nopoint);
+	//ft_putnbr(temp->nopoint);
 	temp->pres_right--;
 	while (temp->pres_right--)
 	{
@@ -84,6 +84,17 @@ int		print_chars(t_type *temp)
 			return (everything + 1);
 		}
 	}*/
+	
+	if(temp->pres_left && temp->pres_right == 0 && temp->cero)
+	{
+		temp->pres_right = temp->pres_left;
+		temp->pres_left = 0;
+		//if(temp->c == 0)
+			temp->nopoint = 1;
+	}
+	//ft_putnbr(temp->pres_left);
+	//ft_putnbr(temp->pres_right);
+	//ft_putnbr(temp->cero);
 	if (temp->nopoint && temp->pres_right)
 		return (print_chars2(temp, 0));
 	else if (temp->negative)

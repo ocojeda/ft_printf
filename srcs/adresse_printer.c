@@ -55,6 +55,7 @@ char		*ft_hexa_itoa(unsigned long long n)
 int			adresse_printer3(t_type *temp, int i, char *str, int total)
 {
 	temp->hash_tag = HASH_TAG;
+	//ft_putnbr(total);
 	total = set_presschar_forp(temp, total);
 	if (str[0] == '\0')
 	{
@@ -90,11 +91,7 @@ int			adresse_printer(t_type *temp)
 	t = temp->pointer;
 	total = 2;
 	nb = temp->pointer;
-	if(temp->pres_left == 0 && temp->pres_right == 0 && temp->pointer == 0)
-	{
-		ft_putstr("0x0");
-		return (total+1);
-	}
+	
 	if (temp->no_pres_left == 2 && (temp->no_pres_right == 2 ||
 				temp->no_pres_right == 0) && temp->pointer == 0)
 	{
@@ -104,7 +101,12 @@ int			adresse_printer(t_type *temp)
 				total += ft_putchar_spe('0');
 		return (total);
 	}
-	if ((str = ft_hexa_itoa(nb)))
+	if(temp->pres_left == 0 && temp->pres_right == 0 && temp->pointer == 0)
+	{
+		ft_putstr("0x0");
+		return (total+1);
+	}
+		if ((str = ft_hexa_itoa(nb)))
 	{
 		total = ft_strlen(str);
 		if(temp->pres_left < temp->pres_right + total)
@@ -112,7 +114,7 @@ int			adresse_printer(t_type *temp)
 				temp->pres_left = 0;
 				temp->pres_right++;
 			}
-		if (temp->pres_left > total && temp->pres_right == 0 && temp->negative)
+		if (temp->pres_left >= total && temp->pres_right == 0 && temp->negative)
 			total = adresse_printer2(temp, 0, str, total);
 		else if (str)
 			total = adresse_printer3(temp, 0, str, total);

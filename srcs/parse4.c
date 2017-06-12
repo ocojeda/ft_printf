@@ -66,8 +66,8 @@ int				precission_handler1(char *str, int i, t_type *temp, int e)
 	}
 	else if (str[i] >= '0' && str[i] <= '9' && str[i])
 	{
-		//if(str[i] == '0')
-		//	temp->cero = 1;
+		if(str[i] == '0')
+			temp->cero = 1;
 		while (str[i] >= '0' && str[i] <= '9' && str[i])
 			increase_one(&i, &e);
 		str1 = ft_strsub(str, j, e);

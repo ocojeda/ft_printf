@@ -55,11 +55,15 @@ int		parse_the_values(va_list args, t_type *temp, char *str, int i)
 		return (i);
 	parse_the_values3(args, temp, str, i);
 	parse_the_values4(args, temp, str, i);
+	
 	if (!temp->type)
 	{
-		//reset_type2(temp); //ceci est peut etre en trop, a verfier avant corriger
 		temp->type = CHAR;
-		temp->c = str[i];
+		temp->c = str[i];/*
+		ft_putnbr(temp->pres_left);
+		ft_putnbr(temp->pres_right);
+		ft_putnbr(temp->cero);
+		ft_putnbr(temp->type);*/
 	}
 	return (i + 1);
 }
@@ -74,6 +78,7 @@ int		parse_all(char *str, va_list args, int i, int everything)
 	
 	va_list	 list2;
 	va_copy(list2, args);
+	all->type = 0;
 	while (str[i])
 	{
 		if (str[i] == '%')

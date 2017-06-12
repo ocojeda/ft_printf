@@ -271,6 +271,10 @@ int		print_number(t_type *temp)
 	if (temp->cast == LONG_LONG || temp->cast == LONG 
 	|| temp->cast == Z_CAST || temp->cast == J_CAST)
 		return (ft_putllnbr(temp));
+	//ft_putnbr(temp->pres_left);
+	//ft_putnbr(temp->pres_right);
+	//ft_putnbr(temp->cero);
+
 	total = cast_mng(temp, t, 0);
 	t = temp->number;
 	cast_manager3(temp, t);

@@ -80,9 +80,9 @@ int main(void)
    printf("--->total = %d\n", total);
 */
 
- total = ft_printf("{%-12p}", &strlen);
+  total = ft_printf("%#.3o", 1);
    ft_printf("--->total = %d\n", total);
-   total = printf("{%-12p}", &strlen);
+   total = printf("%#.3o", 1);
    printf("--->total = %d\n", total);
 
 
