@@ -32,6 +32,7 @@
 # define OCTALM 12
 # define WCHAR 13
 # define WSTR 14
+# define SKIPIT 15
 # define HASH_TAG 2
 # define CURRENCY 1
 # define POSITIVE 1
@@ -70,9 +71,9 @@ typedef struct			s_type
 	short				hash_tag;
 	short				plus;
 	short				negative;
-	short				currency;
 	short				cast;
 	short				nopoint;
+	short				point;
 	short				cero;
 }						t_type;
 
@@ -111,7 +112,7 @@ void					parse_the_values3(va_list args, t_type *temp,
 		char *str, int i);
 void					parse_the_values4(va_list args, t_type *temp,
 		char *str, int i);
-void					parse_the_values2(va_list args, t_type *temp,
+int					parse_the_values2(va_list args, t_type *temp,
 		char *str, int i);
 int						ft_printf(char *format, ...);
 int						print_number(t_type *temp);
@@ -141,4 +142,5 @@ int						print_number_inverse(t_type *temp,
 		long long t, int total);
 void					cast_manager3(t_type *temp, long long t);
 void					reset_type(t_type *temp);
+int						ft_putllnbr(t_type *temp);
 #endif

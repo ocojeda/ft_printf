@@ -14,6 +14,8 @@
 
 int		cast_handler2(char *str, int i, t_type *temp)
 {
+	if(str[i])
+	{
 	if (str[i] == 'l')
 	{
 		if (str[i + 1] == 'l')
@@ -23,18 +25,27 @@ int		cast_handler2(char *str, int i, t_type *temp)
 		}
 		else
 			temp->cast = LONG;
+		i++;
 	}
 	if (str[i] == 'j')
+	{
 		temp->cast = J_CAST;
+		i++;
+	}
+	if (str[i] == 'j')
+	{
+		temp->cast = J_CAST;
+		i++;
+	}
+	}
 	return (i);
 }
 
 int		cast_handler(char *str, int i, t_type *temp)
 {
-	while (str[i] == 'h' || str[i] == 'l' ||
-			str[i] == 'j' || str[i] == 'z')
+	i = cast_handler2(str, i, temp);
+	if(str[i])
 	{
-		i = cast_handler2(str, i, temp);
 		if (str[i] == 'h')
 		{
 			if (str[i + 1] == 'h')
@@ -44,58 +55,61 @@ int		cast_handler(char *str, int i, t_type *temp)
 			}
 			else
 				temp->cast = H_CAST;
+		i++;
 		}
 		if (str[i] == 'z')
+		{
 			temp->cast = Z_CAST;
-		i++;
+			i++;
+		}
+		if (temp->plus && temp->spaces)
+			temp->spaces = 0;
 	}
-	if (temp->plus && temp->spaces)
-		temp->spaces = 0;
 	return (i);
 }
 
 int		option_handler2(char *str, int i, t_type *temp)
 {
-	while (str[i] == ' ')
+	while (str[i] == ' ' && str[i])
 	{
 		temp->spaces++;
 		i++;
 	}
-	if (str[i] == '#')
+	if(str[i])
 	{
-		temp->hash_tag = HASH_TAG;
-		i++;
-	}
-	if (str[i] == '$')
-	{
-		temp->currency = CURRENCY;
-		i++;
-	}
-	if (str[i] == '+')
-	{
-		temp->plus = POSITIVE;
-		i++;
+		if (str[i] == '#')
+		{
+			temp->hash_tag = HASH_TAG;
+			i++;
+		}
+		if (str[i] == '+')
+		{
+			temp->plus = POSITIVE;
+			i++;
+		}
 	}
 	return (i);
 }
 
 int		option_handler(char *str, int i, t_type *temp)
 {
-	if (str[i] == '0' && (str[i + 1] == '#' || str[i + 1] == '$' || str[i + 1]
-				== '+' || str[i + 1] == '-' || str[i + 1] == ' ' || (str[i + 1]
-					>= '0' && str[i + 1] <= '9')) && str[i + 1])
+	if(str[i])
 	{
-		temp->cero = 1;
-		i++;
-	}
-	while (str[i] == '#' || str[i] == '$' || str[i] == '+'
-			|| str[i] == '-' || str[i] == ' ')
-	{
-		i = option_handler2(str, i, temp);
-		if (str[i] == '-')
+		if (str[i] == '0' && (str[i + 1] == '#' || str[i + 1] == '+' ||
+		str[i + 1] == '-' || str[i + 1] == ' ' || (str[i + 1] >= '0' && 
+		str[i + 1] <= '9')) && str[i + 1])
 		{
-			temp->negative = NEGATIVE;
+			temp->cero = 1;
 			i++;
+		}
+		while ((str[i] == '#' || str[i] == '+' || str[i] == '-' || str[i] == ' ') && str[i])
+		{
+			i = option_handler2(str, i, temp);
+			if (str[i] == '-')
+			{
+				temp->negative = NEGATIVE;
+				i++;
+			}
 		}
 	}
 	return (precission_handler(str, i, temp));

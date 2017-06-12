@@ -12,7 +12,7 @@
 
 #include "../includes/ft_printf.h"
 
-void	parse_the_values2_1(va_list args, t_type *temp, char *str, int i)
+int		parse_the_values2_1(va_list args, t_type *temp, char *str, int i)
 {
 	if (str[i] == '%' && !temp->type)
 		temp->type = D_MOD;
@@ -50,7 +50,14 @@ void	parse_the_values2_1(va_list args, t_type *temp, char *str, int i)
 			temp->type = STR;
 			ft_strcpy(temp->str1, "(null)");
 		}
+		if(temp->negative || temp->pres_left || temp->pres_right)
+			return (-1);
+		if(temp->point && temp->pres_left == 0 && temp->pres_right == 0)
+			temp->type = SKIPIT;
+		//ft_putnbr(temp->nopoint);
+		//ft_putnbr(temp->cero);
 	}
+	return (i);
 }
 
 void	parse_the_values2_2(va_list args, t_type *temp, char *str, int i)
@@ -87,9 +94,9 @@ void	parse_the_values2_2(va_list args, t_type *temp, char *str, int i)
 	}
 }
 
-void	parse_the_values2(va_list args, t_type *temp, char *str, int i)
+int		parse_the_values2(va_list args, t_type *temp, char *str, int i)
 {
-	parse_the_values2_1(args, temp, str, i);
+	i = parse_the_values2_1(args, temp, str, i);
 	parse_the_values2_2(args, temp, str, i);
 	if (str[i] == 'x' && !temp->type)
 	{
@@ -110,6 +117,7 @@ void	parse_the_values2(va_list args, t_type *temp, char *str, int i)
 		else
 			temp->hexa = va_arg(args, unsigned int);
 	}
+	return (i);
 }
 
 void	parse_the_values4(va_list args, t_type *temp, char *str, int i)

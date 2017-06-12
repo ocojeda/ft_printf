@@ -39,19 +39,108 @@ int main(void)
   long long x  = 999999999999999;
   char *str = "-1";
 
-   total = ft_printf("%2.9p", 1234567);
+/* TRUE
+  total = ft_printf("{%10d}", 42);
    ft_printf("--->total = %d\n", total);
-
-
-   total = printf("%2.9p", 1234567);
+   total = printf("{%10d}", 42);
    printf("--->total = %d\n", total);
 
-   /*
-   total = ft_printf("%ho", -42);
+   total = ft_printf("{%4d}", 10000);
    ft_printf("--->total = %d\n", total);
+   total = printf("{%4d}", 10000);
+   printf("--->total = %d\n", total);
+
+ total = ft_printf("{%30d}", 10000);
+   ft_printf("--->total = %d\n", total);
+   total = printf("{%30d}", 10000);
+   printf("--->total = %d\n", total);
+
+   total = ft_printf("{%3c}", 0);
+   ft_printf("--->total = %d\n", total);
+   total = printf("{%3c}", 0);
+   printf("--->total = %d\n", total);
+
+   total = ft_printf("{%5p}", 0);
+   ft_printf("--->total = %d\n", total);
+   total = printf("{%5p}", 0);
+   printf("--->total = %d\n", total);
+
+  total = ft_printf("{%-13p}", &strlen);
+   ft_printf("--->total = %d\n", total);
+   total = printf("{%-13p}", &strlen);
+   printf("--->total = %d\n", total);
+
+   total = ft_printf("{%10R}");
+   ft_printf("--->total = %d\n", total);
+   total = printf("{%10R}");
+   printf("--->total = %d\n", total);
+   
+   total = ft_printf("{%-30S}", L"我是一只猫。");
+   ft_printf("--->total = %d\n", total);
+   total = printf("{%-30S}", L"我是一只猫。");
+   printf("--->total = %d\n", total);
+   
+   */
+
+   // TESTS A CORRIGER 
+   total = ft_printf("%0d", -42);
+   ft_printf("--->total = %d\n", total);
+   total = printf("%0d", -42);
+   printf("--->total = %d\n", total);
+
+  total = ft_printf("{%10d}", -42);
+   ft_printf("--->total = %d\n", total);
+   total = printf("{%10d}", -42);
+   printf("--->total = %d\n", total);
+
+    total = ft_printf("{%-12p}", &strlen);
+   ft_printf("--->total = %d\n", total);
+   total = printf("{%-12p}", &strlen);
+   printf("--->total = %d\n", total);
+
+  
+
+  // TEST 1
+  /*
+  total = ft_printf("{%.S}", L"我是一只猫。");
+   ft_printf("--->total = %d\n", total);
+   total = printf("{%.S}", L"我是一只猫。");
+   printf("--->total = %d\n", total);
 
 
-   total = printf("%ho", -42);
+  total = ft_printf("%p", 0);
+   ft_printf("--->total = %d\n", total);
+   total = printf("%p", 0);
+   printf("--->total = %d\n", total);
+
+   total = ft_printf("%s", "abc");
+   ft_printf("--->total = %d\n", total);
+   total = printf("%s", "abc");
+   printf("--->total = %d\n", total);
+
+   total = ft_printf("111%s333", "222");
+   ft_printf("--->total = %d\n", total);
+   total = printf("111%s333", "222");
+   printf("--->total = %d\n", total);
+
+   total = ft_printf("%s333", "222");
+   ft_printf("--->total = %d\n", total);
+   total = printf("%s333", "222");
+   printf("--->total = %d\n", total);
+   
+   total = ft_printf("111%s", "222");
+   ft_printf("--->total = %d\n", total);
+   total = printf("111%s", "222");
+   printf("--->total = %d\n", total);
+
+   total = ft_printf("{%s}", 0);
+   ft_printf("--->total = %d\n", total);
+   total = printf("{%s}", 0);
+   printf("--->total = %d\n", total);
+
+   total = ft_printf("{%s}", "");
+   ft_printf("--->total = %d\n", total);
+   total = printf("{%s}", "");
    printf("--->total = %d\n", total);
 */
    //while()

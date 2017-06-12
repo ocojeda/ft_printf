@@ -83,13 +83,18 @@ int			adresse_printer(t_type *temp)
 {
 	char			*str;
 	unsigned long	nb;
-	int				i;
 	int				total;
+	long long		t;
 
-	i = 0;
+	str = NULL;
+	t = temp->pointer;
 	total = 2;
 	nb = temp->pointer;
-	temp->hash_tag = HASH_TAG;
+	if(temp->pres_left == 0 && temp->pres_right == 0 && temp->pointer == 0)
+	{
+		ft_putstr("0x0");
+		return (total+1);
+	}
 	if (temp->no_pres_left == 2 && (temp->no_pres_right == 2 ||
 				temp->no_pres_right == 0) && temp->pointer == 0)
 	{
@@ -102,10 +107,15 @@ int			adresse_printer(t_type *temp)
 	if ((str = ft_hexa_itoa(nb)))
 	{
 		total = ft_strlen(str);
+		if(temp->pres_left < temp->pres_right + total)
+			{
+				temp->pres_left = 0;
+				temp->pres_right++;
+			}
 		if (temp->pres_left > total && temp->pres_right == 0 && temp->negative)
-			total = adresse_printer2(temp, i, str, total);
+			total = adresse_printer2(temp, 0, str, total);
 		else if (str)
-			total = adresse_printer3(temp, i, str, total);
+			total = adresse_printer3(temp, 0, str, total);
 	}
 	free(str);
 	return (total);

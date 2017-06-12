@@ -147,6 +147,9 @@ int	 ft_putllnbr(t_type *temp)
 	i = 0;
 	total = 0;
 	t = temp->number;
+		if (temp->no_pres_left == 2 && (temp->no_pres_right == 2 || temp->no_pres_right == 0)
+	 && temp->number == 0)
+		return (0);
 	while (t != 0)
 	{
 		total++;
@@ -382,6 +385,9 @@ int		print_number(t_type *temp)
 	i = 0;
 	total = 0;
 	t = temp->number;
+	if (temp->no_pres_left == 2 && (temp->no_pres_right == 2 || temp->no_pres_right == 0)
+	 && temp->number == 0)
+		return (0);
 	if (temp->cast == LONG_LONG || temp->cast == LONG 
 	|| temp->cast == Z_CAST || temp->cast == J_CAST)
 		return (ft_putllnbr(temp));
@@ -390,9 +396,6 @@ int		print_number(t_type *temp)
 	cast_manager3(temp, t);
 	if (t < 0 && (temp->pres_left > temp->pres_right + total) && !temp->negative)
 		return (negative_press_right(temp, total, i));
-	if (temp->no_pres_left == 2 && (temp->no_pres_right == 2 || temp->no_pres_right == 0)
-	 && temp->number == 0)
-		return (0);
 	if (temp->nopoint && temp->pres_right && !temp->pres_left && t < 0)
 		temp->pres_right--;
 	if((i = cero_manager_int(temp, total, t , i)))
