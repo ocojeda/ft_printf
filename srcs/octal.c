@@ -117,6 +117,8 @@ int			ft_putoctal(t_type *temp)
 	total = temp->octal;
 	if(total < 0 && temp->cast == H_CAST)
 		temp->octal = 65494;
+	
+	
 //	if(temp->cast == H_CAST && )
 //		ft_putnbr(temp->octal);
 	if (temp->no_pres_left == 2 && (temp->no_pres_right == 2 ||
@@ -129,9 +131,11 @@ int			ft_putoctal(t_type *temp)
 	ft_putocal2(temp);
 	str = ft_itoa_octal(temp->octal);
 	total = ft_strlen(str);
+	/*
 	ft_putnbr(temp->pres_left);
 	ft_putnbr(temp->pres_right);
-	ft_putnbr(total);
+	ft_putnbr(temp->cero);
+	ft_putnbr(total);*/
 	if (temp->negative == NEGATIVE && temp->pres_left > temp->pres_right)
 		i = ft_putoctal3(temp, i, total, str);
 	else if (ft_putoctal4(temp, str, &i, total))

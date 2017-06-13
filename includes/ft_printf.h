@@ -6,7 +6,7 @@
 /*   By: ocojeda- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/08 17:26:29 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/06/08 17:46:01 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/06/13 03:59:17 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,15 @@
 # define OCTALM 12
 # define WCHAR 13
 # define WSTR 14
-# define SKIPIT 15
 # define HASH_TAG 2
-# define CURRENCY 1
 # define POSITIVE 1
 # define NEGATIVE 1
-# define LONG_LONG 2
-# define LONG 1
-# define UNSIGNED 5
-# define UNSIGNED_CHAR 3
-# define UNSIGNED_SHORT_INT 4
 # define H_CAST 6
 # define HH_CAST 7
 # define J_CAST 8
 # define Z_CAST 9
+# define LONG_LONG 10
+# define LONG 11
 
 typedef struct			s_type
 {
@@ -135,6 +130,10 @@ int						ft_wputstr(wchar_t *str);
 int						cero_manager(t_type *temp, int i,
 		int total, long long t);
 int						cast_for_number(t_type *temp, int i, int total, int t);
+int						set_presschar_for_long(t_type *temp, int total);
+void    				cero_mng_foriandl(t_type *temp);
+int         			set_presschar_for_long_inverse(t_type *temp,
+		int total);
 void					ft_printlongnbr(long long ll);
 int						ft_putchar_spe(char c);
 int						set_presschar_for_int(t_type *temp, int total);
@@ -143,4 +142,12 @@ int						print_number_inverse(t_type *temp,
 void					cast_manager3(t_type *temp, int t);
 void					reset_type(t_type *temp);
 int						ft_putllnbr(t_type *temp);
+int						cero_manager_forptr(t_type *temp, int total);
+int						total_int(int t, int total);
+int						cero_manager_int(t_type *temp, int total,
+		int t, int i);
+int						set_presschar_for_int_inverse(t_type *temp, int total);
+int						set_presschar_for_int(t_type *temp, int total);
+int						total_long(long long t, int total);
+
 #endif

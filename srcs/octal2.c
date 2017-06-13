@@ -13,19 +13,27 @@
 #include "ft_printf.h"
 
 int		set_presschar_octal2(t_type *temp, int i, int all, int total)
-{
+{/*
+	ft_putchar('@');
+	ft_putnbr(temp->pres_left);
+	ft_putnbr(temp->pres_right);
+	ft_putnbr(i);
+	ft_putnbr(total);
+	ft_putchar('@');*/
 	while (i > 0)
 	{
 		ft_putchar(' ');
 		i--;
 	}
-	if (temp->hash_tag && !temp->negative)
+	if (temp->hash_tag && !temp->negative && temp->octal != 0)
 	{
 		ft_putstr("0");
+		if (temp->pres_right)
+			temp->pres_right--;	
 		all++;
 	}
 	if (temp->pres_right > total)
-		i = temp->pres_right - total;
+		i = temp->pres_right - total ;
 	all += i;
 	while (i > 0)
 	{

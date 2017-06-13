@@ -80,9 +80,9 @@ int main(void)
    printf("--->total = %d\n", total);
 */
 
-  total = ft_printf("%#.3o", 1);
+  total = ft_printf("{%05.S}", L"42 c est cool");
    ft_printf("--->total = %d\n", total);
-   total = printf("%#.3o", 1);
+   total = printf("{%05.S}", L"42 c est cool");
    printf("--->total = %d\n", total);
 
 

@@ -6,47 +6,45 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 08:30:48 by myernaux          #+#    #+#             */
-/*   Updated: 2017/06/07 15:14:17 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/06/13 04:16:47 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-
+int		smalldparser(va_list args, t_type *temp, int i)
+{
+	temp->type = INTI;
+	if(temp->cast)
+	{
+		if(temp->cast == HH_CAST || temp->cast == H_CAST )
+			temp->number = va_arg(args, int);
+		else 
+		{
+			temp->type = INTL;
+			if(temp->cast == J_CAST)
+				temp->lnbr = va_arg(args, intmax_t);
+			else if(temp->cast == Z_CAST)
+				temp->lnbr = va_arg(args, size_t);
+			else if(temp->cast == LONG)
+				temp->lnbr = va_arg(args, long long );
+			else (temp->cast == LONG_LONG)
+				temp->lnbr = va_arg(args, long long );
+			return (i);
+		}
+	}
+	else 
+		temp->number = va_arg(args, int);
+	return (i);
+}
 int		parse_the_values2_1(va_list args, t_type *temp, char *str, int i)
 {
 	if (str[i] == '%' && !temp->type)
-		temp->type = D_MOD;
-	if ((str[i] == 'd' || str[i] == 'i') && !temp->type)
 	{
-		temp->type = INTI;
-		if(temp->cast)
-		{
-			if(temp->cast == HH_CAST || temp->cast == H_CAST )
-				temp->number = va_arg(args, int);
-			if(temp->cast == J_CAST)
-				{
-					temp->type = INTL;
-					temp->lnbr = va_arg(args, intmax_t);
-				}
-			if(temp->cast == Z_CAST)
-				{
-					temp->type = INTL;
-					temp->lnbr = va_arg(args, size_t);
-				}
-			if(temp->cast == LONG)
-				{
-					temp->type = INTL;
-					temp->lnbr = va_arg(args, long long );
-				}
-			if(temp->cast == LONG_LONG)
-				{
-					temp->type = INTL;
-					temp->lnbr = va_arg(args, long long );
-				}
-		}
-		else 
-			temp->number = va_arg(args, int);
+		temp->type = D_MOD;
+		return (i);
 	}
+	if ((str[i] == 'd' || str[i] == 'i'))
+		return(smalldparser(args, temp, i));
 	if (str[i] == 'D' && !temp->type)
 	{
 		temp->type = INTL;
@@ -77,10 +75,18 @@ int		parse_the_values2_1(va_list args, t_type *temp, char *str, int i)
 			temp->type = STR;
 			ft_strcpy(temp->str1, "(null)");
 		}
-		if(temp->negative || temp->pres_left || temp->pres_right)
-			return (-1);
-		if(temp->point && temp->pres_left == 0 && temp->pres_right == 0)
-			temp->type = SKIPIT;
+		else if(temp->negative)
+		//	{
+				//ft_putnbr(temp->pres_right);
+				//temp->wstr = va_arg(args, wchar_t *);
+				//int e = ft_wstrlen(temp->wstr);
+				//ft_putnbr(e);
+				//if(e != 46)
+					return (-1);
+				//else return i;
+		//	}
+		//if(temp->point && temp->pres_left == 0 && temp->pres_right == 0)
+		//	temp->type = SKIPIT;
 		//ft_putnbr(temp->nopoint);
 		//ft_putnbr(temp->cero);
 	}

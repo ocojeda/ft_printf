@@ -6,17 +6,31 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 08:41:10 by myernaux          #+#    #+#             */
-/*   Updated: 2017/06/07 13:32:12 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/06/13 00:54:47 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+int			cero_manager_forptr(t_type *temp, int total)
+{
+	if (temp->no_pres_left == 2 && (temp->no_pres_right == 2 ||
+				temp->no_pres_right == 0))
+	{
+		ft_putstr("0x");
+		if (temp->pres_right)
+			while (temp->pres_right--)
+				total += ft_putchar_spe('0');
+		return (total);
+	}
+	ft_putstr("0x0");
+	return (total + 1);
+}
+
 int			set_presschar_forprev(t_type *temp, int total)
 {
 	int	i;
 	int all;
-
 
 	all = 0;
 	i = -1;

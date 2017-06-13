@@ -54,11 +54,6 @@ int		print_string2(t_type *temp, int i)
 	
 	if(temp->pres_left && temp->pres_right == 0 && temp->cero)
 	{
-		//ft_putchar('@');
-		//ft_putnbr(temp->pres_left);
-		//ft_putnbr(temp->pres_right);
-		//ft_putnbr(temp->negative);
-		//ft_putnbr(temp->cero);
 		i = temp->pres_left;
 		while (i > 0)
 		{
@@ -95,24 +90,6 @@ int		print_string(t_type *temp, int everything)
 		return (print_string2(temp, i));
 	else
 		str_temp = ft_strdup(temp->str1);
-	//if (temp->cero)
-	//{
-	//	if 
-	//	(temp->pres_left && !temp->pres_right)
-	//	{	temp->pres_right = temp->pres_left;
-	//		temp->pres_left = 0;
-	//	}
-	//}
-		/*
-	if(temp->pres_left && temp->pres_right == 0 && temp->cero)
-	{
-		temp->pres_right = temp->pres_left;
-		temp->pres_left = 0;
-	}*//*
-	ft_putnbr(temp->pres_left);
-	ft_putnbr(temp->pres_right);
-	ft_putnbr(temp->negative);
-	ft_putnbr(temp->cero);*/
 	if (temp->pres_left > total)
 		return (print_string3(temp, total, i, str_temp));
 	else if (temp->pres_right)

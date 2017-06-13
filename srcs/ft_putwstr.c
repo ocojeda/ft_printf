@@ -27,6 +27,16 @@ int		putwstr3(t_type *temp, int i, int total, wchar_t *str_temp)
 
 int		putwstr2(t_type *temp, int i)
 {
+	if(temp->pres_left && temp->pres_right == 0 && temp->cero)
+	{
+		i = temp->pres_left;
+		while (i > 0)
+		{
+			ft_putchar('0');
+			i--;
+		}
+		return (temp->pres_left);	
+	}
 	i = temp->pres_left;
 	while (i > 0)
 	{
@@ -41,8 +51,6 @@ int		ft_putwstr(t_type *temp, wchar_t *wstr, int everything, int i)
 	int		total;
 	wchar_t *str_temp;
 
-	//if(temp->negative)
-	//	return -1;
 	total = ft_wstrlen(wstr);
 	if (temp->pres_left == 0 && temp->pres_right == 0)
 		return (ft_wputstr(wstr));
