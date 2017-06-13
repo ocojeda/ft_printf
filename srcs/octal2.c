@@ -6,20 +6,14 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 08:52:57 by myernaux          #+#    #+#             */
-/*   Updated: 2017/06/07 17:09:45 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/06/13 06:00:37 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 int		set_presschar_octal2(t_type *temp, int i, int all, int total)
-{/*
-	ft_putchar('@');
-	ft_putnbr(temp->pres_left);
-	ft_putnbr(temp->pres_right);
-	ft_putnbr(i);
-	ft_putnbr(total);
-	ft_putchar('@');*/
+{
 	while (i > 0)
 	{
 		ft_putchar(' ');
@@ -29,11 +23,11 @@ int		set_presschar_octal2(t_type *temp, int i, int all, int total)
 	{
 		ft_putstr("0");
 		if (temp->pres_right)
-			temp->pres_right--;	
+			temp->pres_right--;
 		all++;
 	}
 	if (temp->pres_right > total)
-		i = temp->pres_right - total ;
+		i = temp->pres_right - total;
 	all += i;
 	while (i > 0)
 	{

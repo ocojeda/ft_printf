@@ -6,7 +6,7 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 16:14:25 by myernaux          #+#    #+#             */
-/*   Updated: 2017/06/07 14:35:35 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/06/13 05:37:06 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,11 @@ int		print_chars3(t_type *temp, int everything)
 			ft_putchar(' ');
 		}
 	}
-	everything++;
-	return (everything);
+	return (everything + 1);
 }
 
 int		print_chars2(t_type *temp, int everything)
 {
-	//ft_putnbr(temp->nopoint);
 	temp->pres_right--;
 	while (temp->pres_right--)
 	{
@@ -62,39 +60,12 @@ int		print_chars2(t_type *temp, int everything)
 
 int		print_chars(t_type *temp)
 {
-	//int everything;
-
-	//everything = 0;
-	//ft_putnbr(temp->pres_right);
-	//	ft_putnbr(temp->pres_left);
-	//	ft_putnbr(temp->c);
-	/*if(temp->cero)
-	{
-		if(temp->pres_left && !temp->pres_right)
-			{
-				temp->pres_right = temp->pres_left - 1;
-				temp->pres_left = 0;
-			}
-	//	if(temp->c == 0)
-	//		ft_putchar('h');
-		if(temp->c == 0 && temp->pres_right)
-		{
-			while(temp->pres_right--)
-				everything += ft_putchar_spe('0');
-			return (everything + 1);
-		}
-	}*/
-	
-	if(temp->pres_left && temp->pres_right == 0 && temp->cero)
+	if (temp->pres_left && temp->pres_right == 0 && temp->cero)
 	{
 		temp->pres_right = temp->pres_left;
 		temp->pres_left = 0;
-		//if(temp->c == 0)
-			temp->nopoint = 1;
+		temp->nopoint = 1;
 	}
-	//ft_putnbr(temp->pres_left);
-	//ft_putnbr(temp->pres_right);
-	//ft_putnbr(temp->cero);
 	if (temp->nopoint && temp->pres_right)
 		return (print_chars2(temp, 0));
 	else if (temp->negative)
@@ -104,5 +75,5 @@ int		print_chars(t_type *temp)
 	else if (temp->c == 0)
 		return (1);
 	else
-		return(ft_putchar_spe(temp->c));
+		return (ft_putchar_spe(temp->c));
 }

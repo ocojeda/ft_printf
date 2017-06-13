@@ -6,7 +6,7 @@
 /*   By: ocojeda- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/08 14:11:01 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/06/13 03:39:29 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/06/13 06:01:06 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void		cast_manager3(t_type *temp, int t)
 		temp->plus = 0;
 }
 
-void	cero_mng_foriandl(t_type *temp)
+void		cero_mng_foriandl(t_type *temp)
 {
 	if (temp->cero)
 	{

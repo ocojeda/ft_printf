@@ -6,7 +6,7 @@
 /*   By: ocojeda- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/08 17:00:55 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/06/08 17:24:11 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/06/13 06:19:38 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		putwstr3(t_type *temp, int i, int total, wchar_t *str_temp)
 
 int		putwstr2(t_type *temp, int i)
 {
-	if(temp->pres_left && temp->pres_right == 0 && temp->cero)
+	if (temp->pres_left && temp->pres_right == 0 && temp->cero)
 	{
 		i = temp->pres_left;
 		while (i > 0)
@@ -35,7 +35,7 @@ int		putwstr2(t_type *temp, int i)
 			ft_putchar('0');
 			i--;
 		}
-		return (temp->pres_left);	
+		return (temp->pres_left);
 	}
 	i = temp->pres_left;
 	while (i > 0)

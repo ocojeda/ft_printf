@@ -6,7 +6,7 @@
 /*   By: ocojeda- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/08 17:26:29 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/06/13 03:59:17 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/06/13 06:26:35 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct			s_type
 	short				type;
 	unsigned int		unbr;
 	long unsigned int	lunbr;
-	long long 			lnbr;
+	long long			lnbr;
 	int					number;
 	unsigned long long	octal;
 	unsigned long long	hexa;
@@ -72,7 +72,6 @@ typedef struct			s_type
 	short				cero;
 }						t_type;
 
-
 void					increase_one(int *a, int *b);
 int						print_chars(t_type *temp);
 int						ft_double_modulo_handler(t_type *temp);
@@ -90,7 +89,8 @@ int						ft_puthexa(t_type *temp);
 char					*ft_hexa_itoa_capital(unsigned long long n);
 int						ft_putoctal(t_type *temp);
 int						ft_putoctal3(t_type *temp, int i, int total, char *str);
-int						ft_putoctal4(t_type *temp, char *str, int *i, int total);
+int						ft_putoctal4(t_type *temp, char *str, int *i,
+		int total);
 void					ft_putunbr(unsigned long long unbr);
 void					ft_putlnbr(long int lnbr);
 int						ft_putwchar(wchar_t wc);
@@ -107,7 +107,7 @@ void					parse_the_values3(va_list args, t_type *temp,
 		char *str, int i);
 void					parse_the_values4(va_list args, t_type *temp,
 		char *str, int i);
-int					parse_the_values2(va_list args, t_type *temp,
+int						parse_the_values2(va_list args, t_type *temp,
 		char *str, int i);
 int						ft_printf(char *format, ...);
 int						print_number(t_type *temp);
@@ -131,8 +131,8 @@ int						cero_manager(t_type *temp, int i,
 		int total, long long t);
 int						cast_for_number(t_type *temp, int i, int total, int t);
 int						set_presschar_for_long(t_type *temp, int total);
-void    				cero_mng_foriandl(t_type *temp);
-int         			set_presschar_for_long_inverse(t_type *temp,
+void					cero_mng_foriandl(t_type *temp);
+int						set_presschar_for_long_inverse(t_type *temp,
 		int total);
 void					ft_printlongnbr(long long ll);
 int						ft_putchar_spe(char c);
@@ -149,5 +149,7 @@ int						cero_manager_int(t_type *temp, int total,
 int						set_presschar_for_int_inverse(t_type *temp, int total);
 int						set_presschar_for_int(t_type *temp, int total);
 int						total_long(long long t, int total);
-
+int						smalldparser(va_list args, t_type *temp, int i);
+int						capitaldparser(va_list args, t_type *temp, int i);
+int						o_parser(va_list args, t_type *temp, char *str, int i);
 #endif

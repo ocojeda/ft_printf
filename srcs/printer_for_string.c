@@ -6,7 +6,7 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/08 13:28:48 by myernaux          #+#    #+#             */
-/*   Updated: 2017/06/08 13:38:22 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/06/13 05:33:09 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,25 @@
 
 int		print_string3(t_type *temp, int total, int i, char *str_temp)
 {
-	/*ft_putnbr(temp->pres_right);
-	ft_putnbr(temp->pres_left);
-	ft_putnbr(temp->cero);
-	ft_putnbr(total);*/
-	if(temp->cero && temp->pres_left > total)
+	if (temp->cero && temp->pres_left > total)
 	{
 		i = temp->pres_left - total;
-		while(i--)
+		while (i--)
 			total += ft_putchar_spe('0');
 		ft_putstr(str_temp);
-		return total;
+		return (total);
 	}
 	i = temp->pres_left - total;
 	if (temp->negative)
 	{
 		ft_putstr(str_temp);
 		while (i > 0)
-		{
-			ft_putchar(' ');
-			i--;
-		}
+			i -= ft_putchar_spe(' ');
 	}
 	else
 	{
 		while (i > 0)
-		{
-			ft_putchar(' ');
-			i--;
-		}
+			i -= ft_putchar_spe(' ');
 		ft_putstr(str_temp);
 	}
 	free(str_temp);
@@ -51,23 +41,16 @@ int		print_string3(t_type *temp, int total, int i, char *str_temp)
 
 int		print_string2(t_type *temp, int i)
 {
-	
-	if(temp->pres_left && temp->pres_right == 0 && temp->cero)
+	if (temp->pres_left && temp->pres_right == 0 && temp->cero)
 	{
 		i = temp->pres_left;
 		while (i > 0)
-		{
-			ft_putchar('0');
-			i--;
-		}
-		return (temp->pres_left);	
+			i -= ft_putchar_spe('0');
+		return (temp->pres_left);
 	}
 	i = temp->pres_left;
 	while (i > 0)
-	{
-		ft_putchar(' ');
-		i--;
-	}
+		i -= ft_putchar_spe(' ');
 	return (temp->pres_left);
 }
 
@@ -79,8 +62,6 @@ int		print_string(t_type *temp, int everything)
 
 	total = ft_strlen(temp->str1);
 	i = 0;
-	
-	
 	if (temp->pres_right && temp->pres_right < total)
 	{
 		str_temp = ft_strsub(temp->str1, 0, temp->pres_right);

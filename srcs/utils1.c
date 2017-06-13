@@ -6,7 +6,7 @@
 /*   By: ocojeda- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 14:22:32 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/06/13 03:11:45 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/06/13 05:28:33 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int			ft_putchar_spe(char c)
 
 int			total_int(int t, int total)
 {
-	while(t)
+	while (t)
 	{
 		total++;
 		t /= 10;
@@ -30,7 +30,7 @@ int			total_int(int t, int total)
 
 int			total_long(long long t, int total)
 {
-	while(t)
+	while (t)
 	{
 		total++;
 		t /= 10;
@@ -38,7 +38,7 @@ int			total_long(long long t, int total)
 	return (total);
 }
 
-void	reset_type2(t_type *temp)
+void		reset_type2(t_type *temp)
 {
 	temp->plus = 0;
 	temp->negative = 0;
@@ -56,7 +56,7 @@ void	reset_type2(t_type *temp)
 	temp->octal = 0;
 }
 
-void	reset_type(t_type *temp)
+void		reset_type(t_type *temp)
 {
 	temp->type = 0;
 	temp->unbr = 0;

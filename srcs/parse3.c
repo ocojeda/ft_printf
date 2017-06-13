@@ -6,7 +6,7 @@
 /*   By: myernaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 14:44:24 by myernaux          #+#    #+#             */
-/*   Updated: 2017/06/07 14:47:40 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/06/13 05:23:15 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,29 @@
 
 int		cast_handler2(char *str, int i, t_type *temp)
 {
-	if(str[i])
+	if (str[i])
 	{
-	if (str[i] == 'l')
-	{
-		if (str[i + 1] == 'l')
+		if (str[i] == 'l')
 		{
-			temp->cast = LONG_LONG;
+			if (str[i + 1] == 'l')
+			{
+				temp->cast = LONG_LONG;
+				i++;
+			}
+			else
+				temp->cast = LONG;
 			i++;
 		}
-		else
-			temp->cast = LONG;
-		i++;
-	}
-	if (str[i] == 'j')
-	{
-		temp->cast = J_CAST;
-		i++;
-	}
-	if (str[i] == 'j')
-	{
-		temp->cast = J_CAST;
-		i++;
-	}
+		if (str[i] == 'j')
+		{
+			temp->cast = J_CAST;
+			i++;
+		}
+		if (str[i] == 'j')
+		{
+			temp->cast = J_CAST;
+			i++;
+		}
 	}
 	return (i);
 }
@@ -44,7 +44,7 @@ int		cast_handler2(char *str, int i, t_type *temp)
 int		cast_handler(char *str, int i, t_type *temp)
 {
 	i = cast_handler2(str, i, temp);
-	if(str[i])
+	if (str[i])
 	{
 		if (str[i] == 'h')
 		{
@@ -55,7 +55,7 @@ int		cast_handler(char *str, int i, t_type *temp)
 			}
 			else
 				temp->cast = H_CAST;
-		i++;
+			i++;
 		}
 		if (str[i] == 'z')
 		{
@@ -75,7 +75,7 @@ int		option_handler2(char *str, int i, t_type *temp)
 		temp->spaces++;
 		i++;
 	}
-	if(str[i])
+	if (str[i])
 	{
 		if (str[i] == '#')
 		{
@@ -93,16 +93,17 @@ int		option_handler2(char *str, int i, t_type *temp)
 
 int		option_handler(char *str, int i, t_type *temp)
 {
-	if(str[i])
+	if (str[i])
 	{
 		if (str[i] == '0' && (str[i + 1] == '#' || str[i + 1] == '+' ||
-		str[i + 1] == '-' || str[i + 1] == ' ' || (str[i + 1] >= '0' && 
-		str[i + 1] <= '9')) && str[i + 1])
+		str[i + 1] == '-' || str[i + 1] == ' ' || (str[i + 1] >= '0' &&
+			str[i + 1] <= '9')) && str[i + 1])
 		{
 			temp->cero = 1;
 			i++;
 		}
-		while ((str[i] == '#' || str[i] == '+' || str[i] == '-' || str[i] == ' ') && str[i])
+		while ((str[i] == '#' || str[i] == '+' ||
+					str[i] == '-' || str[i] == ' '))
 		{
 			i = option_handler2(str, i, temp);
 			if (str[i] == '-')

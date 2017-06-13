@@ -6,7 +6,7 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 08:37:00 by myernaux          #+#    #+#             */
-/*   Updated: 2017/06/08 15:28:46 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/06/13 05:26:04 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,6 @@ int				precission_handler1(char *str, int i, t_type *temp, int e)
 	j = i;
 	if (str[i] == '0' && str[i + 1] >= '0' && str[i + 1] <= '9' && str[i])
 	{
-		//if(str[i] == '0')
-		//	temp->cero = 1;
-		temp->pres_left = 0;
 		while (str[i] >= '0' && str[i] <= '9')
 			increase_one(&i, &e);
 		str1 = ft_strsub(str, j, e);
@@ -66,7 +63,7 @@ int				precission_handler1(char *str, int i, t_type *temp, int e)
 	}
 	else if (str[i] >= '0' && str[i] <= '9' && str[i])
 	{
-		if(str[i] == '0')
+		if (str[i] == '0')
 			temp->cero = 1;
 		while (str[i] >= '0' && str[i] <= '9' && str[i])
 			increase_one(&i, &e);
@@ -82,14 +79,9 @@ int				precission_handler(char *str, int i, t_type *temp)
 {
 	if ((str[i] >= '0' && str[i] <= '9') || str[i] == '.')
 	{
-		//ft_putchar(str[i]);
 		i = precission_handler1(str, i, temp, 0);
-		
 		if (str[i] == '.')
 			i = precission_handler2(str, i, temp);
-		//ft_putnbr(temp->point);
-		//else if (!temp->pres_right)
-		//	temp->pres_right = 0;
 	}
 	else
 	{

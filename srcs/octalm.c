@@ -6,7 +6,7 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 09:30:09 by myernaux          #+#    #+#             */
-/*   Updated: 2017/06/07 14:29:29 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/06/13 05:59:45 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,31 +32,35 @@ char		*ft_itoa_octal_capital(unsigned long long n)
 		x /= 8;
 		size++;
 	}
-	str = (char *)malloc(sizeof(str) * (size + 1));
-	if (str)
+	if ((str = (char *)malloc(sizeof(str) * (size + 1))))
 	{
 		str[size + 1] = '\0';
 		while (size >= 0)
 		{
 			x = n % 8;
-			str[size] = switch_octalm(x);
+			str[size--] = switch_octalm(x);
 			n /= 8;
-			size--;
 		}
 	}
 	return (str);
+}
+
+int			cero_mng_foroctal(t_type *temp)
+{
+	if (temp->no_pres_left == 2 && (temp->no_pres_right == 2 ||
+				!temp->no_pres_right) && !temp->octal &&
+			!temp->pres_left && !temp->hash_tag)
+		return (1);
+	return (0);
 }
 
 int			ft_putoctalm(t_type *temp)
 {
 	char	*str;
 	int		i;
-	int 	total;
+	int		total;
 
-	i = 0;
-	if (temp->no_pres_left == 2 && (temp->no_pres_right == 2 ||
-				!temp->no_pres_right) && !temp->octal &&
-			!temp->pres_left && !temp->hash_tag)
+	if ((i = cero_mng_foroctal(temp)))
 		return (0);
 	if (temp->no_pres_left && temp->no_pres_right && !temp->octal
 			&& !temp->nopoint)

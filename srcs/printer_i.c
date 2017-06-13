@@ -6,7 +6,7 @@
 /*   By: myernaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 14:36:55 by myernaux          #+#    #+#             */
-/*   Updated: 2017/06/13 01:18:37 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/06/13 05:35:03 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,17 @@ static int		printer2(t_type *temp)
 	return (0);
 }
 
-int		printer(t_type *all)
+int				printer(t_type *all)
 {
 	if (all->type == STR)
-		return(print_string(all, 0));
+		return (print_string(all, 0));
 	if (all->type == INTI)
-		return(print_number(all));
+		return (print_number(all));
 	if (all->type == HEXA)
-		return(ft_puthexa(all));
+		return (ft_puthexa(all));
 	if (all->type == HEXAM)
-		return(ft_puthexa(all));
+		return (ft_puthexa(all));
 	if (all->type == D_MOD)
-		return(ft_double_modulo_handler(all));
-	return(printer2(all));
+		return (ft_double_modulo_handler(all));
+	return (printer2(all));
 }

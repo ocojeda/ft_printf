@@ -6,13 +6,13 @@
 /*   By: ocojeda- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/08 15:29:48 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/06/08 15:42:50 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/06/13 05:46:48 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int		parse_the_values(va_list args, t_type *temp, char *str, int i)
+int			parse_the_values(va_list args, t_type *temp, char *str, int i)
 {
 	i = option_handler(str, i + 1, temp);
 	i = parse_the_values2(args, temp, str, i);
@@ -89,12 +89,12 @@ int			parse_all(char *str, va_list args, int i, int everything)
 	while (str[i])
 	{
 		if (str[i] == '%')
-			{
-				i = parse_the_values(args, all, str, i);
-				if (all->type >= 1 && all->type <= 14)
-					everything += printer(all);
-				reset_type(all);
-			}
+		{
+			i = parse_the_values(args, all, str, i);
+			if (all->type >= 1 && all->type <= 14)
+				everything += printer(all);
+			reset_type(all);
+		}
 		if (str[i])
 		{
 			everything = string_parser(all, str, &i, everything);
