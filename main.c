@@ -3,10 +3,11 @@
 
 int main(void)
 {
-  int total;
+  int total = 5898;
+  int c = 42;
 
  //TRUE
-  /* total = ft_printf("%0d lkasjdfhal;kjsbf;ajksbdfha;sdjbfa;skjbdflsadkjbfdskjbalskjbd", -42);
+   total = ft_printf("%0d lkasjdfhal;kjsbf;ajksbdfha;sdjbfa;skjbdflsadkjbfdskjbalskjbd", -42);
    ft_printf("--->total = %d\n", total);
    total = printf("%0d", -42);
    printf("--->total = %d\n", total);
@@ -48,7 +49,7 @@ int main(void)
    total = printf("{%-30S}", L"我是一只猫。");
    printf("--->total = %d\n", total);
    
-   */
+   
 
    // TESTS A CORRIGER 
    
@@ -70,7 +71,7 @@ int main(void)
   
    
   // TEST 1
-  /*
+  
   total = ft_printf("{%030S}", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B");
    ft_printf("--->total = %d\n", total);
    total = printf("{%030S}", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B");
@@ -120,7 +121,7 @@ total = ft_printf("{%5p}", 0);
    ft_printf("--->total = %d\n", total);
    total = printf("111%s", "222");
    printf("--->total = %d\n", total);
-   */
+  
    total = ft_printf("{%s}", 0);
    ft_printf("--->total = %d\n", total);
    total = printf("{%s}", 0);
@@ -148,17 +149,37 @@ total = ft_printf("{%10d}", -42);
    ft_printf("--->total = %d\n", total);
    total = printf("{%10d}", -42);
    printf("--->total = %d\n", total);
-total = ft_printf("{%3c}", 0);
+
+   total = ft_printf("%S", L"我是一只猫。");
    ft_printf("--->total = %d\n", total);
-   total = printf("{%3c}", 0);
+   total = printf("%S", L"我是一只猫。");
    printf("--->total = %d\n", total);
 
-/*   total = ft_printf("%s %d %p %% %S %D %i %o %O %u %U %x %X %c %C","bonjour", 42, &c, L"暖炉", LONG_MAX, 42, 42, 42, 100000, ULONG_MAX, 42, 42, 'c', L'플');
+   total = ft_printf("%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S",
+	L"Α α", L"Β β", L"Γ γ", L"Δ δ", L"Ε ε", L"Ζ ζ", L"Η η", L"Θ θ", L"Ι ι", L"Κ κ", L"Λ λ", L"Μ μ",
+	L"Ν ν", L"Ξ ξ", L"Ο ο", L"Π π", L"Ρ ρ", L"Σ σ", L"Τ τ", L"Υ υ", L"Φ φ", L"Χ χ", L"Ψ ψ", L"Ω ω", L"");
+   ft_printf("--->total = %d\n", total);
+   total = printf("%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S",
+	L"Α α", L"Β β", L"Γ γ", L"Δ δ", L"Ε ε", L"Ζ ζ", L"Η η", L"Θ θ", L"Ι ι", L"Κ κ", L"Λ λ", L"Μ μ",
+	L"Ν ν", L"Ξ ξ", L"Ο ο", L"Π π", L"Ρ ρ", L"Σ σ", L"Τ τ", L"Υ υ", L"Φ φ", L"Χ χ", L"Ψ ψ", L"Ω ω", L"");
+   printf("--->total = %d\n", total);
+
+   total = ft_printf("%S", L"我是一只猫。");
+   ft_printf("--->total = %d\n", total);
+   total = printf("%S", L"我是一只猫。");
+   printf("--->total = %d\n", total);
+
+   total = ft_printf("%S", L"我是一只猫。");
+   ft_printf("--->total = %d\n", total);
+   total = printf("%S", L"我是一只猫。");
+   printf("--->total = %d\n", total);
+
+   total = ft_printf("%s %d %p %% %S %D %i %o %O %u %U %x %X %c %C","bonjour", 42, &c, L"暖炉", LONG_MAX, 42, 42, 42, 100000, ULONG_MAX, 42, 42, 'c', L'플');
    ft_printf("--->total = %d\n", total);
    
    total = printf("%s %d %p %% %S %lD %i %o %O %u %lU %x %X %c %C","bonjour", 42, &c, L"暖炉", LONG_MAX, 42, 42, 42, 100000, ULONG_MAX, 42, 42, 'c', L'플');
-   printf("--->total = %d\n", total);*/
-/*
+   printf("--->total = %d\n", total);
+
 total = ft_printf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c \
 %c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\
 %c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c",
@@ -186,7 +207,7 @@ ft_putlnbr(UINT_MAX);
    ft_printf("--->total = %d\n", total);
    
    total = printf("%.4s", "42 is the answer");
-   printf("--->total = %d\n", total);*/
+   printf("--->total = %d\n", total);
 
    //total = ft_printf("% 3.0d", 9999);
    //printf("--->total = %d\n", total);
@@ -198,7 +219,7 @@ ft_putlnbr(UINT_MAX);
     //printf("%o %o %o %o %o\n", 1, 100, 999, 42, 999988888);
     //ft_printf("%O%O%O%O%O\n", 1, 100, 999, 42, 999988888);
     //printf("% Zoooo");
-  /*
+  
   ft_printf("\n");
   ft_printf("%%\n");
   ft_printf("%d\n", 42);
@@ -228,7 +249,7 @@ ft_putlnbr(UINT_MAX);
   ft_printf("%s%s\n", "test", "test");
   ft_printf("%s%s%s\n", "test", "test", "test");
   ft_printf("%C\n", 15000);
-  
+  /*
   while(1);*/
 
     return 0;
