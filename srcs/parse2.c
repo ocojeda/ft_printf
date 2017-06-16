@@ -60,7 +60,7 @@ void	parse_the_values2_2(va_list args, t_type *temp)
 		if (str1 == NULL)
 			ft_strcpy(temp->str1, "(null)");
 		else if (str1[0] == 0)
-			ft_bzero(temp->str1, 1000);
+			ft_bzero(temp->str1, BUFF_SIZE);
 		else
 			ft_strcpy(temp->str1, str1);
 	}

@@ -53,7 +53,7 @@ typedef struct			s_type
 	unsigned long long	hexa;
 	unsigned long		pointer;
 	double				fnumber;
-	char				str1[1000];
+	char				str1[BUFF_SIZE];
 	char				*str;
 	uintmax_t			c;
 	wchar_t				*wstr;
