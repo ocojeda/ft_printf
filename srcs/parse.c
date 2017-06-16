@@ -60,21 +60,13 @@ int			string_parser(t_type *all, char *str, int *i, int everything)
 	int e;
 
 	e = 0;
-	while (str[(*i)] != '%' && str[(*i)] && e < BUFF_SIZE)
+	while (str[(*i)] != '%' && str[(*i)])
 		increase_one(&e, i);
-	all->type = STR;
 	if (!(all->str = ft_strsub(str, (*i) - e, e)))
 		return (-1);
-	if (ft_strncpy(all->str1, all->str, e))
-	{
-		if (all->str)
-		{
-			free(all->str);
-			all->str1[e] = '\0';
-			e = printer(all);
-			everything += e;
-		}
-	}
+	ft_putstr(all->str);
+	everything += ft_strlen(all->str);
+	free(all->str);
 	return (everything);
 }
 
