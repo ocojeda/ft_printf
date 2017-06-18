@@ -118,10 +118,8 @@ int						set_presschar_for_int(t_type *temp, int total);
 int						set_presschar(t_type *temp, int total);
 int						print_string(t_type *temp, int everything);
 int						print_string6(int everything, char *str_temp);
-int						print_string5(t_type *temp, int i,
-		int everything, char *str_temp);
-int						print_string4(t_type *temp, int total,
-		int evr, char *str_temp);
+int						print_string5(t_type *temp, int i, int everything);
+int						print_string4(t_type *temp, int total, int evr);
 int						ft_wstrlen(wchar_t *s);
 wchar_t					*ft_wstrdup(wchar_t *s1);
 wchar_t					*ft_wstrsub(wchar_t *s, int start, size_t len);

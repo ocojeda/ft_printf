@@ -14,18 +14,21 @@
 
 int			parse_the_values(va_list args, t_type *temp, char *str, int i)
 {
-	i = option_handler(str, i + 1, temp);
+	i++;
+	i = option_handler(str, i, temp);
 	i = parse_the_values2(args, temp, str, i);
 	if (i == -1)
 		return (i);
 	parse_the_values3(args, temp, str, i);
 	parse_the_values4(args, temp, str, i);
-	if (!temp->type)
+	if (!temp->type && str[i])
 	{
 		temp->type = CHAR;
 		temp->c = str[i];
 	}
-	return (i + 1);
+	if(str[i])
+		i++;
+	return (i);
 }
 
 int			parse_checker(char *str, va_list args, t_type *all, int i)
@@ -41,7 +44,6 @@ int			parse_checker(char *str, va_list args, t_type *all, int i)
 			if (i == -1)
 			{
 				reset_type(all);
-				free(all);
 				return (1);
 			}
 			reset_type(all);
@@ -55,46 +57,45 @@ int			parse_checker(char *str, va_list args, t_type *all, int i)
 	return (0);
 }
 
-int			string_parser(t_type *all, char *str, int *i, int everything)
+int			string_parser(char *str, int *i, int everything)
 {
-	int e;
-
-	e = 0;
 	while (str[(*i)] != '%' && str[(*i)])
-		increase_one(&e, i);
-	if (!(all->str = ft_strsub(str, (*i) - e, e)))
-		return (-1);
-	ft_putstr(all->str);
-	everything += ft_strlen(all->str);
-	free(all->str);
+		{
+			everything += ft_putchar_spe(str[*i]);
+			*i = (*i) + 1;
+		}
 	return (everything);
 }
 
 int			parse_all(char *str, va_list args, int i, int everything)
 {
-	t_type	*all;
+	t_type	all;
+	int		temp;
 
-	if (!(all = (t_type *)malloc(sizeof(t_type))))
-		return (-1);
-	if (parse_checker(str, args, all, 0))
+	if (parse_checker(str, args, &all, 0))
 		return (-1);
 	while (str[i])
 	{
 		if (str[i] == '%')
 		{
-			i = parse_the_values(args, all, str, i);
-			if (all->type >= 1 && all->type <= 14)
-				everything += printer(all);
-			reset_type(all);
+			i = parse_the_values(args, &all, str, i);
+			//if (i == -1)
+			//	return (0);
+			//ft_putnbr(all.type);
+			if (all.type >= 1 && all.type <= 14)
+				temp = printer(&all);
+			if (temp == -1)
+				return (0);
+			everything += temp;
+			reset_type(&all);
 		}
 		if (str[i])
 		{
-			everything = string_parser(all, str, &i, everything);
-			if (everything == -1)
-				return (0);
+			everything = string_parser(str, &i, everything);
+			//if (everything == -1)
+			//	return (0);
 		}
-		reset_type(all);
+		reset_type(&all);
 	}
-	free(all);
 	return (everything);
 }

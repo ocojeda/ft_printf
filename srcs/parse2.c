@@ -30,10 +30,13 @@ int		parse_the_values2_1(va_list args, t_type *temp, char *str, int i)
 		if (temp->wstr == 0 || temp->wstr == NULL)
 		{
 			temp->type = STR;
-			temp->str = ft_strdup("(null)");
+			temp->str = "(null)\0";
 		}
-		else if (temp->negative)
+		//ft_putnbr(temp->point);
+		if (temp->negative)
 			return (-1);
+		if(temp->cero && !temp->point)
+			return -1;
 	}
 	return (i);
 }
@@ -49,7 +52,7 @@ void	parse_the_values2_2(va_list args, t_type *temp)
 		if (temp->wstr == 0 || temp->wstr == NULL)
 		{
 			temp->type = STR;
-			temp->str = ft_strdup("(null)");
+			temp->str = "(null)\0";
 		}
 		return ;
 	}
@@ -58,11 +61,11 @@ void	parse_the_values2_2(va_list args, t_type *temp)
 		temp->type = STR;
 		str1 = va_arg(args, char *);
 		if (str1 == NULL)
-			temp->str = ft_strdup("(null)");
+			temp->str = "(null)\0";
 		else if (str1[0] == 0)
-			temp->str = ft_strdup("");
+			temp->str = "\0";
 		else
-			temp->str = ft_strdup(str1);
+			temp->str = str1;
 	}
 }
 

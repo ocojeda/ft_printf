@@ -14,11 +14,12 @@
 
 void		cast_manager3(t_type *temp, int t)
 {
-	if (temp->nopoint && !temp->pres_left && temp->pres_right && temp->negative)
+	if (temp->cero && !temp->pres_left && temp->pres_right && temp->negative)
 	{
 		temp->pres_left = temp->pres_right;
 		temp->pres_right = 0;
 		temp->nopoint = 0;
+		temp->cero = 0;
 	}
 	if (temp->plus && t < 0 && temp->pres_left
 			&& !temp->pres_right && temp->cero)

@@ -77,11 +77,11 @@ int		ft_puthexa(t_type *temp)
 	char	*str;
 	int		i;
 
-	if (temp->nopoint && !temp->pres_left && temp->pres_right && temp->negative)
+	if (temp->cero && !temp->pres_left && temp->pres_right && temp->negative)
 	{
 		temp->pres_left = temp->pres_right - temp->hash_tag;
 		temp->pres_right = 0;
-		temp->nopoint = 0;
+		temp->cero = 0;
 	}
 	if (temp->no_pres_left == 2 && (temp->no_pres_right == 2 ||
 				temp->no_pres_right == 0) && temp->hexa == 0)

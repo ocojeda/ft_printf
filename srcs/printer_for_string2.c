@@ -19,7 +19,7 @@ int		print_string6(int everything, char *str_temp)
 	return (everything);
 }
 
-int		print_string5(t_type *temp, int i, int everything, char *str_temp)
+int		print_string5(t_type *temp, int i, int everything)
 {
 	while (temp->pres_right)
 	{
@@ -27,17 +27,15 @@ int		print_string5(t_type *temp, int i, int everything, char *str_temp)
 		i++;
 		temp->pres_right--;
 	}
-	free(str_temp);
-	free(temp->str);
 	return (everything);
 }
 
-int		print_string4(t_type *temp, int total, int evr, char *str_temp)
+int		print_string4(t_type *temp, int total, int evr)
 {
 	if (total < temp->pres_right)
 		total -= temp->pres_right;
 	if (total < 0)
-		total = ft_strlen(str_temp);
+		total = ft_strlen(temp->str);
 	if (temp->pres_right > total)
 		evr += total;
 	else

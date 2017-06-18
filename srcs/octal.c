@@ -64,11 +64,12 @@ int			ft_putoctal3(t_type *temp, int i, int total, char *str)
 
 void		ft_putocal2(t_type *temp)
 {
-	if (temp->nopoint && !temp->pres_left &&
+	if (temp->cero && !temp->pres_left &&
 			temp->pres_right && temp->negative)
 	{
 		temp->pres_left = temp->pres_right;
 		temp->pres_right = 0;
+		temp->cero = 0;
 	}
 	if (temp->cast == HH_CAST)
 	{

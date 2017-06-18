@@ -119,6 +119,12 @@ int			print_number(t_type *temp)
 
 	i = 0;
 	total = 0;
+	//ft_putnbr(temp->pres_left);
+	//ft_putnbr(temp->pres_right);
+	//ft_putnbr(temp->cero);
+	//ft_putnbr(temp->negative);
+	//ft_putnbr(temp->point);
+
 	if (temp->no_pres_left == 2 && (temp->no_pres_right == 2 ||
 		!temp->no_pres_right) && !temp->number)
 		return (0);

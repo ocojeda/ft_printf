@@ -170,10 +170,32 @@ total = ft_printf("{%10d}", -42);
    printf("--->total = %d\n", total);
 */
 wchar_t *ll = L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B";
-   total = ft_printf("%S", ll);
+   
+   total = ft_printf("{%+03d}", 0);
    ft_printf("--->total = %d\n", total);
-   total = printf("%S", ll);
+   total =printf("{%+03d}", 0);
    printf("--->total = %d\n", total);
+
+   total = ft_printf("%+03D", 0);
+   ft_printf("--->total = %d\n", total);
+   total =printf("%+03D", 0);
+   printf("--->total = %d\n", total);
+/*
+   total = ft_printf("%D", 1L);
+   ft_printf("--->total = %d\n", total);
+   total = printf("%D", 1L);
+   printf("--->total = %d\n", total);
+
+   total = ft_printf("%D", -1L);
+   ft_printf("--->total = %d\n", total);
+   total = printf("%D", -1L);
+   printf("--->total = %d\n", total);
+
+   total = ft_printf("%D", 42L);
+   ft_printf("--->total = %d\n", total);
+   total = printf("%D", 42L);
+   printf("--->total = %d\n", total);
+*/
 /*
    total = ft_printf("%s %d %p %% %S %D %i %o %O %u %U %x %X %c %C","bonjour", 42, &c, L"暖炉", LONG_MAX, 42, 42, 42, 100000, ULONG_MAX, 42, 42, 'c', L'플');
    ft_printf("--->total = %d\n", total);
