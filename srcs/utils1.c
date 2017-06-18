@@ -69,6 +69,5 @@ void		reset_type(t_type *temp)
 	temp->wstr = NULL;
 	temp->wc = 0;
 	temp->hexa = 0;
-	ft_bzero(temp->str1, BUFF_SIZE);
 	reset_type2(temp);
 }

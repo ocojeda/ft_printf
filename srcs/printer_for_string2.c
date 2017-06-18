@@ -23,11 +23,12 @@ int		print_string5(t_type *temp, int i, int everything, char *str_temp)
 {
 	while (temp->pres_right)
 	{
-		ft_putchar(temp->str1[i]);
+		ft_putchar(temp->str[i]);
 		i++;
 		temp->pres_right--;
 	}
 	free(str_temp);
+	free(temp->str);
 	return (everything);
 }
 

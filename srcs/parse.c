@@ -76,8 +76,8 @@ int			parse_all(char *str, va_list args, int i, int everything)
 
 	if (!(all = (t_type *)malloc(sizeof(t_type))))
 		return (-1);
-	//if (parse_checker(str, args, all, 0))
-	//	return (-1);
+	if (parse_checker(str, args, all, 0))
+		return (-1);
 	while (str[i])
 	{
 		if (str[i] == '%')
