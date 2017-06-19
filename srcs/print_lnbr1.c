@@ -14,19 +14,24 @@
 
 int			set_presschar_for_long2(t_type *temp, int total, int i, int a)
 {
+	long long t;
+
+	t = temp->lnbr;
 	if (temp->plus && temp->lnbr >= 0)
 	{
-		a += ft_putchar_spe('+');
+		ft_putchar('+');
+		a++;
 		if (temp->lnbr == 0)
 			a++;
 	}
-	if (temp->lnbr < 0)
+	if (t < 0)
 		temp->lnbr *= -ft_putchar_spe('-');
 	if (temp->pres_right > total - temp->negative)
 		i = temp->pres_right - total + temp->negative;
 	while (i > 0)
 	{
-		i -= ft_putchar_spe('0');
+		i--;
+		ft_putchar('0');
 		a++;
 	}
 	return (a);
@@ -38,15 +43,14 @@ int			set_presschar_for_long(t_type *temp, int total)
 	int a;
 
 	i = 0;
-	if ((temp->pres_left < total + temp->spaces) && temp->spaces &&
-			temp->lnbr > 0)
-	{
-		i = temp->spaces;
-		a = temp->spaces;
-		while (a)
-			a -= ft_putchar_spe(' ');
-	}
-	a = i;
+	a = 0;
+	if ((temp->pres_left < total + temp->spaces) && temp->spaces
+			&& temp->lnbr >= 0)
+			{
+				a = ft_putchar_spe(' ');
+				if(temp->pres_right)
+					temp->pres_right--;
+			}
 	i = 0;
 	if (temp->pres_right < total)
 		temp->pres_right = total - temp->negative;
@@ -71,6 +75,7 @@ int			spaces_forlonginverse(t_type *temp, int i, int a, int total)
 	return (i);
 }
 
+
 int			set_presschar_for_long_inverse(t_type *temp, int total)
 {
 	int i;
@@ -78,17 +83,29 @@ int			set_presschar_for_long_inverse(t_type *temp, int total)
 
 	a = spaces_forlonginverse(temp, 0, 0, total);
 	i = 0;
+	if (total == 0)
+	{
+		total = 1;
+		a--;
+	}
 	if (temp->pres_right < total)
-		temp->pres_right = total - temp->negative;
+		temp->pres_right = total;
 	if (temp->pres_left > temp->pres_right)
 	{
-		i = temp->pres_left - temp->pres_right - temp->plus - temp->negative;
+		i = temp->pres_left - temp->pres_right - temp->plus;
 		a += i;
 	}
 	while (i > 0)
 		i -= ft_putchar_spe(' ');
-	if (temp->pres_right > total - temp->negative)
-		i = temp->pres_right - total + temp->negative;
+	if (temp->pres_right > total)
+	{
+		i = temp->pres_right - total;
+		if(temp->lnbr == 0)
+				{
+					i++;
+					a++;
+				}
+	}
 	while (i > 0)
 	{
 		i -= ft_putchar_spe('0');

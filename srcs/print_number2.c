@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-
+/*c bon*/
 int				set_presschar_for_int2(t_type *temp, int total, int i, int a)
 {
 	int t;
@@ -36,22 +36,22 @@ int				set_presschar_for_int2(t_type *temp, int total, int i, int a)
 	}
 	return (a);
 }
-
+/*c bon*/
 int				set_presschar_for_int(t_type *temp, int total)
 {
 	int i;
 	int a;
 
 	i = 0;
+	a = 0;
 	if ((temp->pres_left < total + temp->spaces) && temp->spaces
-			&& temp->number > 0)
-	{
-		i = temp->spaces;
-		a = temp->spaces;
-		while (a)
-			a -= ft_putchar_spe(' ');
-	}
-	a = i;
+			&& temp->number >= 0)
+			{
+				a = ft_putchar_spe(' ');
+				if(temp->pres_right)
+					temp->pres_right--;
+				//if(temp->pres_right)temp->pres_left--;
+			}
 	i = 0;
 	if (temp->pres_right < total)
 		temp->pres_right = total - temp->negative;

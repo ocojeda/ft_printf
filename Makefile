@@ -6,7 +6,7 @@
 #    By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/15 15:25:14 by myernaux          #+#    #+#              #
-#    Updated: 2017/06/13 04:50:13 by ocojeda-         ###   ########.fr        #
+#    Updated: 2017/06/19 16:41:01 by ocojeda-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ SRC_NAME = ft_printf.c ft_putunbr.c hexa.c parse.c \
 			print_chars.c wutils.c parse1.c parse3.c parse4.c \
 			adresse_printer2.c hexa2.c octal2.c ft_putwstr2.c \
 			utils1.c utils2.c printer_for_string2.c print_number1.c \
-			print_lnbr.c print_lnbr1.c print_number2.c parse5.c
+			print_lnbr.c print_lnbr1.c print_number2.c parse5.c \
+			print_lnbr2.c
 SRCS = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 OBJS = $(addprefix $(OBJ_PATH)/,$(SRC_NAME:.c=.o))
 

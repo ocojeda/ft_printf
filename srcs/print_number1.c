@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-
+/*c bon*/
 void		cast_manager3(t_type *temp, int t)
 {
 	if (temp->cero && !temp->pres_left && temp->pres_right && temp->negative)
@@ -21,6 +21,8 @@ void		cast_manager3(t_type *temp, int t)
 		temp->nopoint = 0;
 		temp->cero = 0;
 	}
+	if(temp->cero && temp->negative)
+		temp->cero = 0;
 	if (temp->plus && t < 0 && temp->pres_left
 			&& !temp->pres_right && temp->cero)
 	{
@@ -31,21 +33,23 @@ void		cast_manager3(t_type *temp, int t)
 	if (t < 0 && temp->plus)
 		temp->plus = 0;
 }
-
-void		cero_mng_foriandl(t_type *temp)
+//CBONB
+void		cero_mng_fori(t_type *temp)
 {
 	if (temp->cero)
 	{
+		if(temp->pres_right && temp->number >= 0 && temp->plus)
+			temp->pres_right--;
 		if (temp->pres_left && !temp->pres_right && temp->plus)
 			temp->pres_right = temp->pres_left - 1;
 		else if (temp->pres_left && !temp->pres_right)
 			temp->pres_right = temp->pres_left;
 	}
 }
-
+//CBONB
 int			cero_manager_int(t_type *temp, int total, int t, int i)
 {
-	cero_mng_foriandl(temp);
+	cero_mng_fori(temp);
 	if (temp->no_pres_left == 1 && temp->no_pres_right == 1 && temp->plus == 0)
 	{
 		if (temp->spaces)
@@ -70,7 +74,7 @@ int			cero_manager_int(t_type *temp, int total, int t, int i)
 	}
 	return (0);
 }
-
+//CBON
 int			spaces_forintinverse(t_type *temp, int i, int a, int total)
 {
 	if ((temp->pres_left < total + temp->spaces) &&
@@ -83,7 +87,7 @@ int			spaces_forintinverse(t_type *temp, int i, int a, int total)
 	}
 	return (i);
 }
-
+//CBON
 int			set_presschar_for_int_inverse(t_type *temp, int total)
 {
 	int i;
@@ -91,17 +95,29 @@ int			set_presschar_for_int_inverse(t_type *temp, int total)
 
 	a = spaces_forintinverse(temp, 0, 0, total);
 	i = 0;
+	if (total == 0)
+		{
+			total = 1;
+			a--;
+		}
 	if (temp->pres_right < total)
-		temp->pres_right = total - temp->negative;
+		temp->pres_right = total;
 	if (temp->pres_left > temp->pres_right)
 	{
-		i = temp->pres_left - temp->pres_right - temp->plus - temp->negative;
+		i = temp->pres_left - temp->pres_right - temp->plus;
 		a += i;
 	}
 	while (i > 0)
 		i -= ft_putchar_spe(' ');
-	if (temp->pres_right > total - temp->negative)
-		i = temp->pres_right - total + temp->negative;
+	if (temp->pres_right > total)
+	{
+		i = temp->pres_right - total;
+		if(temp->number == 0)
+				{
+					i++;
+					a++;
+				}
+	}
 	while (i > 0)
 	{
 		i -= ft_putchar_spe('0');

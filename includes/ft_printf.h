@@ -82,7 +82,29 @@ int						precission_handler(char *str, int i, t_type *temp);
 int						cast_handler(char *str, int i, t_type *temp);
 int						set_presschar_forprev(t_type *temp, int total);
 int						set_presschar_forp(t_type *temp, int total);
+
+
+
+
 int						set_presschar(t_type *temp, int total);
+int						print_number(t_type *temp);
+int						set_presschar_for_long(t_type *temp, int total);
+int						set_presschar_for_long_inverse(t_type *temp,
+		int total);
+void					ft_printlongnbr(long long ll);
+int						total_int(int t, int total);
+int						cero_manager_int(t_type *temp, int total,
+		int t, int i);
+
+int						choose_for_long(t_type *temp, int total, long long t, int i);
+int						total_long(long long t, int total);
+int						set_presschar_for_int(t_type *temp, int total);
+int						ft_putllnbr(t_type *temp);
+void					cast_manager3(t_type *temp, int t);
+int						cero_manager_int(t_type *temp, int total, int t, int i);
+int						set_presschar_for_int_inverse(t_type *temp, int total);
+void					cast_manager3(t_type *temp, int t);
+
 int						set_presschar_octal(t_type *temp, int total);
 int						ft_puthexa(t_type *temp);
 char					*ft_hexa_itoa_capital(unsigned long long n);
@@ -91,7 +113,7 @@ int						ft_putoctal3(t_type *temp, int i, int total, char *str);
 int						ft_putoctal4(t_type *temp, char *str, int *i,
 		int total);
 void					ft_putunbr(unsigned long long unbr);
-void					ft_putlnbr(long int lnbr);
+
 int						ft_putwchar(wchar_t wc);
 int						ft_putwstr(t_type *temp, wchar_t *wstr, int everything,
 		int i);
@@ -109,13 +131,12 @@ void					parse_the_values4(va_list args, t_type *temp,
 int						parse_the_values2(va_list args, t_type *temp,
 		char *str, int i);
 int						ft_printf(char *format, ...);
-int						print_number(t_type *temp);
 int						print_unumber(t_type *temp);
 int						print_lunumber(t_type *temp);
 int						print_lnumber(t_type *temp);
 int						adresse_printer(t_type *temp);
-int						set_presschar_for_int(t_type *temp, int total);
-int						set_presschar(t_type *temp, int total);
+
+
 int						print_string(t_type *temp, int everything);
 int						print_string6(int everything, char *str_temp);
 int						print_string5(t_type *temp, int i, int everything);
@@ -124,28 +145,14 @@ int						ft_wstrlen(wchar_t *s);
 wchar_t					*ft_wstrdup(wchar_t *s1);
 wchar_t					*ft_wstrsub(wchar_t *s, int start, size_t len);
 int						ft_wputstr(wchar_t *str);
-int						cero_manager(t_type *temp, int i,
-		int total, long long t);
+
 int						cast_for_number(t_type *temp, int i, int total, int t);
-int						set_presschar_for_long(t_type *temp, int total);
-void					cero_mng_foriandl(t_type *temp);
-int						set_presschar_for_long_inverse(t_type *temp,
-		int total);
-void					ft_printlongnbr(long long ll);
 int						ft_putchar_spe(char c);
 int						set_presschar_for_int(t_type *temp, int total);
 int						print_number_inverse(t_type *temp,
 		long long t, int total);
-void					cast_manager3(t_type *temp, int t);
 void					reset_type(t_type *temp);
-int						ft_putllnbr(t_type *temp);
 int						cero_manager_forptr(t_type *temp, int total);
-int						total_int(int t, int total);
-int						cero_manager_int(t_type *temp, int total,
-		int t, int i);
-int						set_presschar_for_int_inverse(t_type *temp, int total);
-int						set_presschar_for_int(t_type *temp, int total);
-int						total_long(long long t, int total);
 int						smalldparser(va_list args, t_type *temp, int i);
 int						capitaldparser(va_list args, t_type *temp, int i);
 int						o_parser(va_list args, t_type *temp, char *str, int i);

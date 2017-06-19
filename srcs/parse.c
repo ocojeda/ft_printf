@@ -79,9 +79,6 @@ int			parse_all(char *str, va_list args, int i, int everything)
 		if (str[i] == '%')
 		{
 			i = parse_the_values(args, &all, str, i);
-			//if (i == -1)
-			//	return (0);
-			//ft_putnbr(all.type);
 			if (all.type >= 1 && all.type <= 14)
 				temp = printer(&all);
 			if (temp == -1)

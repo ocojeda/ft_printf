@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-
+/*c bon*/
 static int	cast_mng(t_type *temp, int t, int total)
 {
 	if (temp->cast == HH_CAST)
@@ -37,12 +37,12 @@ static int	cast_mng(t_type *temp, int t, int total)
 	}
 	return (total_int(t, total));
 }
-
+//*CBON
 int			is_left(t_type *temp, int total, int t, int i)
 {
 	int temp1;
 
-	if (temp->pres_right > total)
+		if (temp->pres_right > total)
 	{
 		temp1 = temp->pres_right - total;
 		if (temp->number > 0 && temp->plus)
@@ -66,12 +66,13 @@ int			is_left(t_type *temp, int total, int t, int i)
 	return (i);
 }
 
+//*CBON
 int			choose_l_o_r(t_type *temp, int total, int t, int i)
 {
 	if (temp->pres_left > temp->pres_right + total && temp->negative)
 		i = is_left(temp, total, t, i);
 	else
-	{
+	{	
 		t = temp->number;
 		if (t < 0 && temp->cero && temp->pres_left)
 			temp->pres_left--;
@@ -88,11 +89,11 @@ int			choose_l_o_r(t_type *temp, int total, int t, int i)
 		if (t < 0)
 			i++;
 	}
-	if (t == 0 && temp->pres_right)
+	if (t == 0 && temp->pres_right && !temp->plus)
 		i++;
 	return (i);
 }
-
+ // C BON
 int			negative_press_right(t_type *temp, int total, int i)
 {
 	if (temp->cero)
@@ -119,12 +120,6 @@ int			print_number(t_type *temp)
 
 	i = 0;
 	total = 0;
-	//ft_putnbr(temp->pres_left);
-	//ft_putnbr(temp->pres_right);
-	//ft_putnbr(temp->cero);
-	//ft_putnbr(temp->negative);
-	//ft_putnbr(temp->point);
-
 	if (temp->no_pres_left == 2 && (temp->no_pres_right == 2 ||
 		!temp->no_pres_right) && !temp->number)
 		return (0);

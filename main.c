@@ -171,15 +171,39 @@ total = ft_printf("{%10d}", -42);
 */
 wchar_t *ll = L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B";
    
-   total = ft_printf("{%+03d}", 0);
+   total = ft_printf("%-5x", 42);
    ft_printf("--->total = %d\n", total);
-   total =printf("{%+03d}", 0);
+   total =printf("%-5x", 42);
+   printf("--->total = %d\n", total);
+   
+   total = ft_printf("%+03D", 0);
+   ft_printf("--->total = %d\n", total);
+   total =printf("%+03D", 0);
    printf("--->total = %d\n", total);
 
    total = ft_printf("%+03D", 0);
    ft_printf("--->total = %d\n", total);
    total =printf("%+03D", 0);
    printf("--->total = %d\n", total);
+
+   total = ft_printf("%+03D", 12);
+   ft_printf("--->total = %d\n", total);
+   total =printf("%+03D", 12);
+   printf("--->total = %d\n", total);
+
+   total = ft_printf("{%.10p}", 20);
+   ft_printf("--->total = %d\n", total);
+   
+   total =printf("{%.*p}", 10, 20);
+   printf("--->total = %d\n", total);
+   
+   total =printf("{%p}", 0);
+   printf("--->total = %d\n", total);
+/*
+   total = ft_printf("%+03D", 0);
+   ft_printf("--->total = %d\n", total);
+   total =printf("%+03D", 0);
+   printf("--->total = %d\n", total);*/
 /*
    total = ft_printf("%D", 1L);
    ft_printf("--->total = %d\n", total);

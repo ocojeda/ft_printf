@@ -63,10 +63,14 @@ int		print_string(t_type *temp, int everything)
 	i = 0;
 	if (temp->pres_right && temp->pres_right < total)
 	{
-		str = ft_strsub(temp->str, 0, temp->pres_right);
-		temp->str = str;
-		free(str);
-		total = ft_strlen(temp->str);
+		if((str = ft_strsub(temp->str, 0, temp->pres_right)))
+		{
+			temp->str = str;
+			free(str);
+			total = ft_strlen(temp->str);
+		}
+		else
+			return (-1);
 	}
 	else if (temp->pres_left && temp->no_pres_right == 2)
 		return (print_string2(temp, i));
