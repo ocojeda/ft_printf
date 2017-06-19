@@ -78,8 +78,15 @@ int			choose_l_o_r(t_type *temp, int total, int t, int i)
 			temp->pres_left--;
 		if (temp->number == 0 && temp->pres_left && !temp->pres_right)
 		{
-			i = set_presschar_for_int(temp, total);
-			return (i);
+			if(temp->point)
+			{	
+				i = set_presschar_for_int(temp, total);
+				return (i);
+			}
+			else
+				temp->pres_left--;
+				i = set_presschar_for_int(temp, total);
+				return(i + ft_putchar_spe('0'));
 		}
 		i = set_presschar_for_int(temp, total);
 		if (temp->cero && temp->number == 0)

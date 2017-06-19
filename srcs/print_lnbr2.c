@@ -40,8 +40,15 @@ int			choose_for_long(t_type *temp, int total, long long t, int i)
 			temp->pres_left--;
 		if (temp->lnbr == 0 && temp->pres_left && !temp->pres_right)
 		{
-			i = set_presschar_for_long(temp, total);
-			return (i);
+			if(temp->point)
+			{	
+				i = set_presschar_for_long(temp, total);
+				return (i);
+			}
+			else
+				temp->pres_left--;
+				i = set_presschar_for_long(temp, total);
+				return(i + ft_putchar_spe('0'));
 		}
 		i = set_presschar_for_long(temp, total);
 		if (temp->cero && temp->lnbr == 0)

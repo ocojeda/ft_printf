@@ -71,15 +71,16 @@ typedef struct			s_type
 	short				cero;
 }						t_type;
 
+int						printer(t_type *all);
+int						option_handler(char *str, int i, t_type *temp, va_list args);
+int						precission_handler(char *str, int i, t_type *temp, va_list args);
+int						cast_handler(char *str, int i, t_type *temp);
 void					increase_one(int *a, int *b);
 int						print_chars(t_type *temp);
 int						ft_double_modulo_handler(t_type *temp);
 int						ft_putoctalm(t_type *temp);
 char					*ft_hexa_itoa(unsigned long long n);
-int						printer(t_type *all);
-int						option_handler(char *str, int i, t_type *temp);
-int						precission_handler(char *str, int i, t_type *temp);
-int						cast_handler(char *str, int i, t_type *temp);
+
 int						set_presschar_forprev(t_type *temp, int total);
 int						set_presschar_forp(t_type *temp, int total);
 

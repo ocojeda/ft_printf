@@ -91,7 +91,7 @@ int		option_handler2(char *str, int i, t_type *temp)
 	return (i);
 }
 
-int		option_handler(char *str, int i, t_type *temp)
+int		option_handler(char *str, int i, t_type *temp, va_list args)
 {
 	if (str[i])
 	{
@@ -113,5 +113,5 @@ int		option_handler(char *str, int i, t_type *temp)
 			}
 		}
 	}
-	return (precission_handler(str, i, temp));
+	return (precission_handler(str, i, temp, args));
 }

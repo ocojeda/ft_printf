@@ -15,7 +15,7 @@
 int			parse_the_values(va_list args, t_type *temp, char *str, int i)
 {
 	i++;
-	i = option_handler(str, i, temp);
+	i = option_handler(str, i, temp, args);
 	i = parse_the_values2(args, temp, str, i);
 	if (i == -1)
 		return (i);
