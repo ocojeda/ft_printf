@@ -41,7 +41,7 @@ int		parse_the_values2_1(va_list args, t_type *temp, char *str, int i)
 	return (i);
 }
 
-void	parse_the_values2_2(va_list args, t_type *temp)
+void	parse_the_values_forstr(va_list args, t_type *temp)
 {
 	char *str1;
 
@@ -96,7 +96,7 @@ int		parse_the_values2(va_list args, t_type *temp, char *str, int i)
 	i = parse_the_values2_1(args, temp, str, i);
 	if (str[i] == 's')
 	{
-		parse_the_values2_2(args, temp);
+		parse_the_values_forstr(args, temp);
 		return (i);
 	}
 	if (str[i] == 'x')

@@ -15,9 +15,12 @@
 int			cero_manager_forptr(t_type *temp, int total)
 {
 	if (temp->no_pres_left == 2 && (temp->no_pres_right == 2 ||
-				!temp->no_pres_right))
+				temp->no_pres_right == 0))
 	{
 		ft_putstr("0x");
+		if (temp->pres_right)
+			while (temp->pres_right--)
+				total += ft_putchar_spe('0');
 		return (total);
 	}
 	ft_putstr("0x0");

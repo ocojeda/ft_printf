@@ -85,7 +85,7 @@ int			adresse_printer(t_type *temp)
 	int				total;
 
 	total = 2;
-	if (!temp->pointer)
+	if (!temp->pointer && !temp->pres_left)
 		return (cero_manager_forptr(temp, total));
 	else
 	{

@@ -70,9 +70,9 @@ int		print_chars(t_type *temp)
 		return (print_chars2(temp, 0));
 	else if (temp->negative)
 		return (print_chars3(temp, 0));
-	else if (temp->type == CHAR && temp->pres_left)
+	else if (temp->pres_left)
 		return (print_chars4(temp, 0));
-	else if (temp->c == 0)
+	else if (!temp->c)
 		return (1);
 	else
 		return (ft_putchar_spe(temp->c));

@@ -191,10 +191,11 @@ wchar_t *ll = L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B";
    //total = printf("%5.d %5.0d", 0, 0);
    //printf("--->total = %d\n", total);
    
-   total = ft_printf("%10*p", 10, 0);
+   //total = ft_printf("%d%d%d%d\n", &malloc, &free, 1, 2);
+   total = ft_printf("%d%d%p%s%p%p%s", &free, 1, 2, &malloc, "b", &free, &malloc, "c");
    ft_printf("--->total = %d\n", total);
-   total = printf("%3*p", 10, 0);
-   printf("--->total = %d\n", total);
+   //total = printf("%s%p%d%d%p%s%p%p%s","a", &free, 1, 2, &malloc, "b", &free, &malloc, "c");
+   //printf("--->total = %d\n", total);
 /*
    total = printf("{%*p}",10, 20);
    printf("--->total = %d\n", total);

@@ -46,13 +46,11 @@ int				set_presschar_for_int(t_type *temp, int total)
 	a = 0;
 	if ((temp->pres_left < total + temp->spaces) && temp->spaces
 			&& temp->number >= 0)
-			{
-				a = ft_putchar_spe(' ');
-				if(temp->pres_right)
-					temp->pres_right--;
-				//if(temp->pres_right)temp->pres_left--;
-			}
-	i = 0;
+	{
+		a = ft_putchar_spe(' ');
+		if(temp->pres_right)
+			temp->pres_right--;
+	}
 	if (temp->pres_right < total)
 		temp->pres_right = total - temp->negative;
 	if (temp->pres_left > temp->pres_right)

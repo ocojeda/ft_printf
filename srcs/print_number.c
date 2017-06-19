@@ -42,7 +42,7 @@ int			is_left(t_type *temp, int total, int t, int i)
 {
 	int temp1;
 
-		if (temp->pres_right > total)
+	if (temp->pres_right > total)
 	{
 		temp1 = temp->pres_right - total;
 		if (temp->number > 0 && temp->plus)
@@ -65,7 +65,6 @@ int			is_left(t_type *temp, int total, int t, int i)
 	i = set_presschar_for_int_inverse(temp, total);
 	return (i);
 }
-
 //*CBON
 int			choose_l_o_r(t_type *temp, int total, int t, int i)
 {

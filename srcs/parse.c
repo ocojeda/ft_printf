@@ -30,6 +30,24 @@ int			parse_the_values(va_list args, t_type *temp, char *str, int i)
 		i++;
 	return (i);
 }
+int			parse_the_values1(va_list args, t_type *temp, char *str, int i)
+{
+	i++;
+	i = option_handler(str, i, temp, args);
+	i = parse_the_values2(args, temp, str, i);
+	if (i == -1)
+		return (i);
+	//parse_the_values3(args, temp, str, i);
+	//parse_the_values4(args, temp, str, i);
+	//if (!temp->type && str[i])
+	//{
+	//	temp->type = CHAR;
+	//	temp->c = str[i];
+	//}
+	if(str[i])
+		i++;
+	return (i);
+}
 
 int			parse_checker(char *str, va_list args, t_type *all, int i)
 {
@@ -44,6 +62,7 @@ int			parse_checker(char *str, va_list args, t_type *all, int i)
 			if (i == -1)
 			{
 				reset_type(all);
+				va_end(list2);
 				return (1);
 			}
 			reset_type(all);
