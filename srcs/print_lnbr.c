@@ -6,7 +6,7 @@
 /*   By: ocojeda- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 02:48:59 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/06/13 04:05:20 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/06/20 12:21:34 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void		lcast_manager3(t_type *temp, long long t)
 		temp->nopoint = 0;
 		temp->cero = 0;
 	}
-	if(temp->cero && temp->negative)
+	if (temp->cero && temp->negative)
 		temp->cero = 0;
 	if (temp->plus && t < 0 && temp->pres_left
 			&& !temp->pres_right && temp->cero)
@@ -57,7 +57,7 @@ void		cero_mng_forl(t_type *temp)
 {
 	if (temp->cero)
 	{
-		if(temp->pres_right && temp->lnbr >= 0 && temp->plus)
+		if (temp->pres_right && temp->lnbr >= 0 && temp->plus)
 			temp->pres_right--;
 		if (temp->pres_left && !temp->pres_right && temp->plus)
 			temp->pres_right = temp->pres_left - 1;
@@ -94,7 +94,7 @@ int			cero_manager_long(t_type *temp, int total, long long t, int i)
 	return (0);
 }
 
-int		ft_putllnbr(t_type *temp)
+int			ft_putllnbr(t_type *temp)
 {
 	int total;
 	int i;
@@ -108,11 +108,11 @@ int		ft_putllnbr(t_type *temp)
 	lcast_manager3(temp, temp->lnbr);
 	if (temp->lnbr < 0 && (temp->pres_left > temp->pres_right + total) &&
 			!temp->negative)
-		return(lnegative_press_right(temp, total, i));
+		return (lnegative_press_right(temp, total, i));
 	if (temp->nopoint && temp->pres_right && !temp->pres_left
 			&& temp->number < 0)
 		temp->pres_right--;
 	if ((i = cero_manager_long(temp, total, temp->lnbr, i)))
 		return (i);
-	return (choose_for_long(temp, total, temp->lnbr, i));
+	return (choose_for_long(temp, total, i));
 }

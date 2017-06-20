@@ -6,12 +6,12 @@
 /*   By: ocojeda- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 02:43:20 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/06/13 02:46:16 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/06/19 22:51:07 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-/*c bon*/
+
 int				set_presschar_for_int2(t_type *temp, int total, int i, int a)
 {
 	int t;
@@ -36,7 +36,7 @@ int				set_presschar_for_int2(t_type *temp, int total, int i, int a)
 	}
 	return (a);
 }
-/*c bon*/
+
 int				set_presschar_for_int(t_type *temp, int total)
 {
 	int i;
@@ -48,7 +48,7 @@ int				set_presschar_for_int(t_type *temp, int total)
 			&& temp->number >= 0)
 	{
 		a = ft_putchar_spe(' ');
-		if(temp->pres_right)
+		if (temp->pres_right)
 			temp->pres_right--;
 	}
 	if (temp->pres_right < total)

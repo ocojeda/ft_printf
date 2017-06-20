@@ -6,7 +6,7 @@
 /*   By: ocojeda- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 14:22:32 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/06/13 05:28:33 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/06/20 12:46:40 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int			total_long(long long t, int total)
 	return (total);
 }
 
-void		reset_type2(t_type *temp)
+void		reset_type(t_type *temp)
 {
 	temp->plus = 0;
 	temp->negative = 0;
@@ -52,22 +52,5 @@ void		reset_type2(t_type *temp)
 	temp->point = 0;
 	temp->cast = 0;
 	temp->cero = 0;
-	temp->number = 0;
-	temp->octal = 0;
-}
-
-void		reset_type(t_type *temp)
-{
 	temp->type = 0;
-	temp->unbr = 0;
-	temp->lunbr = 0;
-	temp->lnbr = 0;
-	temp->pointer = 0;
-	temp->fnumber = 0;
-	temp->str = NULL;
-	temp->c = 0;
-	temp->wstr = NULL;
-	temp->wc = 0;
-	temp->hexa = 0;
-	reset_type2(temp);
 }

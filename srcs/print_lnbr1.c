@@ -6,7 +6,7 @@
 /*   By: ocojeda- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 03:16:57 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/06/13 04:06:33 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/06/19 22:55:32 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,11 @@ int			set_presschar_for_long(t_type *temp, int total)
 	a = 0;
 	if ((temp->pres_left < total + temp->spaces) && temp->spaces
 			&& temp->lnbr >= 0)
-			{
-				a = ft_putchar_spe(' ');
-				if(temp->pres_right)
-					temp->pres_right--;
-			}
-	i = 0;
+	{
+		a = ft_putchar_spe(' ');
+		if (temp->pres_right)
+			temp->pres_right--;
+	}
 	if (temp->pres_right < total)
 		temp->pres_right = total - temp->negative;
 	if (temp->pres_left > temp->pres_right)
@@ -75,7 +74,6 @@ int			spaces_forlonginverse(t_type *temp, int i, int a, int total)
 	return (i);
 }
 
-
 int			set_presschar_for_long_inverse(t_type *temp, int total)
 {
 	int i;
@@ -84,10 +82,7 @@ int			set_presschar_for_long_inverse(t_type *temp, int total)
 	a = spaces_forlonginverse(temp, 0, 0, total);
 	i = 0;
 	if (total == 0)
-	{
-		total = 1;
-		a--;
-	}
+		a -= ++total;
 	if (temp->pres_right < total)
 		temp->pres_right = total;
 	if (temp->pres_left > temp->pres_right)
@@ -100,16 +95,10 @@ int			set_presschar_for_long_inverse(t_type *temp, int total)
 	if (temp->pres_right > total)
 	{
 		i = temp->pres_right - total;
-		if(temp->lnbr == 0)
-				{
-					i++;
-					a++;
-				}
+		if (temp->lnbr == 0)
+			increase_one(&a, &i);
 	}
-	while (i > 0)
-	{
-		i -= ft_putchar_spe('0');
-		a++;
-	}
+	while (--i > 0)
+		a += ft_putchar_spe('0');
 	return (a + total);
 }

@@ -6,7 +6,7 @@
 /*   By: myernaux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 14:36:55 by myernaux          #+#    #+#             */
-/*   Updated: 2017/06/13 05:35:03 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/06/19 22:46:37 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int		printer2(t_type *temp)
 int				printer(t_type *all)
 {
 	if (all->type == STR)
-		return (print_string(all, 0));
+		return (print_string(all, 0, 0));
 	if (all->type == INTI)
 		return (print_number(all));
 	if (all->type == HEXA)

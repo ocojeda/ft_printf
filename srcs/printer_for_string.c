@@ -6,7 +6,7 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/08 13:28:48 by myernaux          #+#    #+#             */
-/*   Updated: 2017/06/13 05:33:09 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/06/19 22:47:26 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,24 +53,22 @@ int		print_string2(t_type *temp, int i)
 	return (temp->pres_left);
 }
 
-int		print_string(t_type *temp, int everything)
+int		print_string(t_type *temp, int everything, int i)
 {
-	int		i;
 	int		total;
-	char 	*str;
-	
+	char	*str;
+
 	total = ft_strlen(temp->str);
-	i = 0;
 	if (temp->pres_right && temp->pres_right < total)
 	{
-		if((str = ft_strsub(temp->str, 0, temp->pres_right)))
+		if ((str = ft_strsub(temp->str, 0, temp->pres_right)))
 		{
 			temp->str = str;
 			free(str);
 			total = ft_strlen(temp->str);
 		}
 		else
-			return (-1);
+			return (0);
 	}
 	else if (temp->pres_left && temp->no_pres_right == 2)
 		return (print_string2(temp, i));

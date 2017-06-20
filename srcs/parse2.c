@@ -6,7 +6,7 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 08:30:48 by myernaux          #+#    #+#             */
-/*   Updated: 2017/06/13 05:18:56 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/06/20 12:40:47 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,10 @@ int		parse_the_values2_1(va_list args, t_type *temp, char *str, int i)
 			temp->type = STR;
 			temp->str = "(null)\0";
 		}
-		//ft_putnbr(temp->point);
 		if (temp->negative)
-			return (-1);
-		if(temp->cero && !temp->point)
-			return -1;
+			temp->negative = 0;
+		if (temp->cero && !temp->point)
+			temp->cero = 0;
 	}
 	return (i);
 }
@@ -110,7 +109,7 @@ void	parse_the_values4(va_list args, t_type *temp, char *str, int i)
 	if (str[i] == 'p')
 	{
 		temp->type = POINTER_ADRESSE;
-		temp->pointer = va_arg(args, unsigned long);
+		temp->pointer = (unsigned long long)va_arg(args, void *);
 		return ;
 	}
 	if (o_parser(args, temp, str, i))

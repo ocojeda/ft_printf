@@ -6,7 +6,7 @@
 /*   By: ocojeda- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/08 17:26:29 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/06/13 06:26:35 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/06/20 12:52:16 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct			s_type
 	int					number;
 	unsigned long long	octal;
 	unsigned long long	hexa;
-	unsigned long		pointer;
+	unsigned long long	pointer;
 	double				fnumber;
 	char				*str;
 	uintmax_t			c;
@@ -72,21 +72,18 @@ typedef struct			s_type
 }						t_type;
 
 int						printer(t_type *all);
-int						option_handler(char *str, int i, t_type *temp, va_list args);
-int						precission_handler(char *str, int i, t_type *temp, va_list args);
+int						option_handler(char *str, int i, t_type *temp,
+		va_list args);
+int						precission_handler(char *str, int i, t_type *temp,
+		va_list args);
 int						cast_handler(char *str, int i, t_type *temp);
 void					increase_one(int *a, int *b);
 int						print_chars(t_type *temp);
 int						ft_double_modulo_handler(t_type *temp);
 int						ft_putoctalm(t_type *temp);
 char					*ft_hexa_itoa(unsigned long long n);
-
 int						set_presschar_forprev(t_type *temp, int total);
 int						set_presschar_forp(t_type *temp, int total);
-
-
-
-
 int						set_presschar(t_type *temp, int total);
 int						print_number(t_type *temp);
 int						set_presschar_for_long(t_type *temp, int total);
@@ -96,8 +93,7 @@ void					ft_printlongnbr(long long ll);
 int						total_int(int t, int total);
 int						cero_manager_int(t_type *temp, int total,
 		int t, int i);
-
-int						choose_for_long(t_type *temp, int total, long long t, int i);
+int						choose_for_long(t_type *temp, int total, int i);
 int						total_long(long long t, int total);
 int						set_presschar_for_int(t_type *temp, int total);
 int						ft_putllnbr(t_type *temp);
@@ -105,7 +101,6 @@ void					cast_manager3(t_type *temp, int t);
 int						cero_manager_int(t_type *temp, int total, int t, int i);
 int						set_presschar_for_int_inverse(t_type *temp, int total);
 void					cast_manager3(t_type *temp, int t);
-
 int						set_presschar_octal(t_type *temp, int total);
 int						ft_puthexa(t_type *temp);
 char					*ft_hexa_itoa_capital(unsigned long long n);
@@ -114,7 +109,6 @@ int						ft_putoctal3(t_type *temp, int i, int total, char *str);
 int						ft_putoctal4(t_type *temp, char *str, int *i,
 		int total);
 void					ft_putunbr(unsigned long long unbr);
-
 int						ft_putwchar(wchar_t wc);
 int						ft_putwstr(t_type *temp, wchar_t *wstr, int everything,
 		int i);
@@ -136,9 +130,7 @@ int						print_unumber(t_type *temp);
 int						print_lunumber(t_type *temp);
 int						print_lnumber(t_type *temp);
 int						adresse_printer(t_type *temp);
-
-
-int						print_string(t_type *temp, int everything);
+int						print_string(t_type *temp, int everything, int i);
 int						print_string6(int everything, char *str_temp);
 int						print_string5(t_type *temp, int i, int everything);
 int						print_string4(t_type *temp, int total, int evr);

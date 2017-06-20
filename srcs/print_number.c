@@ -6,12 +6,12 @@
 /*   By: ocojeda- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 01:57:33 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/06/13 03:55:15 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/06/19 22:15:22 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-/*c bon*/
+
 static int	cast_mng(t_type *temp, int t, int total)
 {
 	if (temp->cast == HH_CAST)
@@ -37,7 +37,7 @@ static int	cast_mng(t_type *temp, int t, int total)
 	}
 	return (total_int(t, total));
 }
-//*CBON
+
 int			is_left(t_type *temp, int total, int t, int i)
 {
 	int temp1;
@@ -65,27 +65,22 @@ int			is_left(t_type *temp, int total, int t, int i)
 	i = set_presschar_for_int_inverse(temp, total);
 	return (i);
 }
-//*CBON
+
 int			choose_l_o_r(t_type *temp, int total, int t, int i)
 {
 	if (temp->pres_left > temp->pres_right + total && temp->negative)
 		i = is_left(temp, total, t, i);
 	else
-	{	
-		t = temp->number;
+	{
 		if (t < 0 && temp->cero && temp->pres_left)
 			temp->pres_left--;
 		if (temp->number == 0 && temp->pres_left && !temp->pres_right)
 		{
-			if(temp->point)
-			{	
-				i = set_presschar_for_int(temp, total);
-				return (i);
-			}
+			if (temp->point)
+				return (set_presschar_for_int(temp, total));
 			else
 				temp->pres_left--;
-				i = set_presschar_for_int(temp, total);
-				return(i + ft_putchar_spe('0'));
+			return (set_presschar_for_int(temp, total) + ft_putchar_spe('0'));
 		}
 		i = set_presschar_for_int(temp, total);
 		if (temp->cero && temp->number == 0)
@@ -99,7 +94,7 @@ int			choose_l_o_r(t_type *temp, int total, int t, int i)
 		i++;
 	return (i);
 }
- // C BON
+
 int			negative_press_right(t_type *temp, int total, int i)
 {
 	if (temp->cero)

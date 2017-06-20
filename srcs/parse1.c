@@ -44,10 +44,10 @@ void		parse_the_values3_1(va_list args, t_type *temp, char *str, int i)
 		if (temp->cast == LONG_LONG || temp->cast == LONG)
 		{
 			temp->type = WCHAR;
-			temp->wc = va_arg(args, wchar_t);
+			temp->wc = va_arg(args, int);
 		}
 		else
-			temp->c = va_arg(args, int);
+			temp->c = (char)va_arg(args, void *);
 	}
 }
 

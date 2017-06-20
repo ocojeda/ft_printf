@@ -6,12 +6,12 @@
 /*   By: ocojeda- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/08 14:11:01 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/06/13 06:01:06 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/06/19 22:36:38 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-/*c bon*/
+
 void		cast_manager3(t_type *temp, int t)
 {
 	if (temp->cero && !temp->pres_left && temp->pres_right && temp->negative)
@@ -21,7 +21,7 @@ void		cast_manager3(t_type *temp, int t)
 		temp->nopoint = 0;
 		temp->cero = 0;
 	}
-	if(temp->cero && temp->negative)
+	if (temp->cero && temp->negative)
 		temp->cero = 0;
 	if (temp->plus && t < 0 && temp->pres_left
 			&& !temp->pres_right && temp->cero)
@@ -33,12 +33,12 @@ void		cast_manager3(t_type *temp, int t)
 	if (t < 0 && temp->plus)
 		temp->plus = 0;
 }
-//CBONB
+
 void		cero_mng_fori(t_type *temp)
 {
 	if (temp->cero)
 	{
-		if(temp->pres_right && temp->number >= 0 && temp->plus)
+		if (temp->pres_right && temp->number >= 0 && temp->plus)
 			temp->pres_right--;
 		if (temp->pres_left && !temp->pres_right && temp->plus)
 			temp->pres_right = temp->pres_left - 1;
@@ -46,7 +46,7 @@ void		cero_mng_fori(t_type *temp)
 			temp->pres_right = temp->pres_left;
 	}
 }
-//CBONB
+
 int			cero_manager_int(t_type *temp, int total, int t, int i)
 {
 	cero_mng_fori(temp);
@@ -74,7 +74,7 @@ int			cero_manager_int(t_type *temp, int total, int t, int i)
 	}
 	return (0);
 }
-//CBON
+
 int			spaces_forintinverse(t_type *temp, int i, int a, int total)
 {
 	if ((temp->pres_left < total + temp->spaces) &&
@@ -87,7 +87,7 @@ int			spaces_forintinverse(t_type *temp, int i, int a, int total)
 	}
 	return (i);
 }
-//CBON
+
 int			set_presschar_for_int_inverse(t_type *temp, int total)
 {
 	int i;
@@ -96,10 +96,7 @@ int			set_presschar_for_int_inverse(t_type *temp, int total)
 	a = spaces_forintinverse(temp, 0, 0, total);
 	i = 0;
 	if (total == 0)
-		{
-			total = 1;
-			a--;
-		}
+		a -= ++total;
 	if (temp->pres_right < total)
 		temp->pres_right = total;
 	if (temp->pres_left > temp->pres_right)
@@ -112,16 +109,10 @@ int			set_presschar_for_int_inverse(t_type *temp, int total)
 	if (temp->pres_right > total)
 	{
 		i = temp->pres_right - total;
-		if(temp->number == 0)
-				{
-					i++;
-					a++;
-				}
+		if (temp->number == 0)
+			increase_one(&a, &i);
 	}
-	while (i > 0)
-	{
-		i -= ft_putchar_spe('0');
-		a++;
-	}
+	while (--i > 0)
+		a += ft_putchar_spe('0');
 	return (a + total);
 }

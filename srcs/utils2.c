@@ -6,7 +6,7 @@
 /*   By: ocojeda- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 03:11:50 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/06/13 03:12:26 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/06/19 23:23:10 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,10 @@ void			ft_printlongnbr(long long ll)
 	}
 	else
 		ft_putchar(ll + '0');
+}
+
+void			increase_one(int *a, int *b)
+{
+	*a = (*a) + 1;
+	*b = (*b) + 1;
 }

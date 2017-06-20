@@ -6,19 +6,13 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 08:37:00 by myernaux          #+#    #+#             */
-/*   Updated: 2017/06/13 05:26:04 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/06/19 23:22:10 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void			increase_one(int *a, int *b)
-{
-	*a = (*a) + 1;
-	*b = (*b) + 1;
-}
-
-int				precission_handler2(char *str, int i, t_type *temp)
+int			precission_handler2(char *str, int i, t_type *temp)
 {
 	int		e;
 	int		j;
@@ -46,11 +40,40 @@ int				precission_handler2(char *str, int i, t_type *temp)
 	return (i);
 }
 
-int				precission_handler1(char *str, int i, t_type *temp, va_list args)
+int			star_hndlr_left(char *str, int i, t_type *temp, va_list args)
+{
+	char	*str1;
+	int		e;
+	int		j;
+
+	e = 0;
+	j = i;
+	if (str[i] == '0')
+		temp->cero = 1;
+	while (str[i] >= '0' && str[i] <= '9' && str[i])
+		increase_one(&i, &e);
+	str1 = ft_strsub(str, j, e);
+	temp->pres_left = ft_atoi(str1);
+	free(str1);
+	temp->nopoint = 0;
+	if (str[i] == '*')
+	{
+		temp->pres_left = va_arg(args, int);
+		if (temp->pres_left < 0)
+		{
+			temp->negative = NEGATIVE;
+			temp->pres_left *= -1;
+		}
+		i++;
+	}
+	return (i);
+}
+
+int			precission_handler1(char *str, int i, t_type *temp, va_list args)
 {
 	int		j;
 	char	*str1;
-	int 	e;
+	int		e;
 
 	e = 0;
 	j = i;
@@ -65,62 +88,47 @@ int				precission_handler1(char *str, int i, t_type *temp, va_list args)
 		temp->nopoint = 1;
 	}
 	else if (str[i] >= '0' && str[i] <= '9' && str[i])
-	{
-		if (str[i] == '0')
-			temp->cero = 1;
-		while (str[i] >= '0' && str[i] <= '9' && str[i])
-			increase_one(&i, &e);
-		str1 = ft_strsub(str, j, e);
-		temp->pres_left = ft_atoi(str1);
-		free(str1);
-		temp->nopoint = 0;
-		if(str[i] == '*')
-		{
-			temp->pres_left = va_arg(args, int);
-				if(temp->pres_left < 0)
-					{
-						temp->negative = NEGATIVE;
-						temp->pres_left *= -1;
-					}
-				i++;
-		}	
-	}
+		i = star_hndlr_left(str, i, temp, args);
 	return (i);
 }
 
-int				precission_handler(char *str, int i, t_type *temp, va_list args)
+int			star_hndlr_right(char *str, int i, t_type *temp, va_list args)
+{
+	if (str[i + 1] == '*')
+	{
+		temp->pres_right = va_arg(args, int);
+		if (temp->pres_right < 0)
+		{
+			temp->negative = NEGATIVE;
+			temp->pres_right *= -1;
+		}
+		temp->nopoint = 0;
+		temp->point = 1;
+		i += 2;
+	}
+	else
+		i = precission_handler2(str, i, temp);
+	return (i);
+}
+
+int			precission_handler(char *str, int i, t_type *temp, va_list args)
 {
 	if ((str[i] >= '0' && str[i] <= '9') || str[i] == '.' || str[i] == '*')
 	{
-		if(str[i] == '*')
+		if (str[i] == '*')
+		{
+			temp->pres_left = va_arg(args, int);
+			if (temp->pres_left < 0)
 			{
-				temp->pres_left = va_arg(args, int);
-				if(temp->pres_left < 0)
-					{
-						temp->negative = NEGATIVE;
-						temp->pres_left *= -1;
-					}
-				i++;
+				temp->negative = NEGATIVE;
+				temp->pres_left *= -1;
 			}
+			i++;
+		}
 		else
 			i = precission_handler1(str, i, temp, args);
 		if (str[i] == '.')
-			{
-				if(str[i + 1] == '*')
-				{
-					temp->pres_right = va_arg(args, int);
-					if(temp->pres_right < 0)
-					{
-						temp->negative = NEGATIVE;
-						temp->pres_right *= -1;
-					}
-					temp->nopoint = 0;
-					temp->point = 1;
-					i += 2;
-				}
-				else
-					i = precission_handler2(str, i, temp);
-			}
+			i = star_hndlr_right(str, i, temp, args);
 	}
 	else
 	{
