@@ -6,7 +6,7 @@
 /*   By: ocojeda- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/08 15:29:48 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/06/20 12:50:49 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/06/20 16:11:17 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,25 +30,11 @@ int			parse_the_values(va_list args, t_type *temp, char *str, int i)
 		i++;
 	return (i);
 }
-/*
-int			parse_the_values1(va_list args, t_type *temp, char *str, int i)
-{
-	i++;
-	i = option_handler(str, i, temp, args);
-	i = parse_the_values2(args, temp, str, i);
-	if (i == -1)
-		return (i);*/
-	//parse_the_values3(args, temp, str, i);
-	//parse_the_values4(args, temp, str, i);
-/*	if (str[i])
-		i++;
-	return (i);
-}*/
 
-void			parse_checker(char *str, va_list args, t_type *all, int i)
+void		parse_checker(char *str, va_list args, t_type *all, int i)
 {
 	va_list		list2;
-		
+
 	va_copy(list2, args);
 	while (str[i])
 	{
@@ -80,7 +66,7 @@ int			parse_all(char *str, va_list args, int i, int everything)
 	t_type	all;
 	int		temp;
 
-	//parse_checker(str, args, &all, 0);
+	parse_checker(str, args, &all, 0);
 	while (str[i])
 	{
 		if (str[i] == '%')
